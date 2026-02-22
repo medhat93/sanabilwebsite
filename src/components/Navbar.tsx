@@ -42,7 +42,7 @@ const Navbar = () => {
       >
         <div className="container mx-auto flex items-center justify-between px-6 py-5">
           <button onClick={() => handleClick("#home")}>
-            <Logo iconSize={48} showText />
+            <Logo iconSize={96} showText />
           </button>
 
           <div className="hidden lg:flex items-center gap-8">
