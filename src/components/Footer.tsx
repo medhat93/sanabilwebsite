@@ -106,7 +106,7 @@ const Footer = () => {
           >
             <Logo iconSize={80} showText textSize="small" />
             <p className="mt-4" style={{ fontSize: 14, color: "rgba(255, 255, 255, 0.35)", lineHeight: 1.5, maxWidth: 240 }}>
-              Engineering the future, one line of code at a time.
+              سنابل — where ideas grow into extraordinary software.
             </p>
             <div className="flex gap-2.5 mt-5">
               {socials.map((s, i) => (
