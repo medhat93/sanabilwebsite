@@ -3,32 +3,31 @@ import { useInView } from "react-intersection-observer";
 import { Quote } from "lucide-react";
 
 const testimonials = [
-  {
-    quote: "Sanabil Technologies transformed our vision into a world-class platform. Their dedicated team felt like an extension of our own. The AI-driven approach saved us months of development time.",
-    name: "Ahmed Al-Rahman",
-    role: "CTO, TechVentures Inc.",
-    initials: "AA",
-  },
-  {
-    quote: "The 24/7 support is a game-changer. Every time we had an urgent request, the Sanabil team responded within minutes. They truly care about their clients' success.",
-    name: "Sarah Mitchell",
-    role: "Product Manager, CloudScale Solutions",
-    initials: "SM",
-  },
-  {
-    quote: "We've worked with many software vendors, but Sanabil's engineering quality is on another level. Clean code, excellent documentation, and a team that genuinely understands our business.",
-    name: "Omar Hassan",
-    role: "CEO, DataFlow Analytics",
-    initials: "OH",
-  },
+  { quote: "Sanabil Technologies transformed our vision into a world-class platform. Their dedicated team felt like an extension of our own. The AI-driven approach saved us months of development time.", name: "Ahmed Al-Rahman", role: "CTO, TechVentures Inc.", initials: "AA" },
+  { quote: "The 24/7 support is a game-changer. Every time we had an urgent request, the Sanabil team responded within minutes. They truly care about their clients' success.", name: "Sarah Mitchell", role: "Product Manager, CloudScale Solutions", initials: "SM" },
+  { quote: "We've worked with many software vendors, but Sanabil's engineering quality is on another level. Clean code, excellent documentation, and a team that genuinely understands our business.", name: "Omar Hassan", role: "CEO, DataFlow Analytics", initials: "OH" },
 ];
 
 const Testimonials = () => {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
 
   return (
-    <section id="testimonials" ref={ref} className="py-24 gradient-navy">
-      <div className="container mx-auto px-6">
+    <section id="testimonials" ref={ref} className="relative py-24 overflow-hidden" style={{ background: "linear-gradient(180deg, hsl(215 75% 10%) 0%, hsl(207 75% 15%) 100%)" }}>
+      {/* Dot pattern */}
+      <div
+        className="absolute inset-0 opacity-[0.03]"
+        style={{
+          backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px)",
+          backgroundSize: "40px 40px",
+        }}
+      />
+      {/* Soft glow */}
+      <div
+        className="absolute top-0 right-1/4 w-[500px] h-[500px] rounded-full pointer-events-none"
+        style={{ background: "radial-gradient(circle, rgba(229, 168, 33, 0.05) 0%, transparent 70%)" }}
+      />
+
+      <div className="relative z-10 container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -80,20 +79,11 @@ const Testimonials = () => {
               }}
             >
               <Quote size={24} className="text-accent mb-4" style={{ filter: "drop-shadow(0 0 12px rgba(229, 168, 33, 0.25))" }} />
-              <p
-                className="mb-6 italic"
-                style={{ fontSize: 15, lineHeight: 1.65, color: "rgba(255, 255, 255, 0.6)" }}
-              >
-                "{t.quote}"
-              </p>
+              <p className="mb-6 italic" style={{ fontSize: 15, lineHeight: 1.65, color: "rgba(255, 255, 255, 0.6)" }}>"{t.quote}"</p>
               <div className="flex items-center gap-3">
                 <div
                   className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold font-display"
-                  style={{
-                    background: "rgba(229, 168, 33, 0.15)",
-                    color: "#E5A821",
-                    border: "1px solid rgba(229, 168, 33, 0.25)",
-                  }}
+                  style={{ background: "rgba(229, 168, 33, 0.15)", color: "#E5A821", border: "1px solid rgba(229, 168, 33, 0.25)" }}
                 >
                   {t.initials}
                 </div>
