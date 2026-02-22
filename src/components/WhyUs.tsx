@@ -422,28 +422,28 @@ const WhyUs = () => {
     <section
       id="why-us"
       ref={ref}
-      className="relative py-24 overflow-hidden"
+      className="relative py-16 sm:py-24 overflow-hidden"
       style={{ background: "linear-gradient(180deg, hsl(215 75% 10%) 0%, hsl(215 75% 12%) 50%, hsl(207 75% 15%) 100%)" }}
     >
       {/* Background orbs */}
       <div className="absolute pointer-events-none" style={{ top: "30%", left: "20%", width: 600, height: 600, background: "radial-gradient(circle, rgba(229, 168, 33, 0.04) 0%, transparent 50%)" }} />
       <div className="absolute pointer-events-none" style={{ top: "70%", left: "80%", width: 500, height: 500, background: "radial-gradient(circle, rgba(59, 130, 246, 0.03) 0%, transparent 50%)", transform: "translate(-50%, -50%)" }} />
 
-      <div className="relative z-10 container mx-auto px-6">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-10 sm:mb-16"
         >
-          <div className="flex items-center justify-center gap-4 mb-4">
-            <div className="w-1 h-10 rounded-full gradient-gold" />
-            <h2 className="text-3xl md:text-5xl font-bold font-display text-primary-foreground" style={{ letterSpacing: "-0.02em" }}>
+          <div className="flex items-center justify-center gap-3 sm:gap-4 mb-4">
+            <div className="w-1 h-8 sm:h-10 rounded-full gradient-gold" />
+            <h2 className="text-[26px] sm:text-3xl md:text-5xl font-bold font-display text-primary-foreground" style={{ letterSpacing: "-0.02em" }}>
               Why Teams Choose <span className="text-gradient-gold">Sanabil</span>
             </h2>
           </div>
-          <p className="text-primary-foreground/50 max-w-xl mx-auto text-lg md:text-xl mt-4" style={{ lineHeight: 1.65 }}>
+          <p className="text-primary-foreground/50 max-w-xl mx-auto text-[15px] sm:text-lg md:text-xl mt-4 px-2" style={{ lineHeight: 1.65 }}>
             We combine the world's best engineering talent with AI-native workflows to deliver results no traditional agency can match.
           </p>
         </motion.div>

@@ -124,7 +124,7 @@ const Testimonials = () => {
     <section
       id="testimonials"
       ref={ref}
-      className="relative py-24 overflow-hidden"
+      className="relative py-16 sm:py-24 overflow-hidden"
       style={{ background: "linear-gradient(180deg, hsl(215 75% 12%) 0%, hsl(207 65% 16%) 100%)" }}
     >
       {/* Gold orb */}
@@ -140,24 +140,24 @@ const Testimonials = () => {
         }}
       />
 
-      <div className="relative z-10 container mx-auto px-6">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-10 sm:mb-16"
         >
-          <div className="flex items-center justify-center gap-4 mb-4">
-            <div className="w-1 h-10 rounded-full gradient-gold" />
+          <div className="flex items-center justify-center gap-3 sm:gap-4 mb-4">
+            <div className="w-1 h-8 sm:h-10 rounded-full gradient-gold" />
             <h2
-              className="text-3xl md:text-5xl font-bold font-display text-primary-foreground"
+              className="text-[26px] sm:text-3xl md:text-5xl font-bold font-display text-primary-foreground"
               style={{ letterSpacing: "-0.02em" }}
             >
               What Our Clients <span className="text-gradient-gold">Say</span>
             </h2>
           </div>
-          <p style={{ color: "rgba(255, 255, 255, 0.45)", fontSize: 18, marginTop: 16 }}>
+          <p className="text-[15px] sm:text-lg" style={{ color: "rgba(255, 255, 255, 0.45)", marginTop: 16 }}>
             Real results from real partnerships.
           </p>
         </motion.div>
@@ -180,14 +180,14 @@ const Testimonials = () => {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: -15, scale: 0.97 }}
                 transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
-                className="relative"
+                className="relative sm:p-12 sm:rounded-3xl sm:min-h-[320px]"
                 style={{
                   background: "rgba(255, 255, 255, 0.04)",
                   border: "1px solid rgba(229, 168, 33, 0.15)",
                   borderTop: "3px solid #E5A821",
-                  borderRadius: 24,
-                  padding: 48,
-                  minHeight: 320,
+                  borderRadius: 20,
+                  padding: "28px 24px",
+                  minHeight: 280,
                   boxShadow:
                     "0 24px 64px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(229, 168, 33, 0.08)",
                   zIndex: 2,
@@ -198,10 +198,10 @@ const Testimonials = () => {
                   className="absolute pointer-events-none select-none"
                   style={{
                     fontFamily: "Georgia, serif",
-                    fontSize: 120,
+                    fontSize: 80,
                     color: "rgba(229, 168, 33, 0.08)",
-                    top: -10,
-                    left: 20,
+                    top: -5,
+                    left: 16,
                     lineHeight: 1,
                   }}
                 >
@@ -211,10 +211,9 @@ const Testimonials = () => {
                 <Stars animate={true} />
 
                 <p
-                  className="relative z-10 italic"
+                  className="relative z-10 italic text-[15px] sm:text-lg"
                   style={{
-                    fontSize: 18,
-                    lineHeight: 1.75,
+                    lineHeight: 1.7,
                     color: "rgba(255, 255, 255, 0.85)",
                     maxWidth: 520,
                   }}
@@ -233,30 +232,28 @@ const Testimonials = () => {
                 />
 
                 {/* Author */}
-                <div className="flex items-center gap-4">
-                  <div
-                    className="w-12 h-12 rounded-full flex items-center justify-center font-bold font-display"
-                    style={{
-                      background:
-                        "linear-gradient(135deg, rgba(229, 168, 33, 0.3) 0%, rgba(229, 168, 33, 0.1) 100%)",
-                      border: "2px solid rgba(229, 168, 33, 0.2)",
-                      color: "#E5A821",
-                      fontSize: 18,
-                    }}
-                  >
+                <div className="flex items-center gap-3 sm:gap-4">
+                    <div
+                      className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center font-bold font-display text-[16px] sm:text-[18px]"
+                      style={{
+                        background:
+                          "linear-gradient(135deg, rgba(229, 168, 33, 0.3) 0%, rgba(229, 168, 33, 0.1) 100%)",
+                        border: "2px solid rgba(229, 168, 33, 0.2)",
+                        color: "#E5A821",
+                      }}
+                    >
                     {testimonials[active].initials}
                   </div>
-                  <div>
-                    <p
-                      className="font-semibold font-display text-primary-foreground"
-                      style={{ fontSize: 16 }}
-                    >
-                      {testimonials[active].name}
-                    </p>
-                    <p style={{ fontSize: 14, color: "rgba(255, 255, 255, 0.45)" }}>
-                      {testimonials[active].role}
-                    </p>
-                  </div>
+                    <div>
+                      <p
+                        className="font-semibold font-display text-primary-foreground text-[15px] sm:text-base"
+                      >
+                        {testimonials[active].name}
+                      </p>
+                      <p className="text-[13px] sm:text-sm" style={{ color: "rgba(255, 255, 255, 0.45)" }}>
+                        {testimonials[active].role}
+                      </p>
+                    </div>
                 </div>
               </motion.div>
             </AnimatePresence>
@@ -273,10 +270,9 @@ const Testimonials = () => {
           transition={{ delay: 0.6, duration: 0.4 }}
           className="flex items-center justify-center gap-4 mt-10"
         >
-          {/* Left arrow */}
           <button
             onClick={prev}
-            className="hidden sm:flex items-center justify-center group"
+            className="hidden sm:flex items-center justify-center group min-w-[44px] min-h-[44px]"
             style={{
               width: 40,
               height: 40,
@@ -329,7 +325,7 @@ const Testimonials = () => {
           {/* Right arrow */}
           <button
             onClick={next}
-            className="hidden sm:flex items-center justify-center group"
+            className="hidden sm:flex items-center justify-center group min-w-[44px] min-h-[44px]"
             style={{
               width: 40,
               height: 40,

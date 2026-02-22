@@ -46,9 +46,11 @@ const TimelineStep = ({ step, index }: { step: typeof steps[0]; index: number })
   const Icon = step.icon;
 
   return (
-    <div ref={ref} className="relative flex gap-0" style={{ paddingBottom: index < steps.length - 1 ? 80 : 0 }}>
+    <div ref={ref} className="relative flex gap-0" style={{ paddingBottom: index < steps.length - 1 ? 56 : 0 }} 
+      /* Desktop spacing */ 
+    >
       {/* Node */}
-      <div className="absolute left-0 md:left-[80px] w-[12px] h-[12px] rounded-full z-10" style={{
+      <div className="absolute left-[12px] md:left-[80px] w-[10px] md:w-[12px] h-[10px] md:h-[12px] rounded-full z-10" style={{
         top: 6,
         transform: "translateX(-5px)",
         border: inView ? "none" : "2px solid rgba(229, 168, 33, 0.2)",
@@ -58,31 +60,32 @@ const TimelineStep = ({ step, index }: { step: typeof steps[0]; index: number })
       }} />
 
       {/* Content */}
-      <div className="pl-12 md:pl-0 md:ml-[140px]" style={{ maxWidth: 560 }}>
+      <div className="pl-10 md:pl-0 md:ml-[140px]" style={{ maxWidth: 560 }}>
         <motion.span
-          initial={{ opacity: 0, x: 30 }}
+          initial={{ opacity: 0, x: 15 }}
           animate={inView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+          transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
           className="block font-mono font-semibold uppercase mb-2"
-          style={{ fontSize: 13, letterSpacing: "0.1em", color: "#E5A821" }}
+          style={{ fontSize: 11, letterSpacing: "0.1em", color: "#E5A821" }}
         >
           {step.label}
         </motion.span>
         <motion.h3
-          initial={{ opacity: 0, x: 30 }}
+          initial={{ opacity: 0, x: 15 }}
           animate={inView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.1, ease: [0.4, 0, 0.2, 1] }}
-          className="flex items-center gap-3 font-display font-bold text-primary-foreground mb-3"
-          style={{ fontSize: 26, letterSpacing: "-0.02em" }}
+          transition={{ duration: 0.4, delay: 0.1, ease: [0.4, 0, 0.2, 1] }}
+          className="flex items-center gap-3 font-display font-bold text-primary-foreground mb-3 text-[20px] md:text-[26px]"
+          style={{ letterSpacing: "-0.02em" }}
         >
-          <Icon size={20} strokeWidth={1.8} className="flex-shrink-0" style={{ color: "#E5A821", filter: "drop-shadow(0 0 8px rgba(229, 168, 33, 0.3))" }} />
+          <Icon size={18} strokeWidth={1.8} className="flex-shrink-0 md:w-5 md:h-5" style={{ color: "#E5A821", filter: "drop-shadow(0 0 8px rgba(229, 168, 33, 0.3))" }} />
           {step.title}
         </motion.h3>
         <motion.p
-          initial={{ opacity: 0, x: 30 }}
+          initial={{ opacity: 0, x: 15 }}
           animate={inView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
-          style={{ fontSize: 16, lineHeight: 1.7, color: "rgba(255, 255, 255, 0.55)" }}
+          transition={{ duration: 0.4, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
+          className="text-sm md:text-base"
+          style={{ lineHeight: 1.7, color: "rgba(255, 255, 255, 0.55)" }}
         >
           {step.description}
         </motion.p>
@@ -99,8 +102,8 @@ const TimelineStep = ({ step, index }: { step: typeof steps[0]; index: number })
               background: "rgba(229, 168, 33, 0.1)",
               border: "1px solid rgba(229, 168, 33, 0.25)",
               borderRadius: 20,
-              padding: "6px 16px",
-              fontSize: 13,
+              padding: "5px 12px",
+              fontSize: 11,
               color: "#E5A821",
             }}
           >
@@ -159,7 +162,7 @@ const SpeedComparison = () => {
 };
 
 const CircuitBackground = () => (
-  <svg className="absolute inset-0 w-full h-full pointer-events-none z-0" xmlns="http://www.w3.org/2000/svg">
+  <svg className="absolute inset-0 w-full h-full pointer-events-none z-0 hidden md:block" xmlns="http://www.w3.org/2000/svg">
     <defs>
       <pattern id="circuit" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
         <circle cx="40" cy="40" r="1.5" fill="rgba(229, 168, 33, 0.03)" />
@@ -189,7 +192,7 @@ const Process = () => {
   return (
     <section
       id="process"
-      className="relative py-24 overflow-hidden"
+      className="relative py-16 sm:py-24 overflow-hidden"
       style={{ background: "linear-gradient(180deg, hsl(207 75% 15%) 0%, hsl(215 75% 8%) 100%)" }}
     >
       {/* Circuit background */}
@@ -197,25 +200,25 @@ const Process = () => {
 
       {/* Gold glow */}
       <div
-        className="absolute top-1/3 left-1/4 w-[600px] h-[600px] rounded-full pointer-events-none"
+        className="absolute top-1/3 left-1/4 w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] rounded-full pointer-events-none"
         style={{ background: "radial-gradient(circle, rgba(229, 168, 33, 0.04) 0%, transparent 70%)" }}
       />
 
-      <div className="relative z-10 container mx-auto px-6">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6">
         <motion.div
           ref={headerRef}
           initial={{ opacity: 0, y: 30 }}
           animate={headerInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="text-center mb-12 sm:mb-20"
         >
-          <div className="flex items-center justify-center gap-4 mb-4">
-            <div className="w-1 h-10 rounded-full gradient-gold" />
-            <h2 className="text-3xl md:text-5xl font-bold font-display text-primary-foreground" style={{ letterSpacing: "-0.02em" }}>
-              How We Build — <span className="text-gradient-gold">AI-Native Development</span>
+          <div className="flex items-center justify-center gap-3 sm:gap-4 mb-4">
+            <div className="w-1 h-8 sm:h-10 rounded-full gradient-gold" />
+            <h2 className="text-[26px] sm:text-3xl md:text-5xl font-bold font-display text-primary-foreground" style={{ letterSpacing: "-0.02em" }}>
+              How We Build — <span className="text-gradient-gold">AI-Native</span>
             </h2>
           </div>
-          <p className="text-primary-foreground/50 max-w-2xl mx-auto text-lg md:text-xl mt-4" style={{ lineHeight: 1.65 }}>
+          <p className="text-primary-foreground/50 max-w-2xl mx-auto text-[15px] sm:text-lg md:text-xl mt-4" style={{ lineHeight: 1.65 }}>
             Traditional agencies take months. Our AI-augmented teams deliver production-ready software in weeks — without cutting corners on quality, security, or scalability.
           </p>
         </motion.div>
@@ -223,7 +226,7 @@ const Process = () => {
         <div ref={containerRef} className="relative max-w-[1000px] mx-auto">
           {/* Timeline track */}
           <div
-            className="absolute left-0 md:left-[80px] top-0 bottom-0 w-[2px]"
+            className="absolute left-[12px] md:left-[80px] top-0 bottom-0 w-[2px]"
             style={{ background: "rgba(229, 168, 33, 0.15)" }}
           >
             <motion.div

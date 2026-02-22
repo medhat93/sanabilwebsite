@@ -420,23 +420,23 @@ const Services = () => {
   };
 
   return (
-    <section id="services" ref={ref} className="relative py-24 overflow-hidden"
+    <section id="services" ref={ref} className="relative py-16 sm:py-24 overflow-hidden"
       style={{ background: "linear-gradient(180deg, hsl(207 75% 15%) 0%, hsl(215 75% 12%) 100%)" }}>
       {/* Background orb */}
       <div className="absolute pointer-events-none" style={{ top: "40%", left: "70%", width: 600, height: 600,
         background: "radial-gradient(circle, rgba(229, 168, 33, 0.03) 0%, transparent 50%)", transform: "translate(-50%, -50%)" }} />
 
-      <div className="relative z-10 container mx-auto px-6">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6">
         {/* Header */}
         <motion.div initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }} className="text-center mb-16">
-          <div className="flex items-center justify-center gap-4 mb-4">
-            <div className="w-1 h-10 rounded-full gradient-gold" />
-            <h2 className="text-3xl md:text-5xl font-bold font-display text-primary-foreground" style={{ letterSpacing: "-0.02em" }}>
+          transition={{ duration: 0.6 }} className="text-center mb-10 sm:mb-16">
+          <div className="flex items-center justify-center gap-3 sm:gap-4 mb-4">
+            <div className="w-1 h-8 sm:h-10 rounded-full gradient-gold" />
+            <h2 className="text-[26px] sm:text-3xl md:text-5xl font-bold font-display text-primary-foreground" style={{ letterSpacing: "-0.02em" }}>
               What We <span className="text-gradient-gold">Build</span>
             </h2>
           </div>
-          <p className="text-primary-foreground/50 max-w-2xl mx-auto text-lg md:text-xl mt-4" style={{ lineHeight: 1.65 }}>
+          <p className="text-primary-foreground/50 max-w-2xl mx-auto text-[15px] sm:text-lg md:text-xl mt-4 px-2" style={{ lineHeight: 1.65 }}>
             End-to-end software solutions powered by AI-native engineering. Each service backed by dedicated teams, cutting-edge tools, and a relentless commitment to quality.
           </p>
         </motion.div>
@@ -482,7 +482,7 @@ const Services = () => {
         {/* Mobile detail panel */}
         <div className="md:hidden mt-4" style={{
           background: "rgba(255, 255, 255, 0.02)", border: "1px solid rgba(255, 255, 255, 0.06)",
-          borderTop: "3px solid #E5A821", borderRadius: 20, padding: 28, minHeight: 320,
+          borderTop: "3px solid #E5A821", borderRadius: 20, padding: "24px 20px", minHeight: 280,
         }}>
           <AnimatePresence mode="wait">
             <DetailPanel key={active} index={active} />

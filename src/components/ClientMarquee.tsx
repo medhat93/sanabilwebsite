@@ -50,12 +50,14 @@ const ClientMarquee = () => {
 
   return (
     <section
+      id="clients"
       style={{
         background: "linear-gradient(180deg, rgba(10,37,64,1) 0%, rgba(10,37,64,1) 100%)",
         position: "relative",
-        padding: "40px 0",
+        padding: "28px 0",
         overflow: "hidden",
       }}
+      className="sm:py-10"
     >
       {/* Gold glow overlay */}
       <div
@@ -65,18 +67,19 @@ const ClientMarquee = () => {
 
       <div className="relative z-10">
         {/* Gold line */}
-        <div style={{ width: 40, height: 1, background: "rgba(229,168,33,0.3)", margin: "0 auto 12px" }} />
+        <div className="w-8 sm:w-10 h-px mx-auto mb-3" style={{ background: "rgba(229,168,33,0.3)" }} />
 
         <p
           style={{
             color: "rgba(255,255,255,0.3)",
-            fontSize: 13,
+            fontSize: 11,
             fontWeight: 500,
             textTransform: "uppercase",
-            letterSpacing: "0.15em",
+            letterSpacing: "0.12em",
             textAlign: "center",
-            marginBottom: 32,
+            marginBottom: 24,
           }}
+          className="sm:text-[13px] sm:tracking-[0.15em] sm:mb-8"
         >
           Trusted by Industry Leaders
         </p>
@@ -85,26 +88,26 @@ const ClientMarquee = () => {
         <div style={maskStyle}>
           <div
             className="flex items-center"
-            style={{ gap: 40, width: "max-content", animation: "marquee 35s linear infinite" }}
+            style={{ gap: 32, width: "max-content", animation: "marquee 30s linear infinite" }}
           >
             {row1.map((name, i) => (
-              <span key={i} className="flex items-center gap-10">
-                <NameItem name={name} />
+              <span key={i} className="flex items-center gap-8 sm:gap-10">
+                <NameItem name={name} size={15} />
                 <Dot />
               </span>
             ))}
           </div>
         </div>
 
-        {/* Row 2 */}
-        <div style={{ ...maskStyle, marginTop: 20 }}>
+        {/* Row 2 - hidden on mobile */}
+        <div className="hidden sm:block" style={{ ...maskStyle, marginTop: 20 }}>
           <div
             className="flex items-center"
             style={{ gap: 40, width: "max-content", animation: "marquee 35s linear infinite reverse" }}
           >
             {row2.map((name, i) => (
               <span key={i} className="flex items-center gap-10">
-                <NameItem name={name} size={16} baseOpacity={0.12} />
+                <NameItem name={name} size={14} baseOpacity={0.12} />
                 <Dot />
               </span>
             ))}
