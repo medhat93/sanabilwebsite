@@ -7,7 +7,7 @@ const Footer = () => {
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           <div>
-            <Logo iconSize={36} showText />
+            <Logo iconSize={36} showText textSize="small" />
             <p className="text-sm text-primary-foreground/50 mb-4" style={{ lineHeight: 1.65 }}>
               Engineering the future, one line of code at a time.
             </p>
