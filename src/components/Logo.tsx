@@ -7,12 +7,12 @@ interface LogoProps {
   className?: string;
 }
 
-const Logo = ({ iconSize = 44, showText = true, textSize = "default", className = "" }: LogoProps) => {
+const Logo = ({ iconSize = 48, showText = true, textSize = "default", className = "" }: LogoProps) => {
   const isSmall = textSize === "small";
 
   return (
     <div
-      className={`flex items-center gap-2.5 group cursor-pointer transition-all duration-300 ${className}`}
+      className={`flex items-center gap-3 group cursor-pointer transition-all duration-300 ${className}`}
     >
       <img
         src={sanabilIcon}
@@ -29,13 +29,13 @@ const Logo = ({ iconSize = 44, showText = true, textSize = "default", className 
         <div className="hidden md:flex flex-col leading-none">
           <span
             className="font-display font-bold text-primary-foreground"
-            style={{ fontSize: isSmall ? 18 : 20, letterSpacing: "0.02em" }}
+            style={{ fontSize: isSmall ? 20 : 24, letterSpacing: "0.02em" }}
           >
             Sanabil
           </span>
           <span
             className="font-display font-medium text-accent uppercase"
-            style={{ fontSize: isSmall ? 11 : 13, letterSpacing: "0.08em", marginTop: 2 }}
+            style={{ fontSize: isSmall ? 13 : 15, letterSpacing: "0.08em", marginTop: 3 }}
           >
             Technologies
           </span>

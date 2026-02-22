@@ -40,9 +40,9 @@ const Navbar = () => {
             : "bg-transparent"
         }`}
       >
-        <div className="container mx-auto flex items-center justify-between px-6 py-4">
+        <div className="container mx-auto flex items-center justify-between px-6 py-5">
           <button onClick={() => handleClick("#home")}>
-            <Logo iconSize={44} showText />
+            <Logo iconSize={48} showText />
           </button>
 
           <div className="hidden lg:flex items-center gap-8">
