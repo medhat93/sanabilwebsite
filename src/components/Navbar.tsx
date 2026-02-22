@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Logo from "./Logo";
 
@@ -17,77 +17,92 @@ const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50);
+    const onScroll = () => setScrolled(window.scrollY > 80);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   const handleClick = (href: string) => {
     setMobileOpen(false);
-    const el = document.querySelector(href);
-    el?.scrollIntoView({ behavior: "smooth" });
+    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <>
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="fixed top-0 left-0 right-0 z-50"
+      <nav
+        className="fixed top-0 left-0 right-0 z-50 flex items-center"
+        style={{
+          height: 72,
+          padding: "0 40px",
+          background: scrolled ? "rgba(10, 37, 64, 0.75)" : "transparent",
+          backdropFilter: scrolled ? "blur(16px)" : "blur(0px)",
+          WebkitBackdropFilter: scrolled ? "blur(16px)" : "blur(0px)",
+          borderBottom: scrolled
+            ? "1px solid rgba(229, 168, 33, 0.1)"
+            : "1px solid transparent",
+          boxShadow: scrolled
+            ? "0px 0px 0px 1px rgba(229, 168, 33, 0.05), 0 4px 20px rgba(0, 0, 0, 0.15)"
+            : "none",
+          transition: "all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+        }}
       >
-        <div
-          className="mx-3 md:mx-6 mt-3 rounded-3xl transition-all duration-[400ms] border"
-          style={{
-            background: scrolled
-              ? "rgba(10, 37, 64, 0.75)"
-              : "rgba(10, 37, 64, 0.45)",
-            backdropFilter: `blur(${scrolled ? 28 : 24}px) saturate(1.8)`,
-            WebkitBackdropFilter: `blur(${scrolled ? 28 : 24}px) saturate(1.8)`,
-            borderColor: scrolled
-              ? "rgba(229, 168, 33, 0.2)"
-              : "rgba(229, 168, 33, 0.12)",
-            boxShadow: scrolled
-              ? "0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(229, 168, 33, 0.08)"
-              : "0 4px 24px rgba(0, 0, 0, 0.15)",
-          }}
-        >
-          <div className="container mx-auto flex items-center justify-between px-6 py-1.5">
-            <button onClick={() => handleClick("#home")}>
-              <Logo iconSize={96} showText />
-            </button>
+        <div className="w-full flex items-center justify-between">
+          <button onClick={() => handleClick("#home")}>
+            <Logo iconSize={80} showText />
+          </button>
 
-            <div className="hidden lg:flex items-center gap-1">
-              {navLinks.map((link) => (
-                <button
-                  key={link.href}
-                  onClick={() => handleClick(link.href)}
-                  className="relative text-base font-semibold font-display text-primary-foreground/80 hover:text-accent px-4 py-2 rounded-lg hover:bg-white/[0.08] transition-all duration-200 tracking-[0.01em] group"
-                >
-                  {link.label}
-                  <span className="absolute bottom-1 left-4 right-4 h-0.5 bg-accent scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-full" />
-                </button>
-              ))}
-            </div>
-
-            <div className="hidden lg:block">
+          <div className="hidden lg:flex items-center gap-1">
+            {navLinks.map((link) => (
               <button
-                onClick={() => handleClick("#contact")}
-                className="gradient-gold px-8 py-3.5 rounded-full text-base font-bold font-display text-accent-foreground hover:scale-105 transition-transform duration-200 btn-gold-glow"
+                key={link.href}
+                onClick={() => handleClick(link.href)}
+                className="relative text-[15px] font-semibold font-display text-primary-foreground/90 hover:text-primary-foreground px-4 py-2 rounded-lg transition-all duration-200"
+                style={{
+                  transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = "rgba(255, 255, 255, 0.08)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "transparent";
+                }}
               >
-                Book a Meeting
+                {link.label}
               </button>
-            </div>
+            ))}
+          </div>
 
+          <div className="hidden lg:block">
             <button
-              className="lg:hidden text-primary-foreground"
-              onClick={() => setMobileOpen(!mobileOpen)}
+              onClick={() => handleClick("#contact")}
+              className="px-7 py-2.5 rounded-full text-[15px] font-bold font-display transition-all duration-200"
+              style={{
+                background: "#E5A821",
+                color: "hsl(207, 75%, 15%)",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = "#F0B832";
+                e.currentTarget.style.transform = "translateY(-1px)";
+                e.currentTarget.style.boxShadow = "0 4px 20px rgba(229, 168, 33, 0.4)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = "#E5A821";
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.boxShadow = "none";
+              }}
             >
-              {mobileOpen ? <X size={28} /> : <Menu size={28} />}
+              Book a Meeting
             </button>
           </div>
+
+          <button
+            className="lg:hidden text-primary-foreground"
+            onClick={() => setMobileOpen(!mobileOpen)}
+          >
+            {mobileOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
         </div>
-      </motion.nav>
+      </nav>
 
       <AnimatePresence>
         {mobileOpen && (
@@ -98,8 +113,9 @@ const Navbar = () => {
             transition={{ type: "spring", damping: 25 }}
             className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-8 lg:hidden"
             style={{
+              height: "100dvh",
               background: "rgba(10, 37, 64, 0.95)",
-              backdropFilter: "blur(24px) saturate(1.8)",
+              backdropFilter: "blur(24px)",
             }}
           >
             {navLinks.map((link) => (
@@ -113,7 +129,8 @@ const Navbar = () => {
             ))}
             <button
               onClick={() => handleClick("#contact")}
-              className="gradient-gold px-8 py-3.5 rounded-full font-bold font-display text-accent-foreground mt-4 text-base btn-gold-glow"
+              className="px-8 py-3.5 rounded-full font-bold font-display mt-4 text-base"
+              style={{ background: "#E5A821", color: "hsl(207, 75%, 15%)" }}
             >
               Book a Meeting
             </button>
