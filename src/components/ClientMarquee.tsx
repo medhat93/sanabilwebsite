@@ -1,99 +1,114 @@
 import { useState } from "react";
 
 const clients = [
-  { name: "Google", logo: "https://logo.clearbit.com/google.com" },
-  { name: "Microsoft", logo: "https://logo.clearbit.com/microsoft.com" },
-  { name: "Amazon", logo: "https://logo.clearbit.com/amazon.com" },
-  { name: "Stripe", logo: "https://logo.clearbit.com/stripe.com" },
-  { name: "Slack", logo: "https://logo.clearbit.com/slack.com" },
-  { name: "Shopify", logo: "https://logo.clearbit.com/shopify.com" },
-  { name: "Notion", logo: "https://logo.clearbit.com/notion.so" },
-  { name: "Figma", logo: "https://logo.clearbit.com/figma.com" },
+  "Google", "Microsoft", "Amazon", "Stripe", "Slack", "Shopify", "Notion", "Figma",
 ];
 
-const LogoItem = ({ name, logo }: { name: string; logo: string }) => {
-  const [failed, setFailed] = useState(false);
-  const [hovered, setHovered] = useState(false);
+const clients2 = [
+  "Meridian Corp", "Axiom Digital", "PrimeStack", "Elevate Labs", "SynapseIO", "Orbit Systems", "NovaEdge", "Helix Cloud",
+];
 
+const NameItem = ({ name, size = 18, baseOpacity = 0.2 }: { name: string; size?: number; baseOpacity?: number }) => {
+  const [hovered, setHovered] = useState(false);
   return (
-    <div
-      className="flex-shrink-0"
+    <span
+      className="flex-shrink-0 font-display whitespace-nowrap cursor-default"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
+      style={{
+        color: hovered ? "rgba(255,255,255,0.7)" : `rgba(255,255,255,${baseOpacity})`,
+        fontSize: size,
+        fontWeight: 600,
+        transition: "all 0.3s ease",
+        textShadow: hovered ? "0 0 20px rgba(229,168,33,0.2)" : "none",
+      }}
     >
-      {failed ? (
-        <span
-          className="font-display whitespace-nowrap"
-          style={{
-            color: hovered ? "rgba(255,255,255,0.6)" : "rgba(255,255,255,0.2)",
-            fontSize: 18,
-            fontWeight: 600,
-            transition: "color 0.4s ease",
-          }}
-        >
-          {name}
-        </span>
-      ) : (
-        <img
-          src={logo}
-          alt={name}
-          onError={() => setFailed(true)}
-          style={{
-            height: 28,
-            width: "auto",
-            objectFit: "contain",
-            filter: hovered
-              ? "grayscale(0) brightness(1) invert(0) opacity(1)"
-              : "grayscale(1) brightness(0.8) invert(1) opacity(0.35)",
-            transition: "filter 0.4s ease",
-          }}
-        />
-      )}
-    </div>
+      {name}
+    </span>
   );
 };
 
+const Dot = () => (
+  <span
+    className="flex-shrink-0 select-none"
+    style={{ color: "rgba(229,168,33,0.3)", fontSize: 24, lineHeight: 1 }}
+    aria-hidden
+  >
+    ·
+  </span>
+);
+
+const maskStyle = {
+  maskImage: "linear-gradient(90deg, transparent 0%, black 15%, black 85%, transparent 100%)",
+  WebkitMaskImage: "linear-gradient(90deg, transparent 0%, black 15%, black 85%, transparent 100%)",
+  overflow: "hidden" as const,
+};
+
 const ClientMarquee = () => {
+  const row1 = [...clients, ...clients];
+  const row2 = [...clients2, ...clients2];
+
   return (
     <section
       style={{
-        background: "#0A2540",
+        background: "linear-gradient(180deg, rgba(10,37,64,1) 0%, rgba(10,37,64,1) 100%)",
+        position: "relative",
         padding: "40px 0",
         overflow: "hidden",
       }}
     >
-      <p
-        style={{
-          color: "rgba(255,255,255,0.3)",
-          fontSize: 13,
-          fontWeight: 500,
-          textTransform: "uppercase",
-          letterSpacing: "0.15em",
-          textAlign: "center",
-          marginBottom: 24,
-        }}
-      >
-        Trusted by Industry Leaders
-      </p>
-
+      {/* Gold glow overlay */}
       <div
-        style={{
-          maskImage: "linear-gradient(90deg, transparent 0%, black 10%, black 90%, transparent 100%)",
-          WebkitMaskImage: "linear-gradient(90deg, transparent 0%, black 10%, black 90%, transparent 100%)",
-          overflow: "hidden",
-        }}
-      >
-        <div
-          className="flex items-center"
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: "linear-gradient(180deg, rgba(10,37,64,0) 0%, rgba(229,168,33,0.02) 50%, rgba(10,37,64,0) 100%)" }}
+      />
+
+      <div className="relative z-10">
+        {/* Gold line */}
+        <div style={{ width: 40, height: 1, background: "rgba(229,168,33,0.3)", margin: "0 auto 12px" }} />
+
+        <p
           style={{
-            gap: 80,
-            width: "max-content",
-            animation: "marquee 35s linear infinite",
+            color: "rgba(255,255,255,0.3)",
+            fontSize: 13,
+            fontWeight: 500,
+            textTransform: "uppercase",
+            letterSpacing: "0.15em",
+            textAlign: "center",
+            marginBottom: 32,
           }}
         >
-          {[...clients, ...clients].map((c, i) => (
-            <LogoItem key={i} name={c.name} logo={c.logo} />
-          ))}
+          Trusted by Industry Leaders
+        </p>
+
+        {/* Row 1 */}
+        <div style={maskStyle}>
+          <div
+            className="flex items-center"
+            style={{ gap: 40, width: "max-content", animation: "marquee 35s linear infinite" }}
+          >
+            {row1.map((name, i) => (
+              <span key={i} className="flex items-center gap-10">
+                <NameItem name={name} />
+                <Dot />
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Row 2 */}
+        <div style={{ ...maskStyle, marginTop: 20 }}>
+          <div
+            className="flex items-center"
+            style={{ gap: 40, width: "max-content", animation: "marquee 35s linear infinite reverse" }}
+          >
+            {row2.map((name, i) => (
+              <span key={i} className="flex items-center gap-10">
+                <NameItem name={name} size={16} baseOpacity={0.12} />
+                <Dot />
+              </span>
+            ))}
+          </div>
         </div>
       </div>
     </section>
