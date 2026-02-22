@@ -15,8 +15,23 @@ const WhyUs = () => {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
 
   return (
-    <section id="why-us" ref={ref} className="py-24 gradient-navy">
-      <div className="container mx-auto px-6">
+    <section id="why-us" ref={ref} className="relative py-24 overflow-hidden" style={{ background: "linear-gradient(180deg, hsl(215 75% 10%) 0%, hsl(215 75% 12%) 50%, hsl(207 75% 15%) 100%)" }}>
+      {/* Subtle grid lines */}
+      <div
+        className="absolute inset-0 opacity-[0.03]"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)",
+          backgroundSize: "60px 60px",
+        }}
+      />
+      {/* Gold glow center */}
+      <div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] rounded-full pointer-events-none"
+        style={{ background: "radial-gradient(ellipse, rgba(229, 168, 33, 0.04) 0%, transparent 70%)" }}
+      />
+
+      <div className="relative z-10 container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -73,32 +88,12 @@ const WhyUs = () => {
                   el.style.boxShadow = "none";
                 }}
               >
-                <span
-                  className="absolute top-6 right-6 font-mono text-sm"
-                  style={{ color: "rgba(229, 168, 33, 0.2)" }}
-                >
-                  {num}
-                </span>
-
-                <div
-                  className="mb-5 group-hover:-translate-y-0.5 transition-transform duration-300"
-                  style={{ filter: "drop-shadow(0 0 12px rgba(229, 168, 33, 0.25))" }}
-                >
+                <span className="absolute top-6 right-6 font-mono text-sm" style={{ color: "rgba(229, 168, 33, 0.2)" }}>{num}</span>
+                <div className="mb-5 group-hover:-translate-y-0.5 transition-transform duration-300" style={{ filter: "drop-shadow(0 0 12px rgba(229, 168, 33, 0.25))" }}>
                   <Icon size={34} strokeWidth={1.8} className="text-accent" />
                 </div>
-
-                <h3
-                  className="font-display font-semibold text-primary-foreground mb-3"
-                  style={{ fontSize: 20, letterSpacing: "-0.02em" }}
-                >
-                  {f.title}
-                </h3>
-                <p
-                  className="font-normal"
-                  style={{ fontSize: 15, lineHeight: 1.65, color: "rgba(255, 255, 255, 0.6)" }}
-                >
-                  {f.description}
-                </p>
+                <h3 className="font-display font-semibold text-primary-foreground mb-3" style={{ fontSize: 20, letterSpacing: "-0.02em" }}>{f.title}</h3>
+                <p className="font-normal" style={{ fontSize: 15, lineHeight: 1.65, color: "rgba(255, 255, 255, 0.6)" }}>{f.description}</p>
               </motion.div>
             );
           })}

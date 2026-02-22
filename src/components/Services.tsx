@@ -3,44 +3,39 @@ import { useInView } from "react-intersection-observer";
 import { Globe, Smartphone, Database, Brain, PenTool, Cloud } from "lucide-react";
 
 const services = [
-  {
-    icon: Globe,
-    title: "Web Applications",
-    description: "Scalable, responsive web platforms built with modern frameworks. From SaaS dashboards to complex enterprise portals — engineered for performance and growth.",
-  },
-  {
-    icon: Smartphone,
-    title: "Mobile Applications",
-    description: "Native and cross-platform mobile apps for iOS and Android. Intuitive UX, blazing-fast performance, and seamless backend integration.",
-  },
-  {
-    icon: Database,
-    title: "Enterprise Systems",
-    description: "ERP, CRM, and custom business systems that streamline operations. Designed for scale, security, and seamless integration with your existing infrastructure.",
-  },
-  {
-    icon: Brain,
-    title: "AI & Machine Learning",
-    description: "Intelligent automation, predictive analytics, NLP solutions, and AI-powered features embedded directly into your products and workflows.",
-  },
-  {
-    icon: PenTool,
-    title: "UI/UX Design",
-    description: "Human-centered design that converts. We craft beautiful, intuitive interfaces backed by research, prototyping, and rigorous usability testing.",
-  },
-  {
-    icon: Cloud,
-    title: "DevOps & Cloud",
-    description: "CI/CD pipelines, cloud architecture, containerization, and infrastructure as code. We ensure your applications are reliable, scalable, and always online.",
-  },
+  { icon: Globe, title: "Web Applications", description: "Scalable, responsive web platforms built with modern frameworks. From SaaS dashboards to complex enterprise portals — engineered for performance and growth." },
+  { icon: Smartphone, title: "Mobile Applications", description: "Native and cross-platform mobile apps for iOS and Android. Intuitive UX, blazing-fast performance, and seamless backend integration." },
+  { icon: Database, title: "Enterprise Systems", description: "ERP, CRM, and custom business systems that streamline operations. Designed for scale, security, and seamless integration with your existing infrastructure." },
+  { icon: Brain, title: "AI & Machine Learning", description: "Intelligent automation, predictive analytics, NLP solutions, and AI-powered features embedded directly into your products and workflows." },
+  { icon: PenTool, title: "UI/UX Design", description: "Human-centered design that converts. We craft beautiful, intuitive interfaces backed by research, prototyping, and rigorous usability testing." },
+  { icon: Cloud, title: "DevOps & Cloud", description: "CI/CD pipelines, cloud architecture, containerization, and infrastructure as code. We ensure your applications are reliable, scalable, and always online." },
 ];
 
 const Services = () => {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
 
   return (
-    <section id="services" ref={ref} className="py-24 gradient-navy">
-      <div className="container mx-auto px-6">
+    <section id="services" ref={ref} className="relative py-24 overflow-hidden" style={{ background: "linear-gradient(180deg, hsl(207 75% 15%) 0%, hsl(215 75% 10%) 100%)" }}>
+      {/* Dot grid pattern */}
+      <div
+        className="absolute inset-0 opacity-[0.04]"
+        style={{
+          backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px)",
+          backgroundSize: "32px 32px",
+        }}
+      />
+      {/* Radial glow top-right */}
+      <div
+        className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full pointer-events-none"
+        style={{ background: "radial-gradient(circle, rgba(229, 168, 33, 0.06) 0%, transparent 70%)" }}
+      />
+      {/* Radial glow bottom-left */}
+      <div
+        className="absolute -bottom-40 -left-40 w-[500px] h-[500px] rounded-full pointer-events-none"
+        style={{ background: "radial-gradient(circle, rgba(229, 168, 33, 0.04) 0%, transparent 70%)" }}
+      />
+
+      <div className="relative z-10 container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -97,47 +92,12 @@ const Services = () => {
                   el.style.boxShadow = "none";
                 }}
               >
-                <span
-                  className="absolute top-6 right-6 font-mono text-sm"
-                  style={{ color: "rgba(229, 168, 33, 0.2)" }}
-                >
-                  {num}
-                </span>
-
-                <div
-                  className="mb-5 group-hover:-translate-y-0.5 transition-transform duration-300"
-                  style={{
-                    filter: "drop-shadow(0 0 12px rgba(229, 168, 33, 0.25))",
-                  }}
-                >
-                  <svg width="0" height="0" className="absolute">
-                    <defs>
-                      <linearGradient id={`gold-grad-${i}`} x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#E5A821" />
-                        <stop offset="100%" stopColor="#F0D060" />
-                      </linearGradient>
-                    </defs>
-                  </svg>
-                  <Icon
-                    size={34}
-                    strokeWidth={1.8}
-                    style={{ stroke: `url(#gold-grad-${i})` }}
-                    className="text-accent"
-                  />
+                <span className="absolute top-6 right-6 font-mono text-sm" style={{ color: "rgba(229, 168, 33, 0.2)" }}>{num}</span>
+                <div className="mb-5 group-hover:-translate-y-0.5 transition-transform duration-300" style={{ filter: "drop-shadow(0 0 12px rgba(229, 168, 33, 0.25))" }}>
+                  <Icon size={34} strokeWidth={1.8} className="text-accent" />
                 </div>
-
-                <h3
-                  className="font-display font-semibold text-primary-foreground mb-3"
-                  style={{ fontSize: 20, letterSpacing: "-0.02em" }}
-                >
-                  {service.title}
-                </h3>
-                <p
-                  className="font-normal"
-                  style={{ fontSize: 15, lineHeight: 1.65, color: "rgba(255, 255, 255, 0.6)" }}
-                >
-                  {service.description}
-                </p>
+                <h3 className="font-display font-semibold text-primary-foreground mb-3" style={{ fontSize: 20, letterSpacing: "-0.02em" }}>{service.title}</h3>
+                <p className="font-normal" style={{ fontSize: 15, lineHeight: 1.65, color: "rgba(255, 255, 255, 0.6)" }}>{service.description}</p>
               </motion.div>
             );
           })}
