@@ -1,33 +1,147 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { Quote } from "lucide-react";
+import { ChevronLeft, ChevronRight, Star } from "lucide-react";
+import { useState, useEffect, useCallback, useRef } from "react";
 
 const testimonials = [
-  { quote: "Sanabil Technologies transformed our vision into a world-class platform. Their dedicated team felt like an extension of our own. The AI-driven approach saved us months of development time.", name: "Ahmed Al-Rahman", role: "CTO, TechVentures Inc.", initials: "AA" },
-  { quote: "The 24/7 support is a game-changer. Every time we had an urgent request, the Sanabil team responded within minutes. They truly care about their clients' success.", name: "Sarah Mitchell", role: "Product Manager, CloudScale Solutions", initials: "SM" },
-  { quote: "We've worked with many software vendors, but Sanabil's engineering quality is on another level. Clean code, excellent documentation, and a team that genuinely understands our business.", name: "Omar Hassan", role: "CEO, DataFlow Analytics", initials: "OH" },
+  {
+    quote:
+      "Sanabil Technologies transformed our vision into a world-class platform in just 8 weeks. Their AI-augmented team worked like they were part of our company — always available, always pushing for better. The quality of code and architecture exceeded what agencies twice their size delivered for us previously.",
+    name: "Ahmed Al-Rahman",
+    role: "CTO, TechVentures Inc.",
+    initials: "AA",
+  },
+  {
+    quote:
+      "The 24/7 AI-powered monitoring changed everything for us. Last month, their system detected and resolved a critical database issue at 3 AM — before our users even noticed. That's the kind of reliability that lets me sleep at night. Sanabil isn't just a vendor; they're a genuine technology partner.",
+    name: "Sarah Mitchell",
+    role: "Product Manager, CloudScale Solutions",
+    initials: "SM",
+  },
+  {
+    quote:
+      "We've worked with many software vendors across three continents, but Sanabil's engineering quality is on another level. Clean code, comprehensive documentation, AI-generated test coverage from day one, and a team that genuinely understands our business. They delivered our entire platform 40% faster than the timeline we expected.",
+    name: "Omar Hassan",
+    role: "CEO, DataFlow Analytics",
+    initials: "OH",
+  },
 ];
+
+const Stars = ({ animate }: { animate: boolean }) => (
+  <div className="flex gap-1 mb-5">
+    {[0, 1, 2, 3, 4].map((i) => (
+      <motion.div
+        key={i}
+        initial={{ opacity: 0, scale: 0 }}
+        animate={animate ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
+        transition={{ delay: i * 0.1, duration: 0.3, ease: "backOut" }}
+      >
+        <Star
+          size={18}
+          fill="#E5A821"
+          strokeWidth={0}
+          style={{ color: "#E5A821", filter: "drop-shadow(0 0 4px rgba(229, 168, 33, 0.3))" }}
+        />
+      </motion.div>
+    ))}
+  </div>
+);
+
+const CYCLE_MS = 6000;
 
 const Testimonials = () => {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const next = useCallback(() => setActive((p) => (p + 1) % testimonials.length), []);
+  const prev = useCallback(() => setActive((p) => (p - 1 + testimonials.length) % testimonials.length), []);
+
+  useEffect(() => {
+    if (paused) return;
+    timerRef.current = setTimeout(next, CYCLE_MS);
+    return () => { if (timerRef.current) clearTimeout(timerRef.current); };
+  }, [active, paused, next]);
+
+  const getIndex = (offset: number) => (active + offset + testimonials.length) % testimonials.length;
+  const leftIdx = getIndex(-1);
+  const rightIdx = getIndex(1);
+
+  const SideCard = ({ idx, side }: { idx: number; side: "left" | "right" }) => {
+    const t = testimonials[idx];
+    return (
+      <motion.div
+        initial={{ opacity: 0, x: side === "left" ? -30 : 30 }}
+        animate={{ opacity: 0.4, x: 0 }}
+        transition={{ duration: 0.5, delay: 0.3 }}
+        onClick={() => setActive(idx)}
+        className="hidden lg:block cursor-pointer flex-shrink-0"
+        style={{
+          width: 280,
+          background: "rgba(255, 255, 255, 0.02)",
+          border: "1px solid rgba(255, 255, 255, 0.05)",
+          borderRadius: 20,
+          padding: 36,
+          transform: "scale(0.9)",
+          filter: "blur(1px)",
+          transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+          zIndex: 1,
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.opacity = "0.6";
+          e.currentTarget.style.filter = "blur(0px)";
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.opacity = "0.4";
+          e.currentTarget.style.filter = "blur(1px)";
+        }}
+      >
+        <p className="italic line-clamp-3" style={{ fontSize: 14, lineHeight: 1.65, color: "rgba(255, 255, 255, 0.7)" }}>
+          "{t.quote}"
+        </p>
+        <div className="flex items-center gap-3 mt-4">
+          <div
+            className="w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold"
+            style={{
+              background: "linear-gradient(135deg, rgba(229, 168, 33, 0.3) 0%, rgba(229, 168, 33, 0.1) 100%)",
+              border: "2px solid rgba(229, 168, 33, 0.2)",
+              color: "#E5A821",
+            }}
+          >
+            {t.initials}
+          </div>
+          <div>
+            <p className="font-semibold text-primary-foreground" style={{ fontSize: 14 }}>{t.name}</p>
+            <p style={{ fontSize: 12, color: "rgba(255, 255, 255, 0.35)" }}>{t.role}</p>
+          </div>
+        </div>
+      </motion.div>
+    );
+  };
 
   return (
-    <section id="testimonials" ref={ref} className="relative py-24 overflow-hidden" style={{ background: "linear-gradient(180deg, hsl(215 75% 10%) 0%, hsl(207 75% 15%) 100%)" }}>
-      {/* Dot pattern */}
+    <section
+      id="testimonials"
+      ref={ref}
+      className="relative py-24 overflow-hidden"
+      style={{ background: "linear-gradient(180deg, hsl(215 75% 12%) 0%, hsl(207 65% 16%) 100%)" }}
+    >
+      {/* Gold orb */}
       <div
-        className="absolute inset-0 opacity-[0.03]"
+        className="absolute pointer-events-none"
         style={{
-          backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px)",
-          backgroundSize: "40px 40px",
+          top: "50%",
+          left: "50%",
+          width: 700,
+          height: 500,
+          transform: "translate(-50%, -50%)",
+          background: "radial-gradient(circle, rgba(229, 168, 33, 0.03) 0%, transparent 50%)",
         }}
-      />
-      {/* Soft glow */}
-      <div
-        className="absolute top-0 right-1/4 w-[500px] h-[500px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(229, 168, 33, 0.05) 0%, transparent 70%)" }}
       />
 
       <div className="relative z-10 container mx-auto px-6">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -36,65 +150,211 @@ const Testimonials = () => {
         >
           <div className="flex items-center justify-center gap-4 mb-4">
             <div className="w-1 h-10 rounded-full gradient-gold" />
-            <h2 className="text-3xl md:text-5xl font-bold font-display text-primary-foreground" style={{ letterSpacing: "-0.02em" }}>
+            <h2
+              className="text-3xl md:text-5xl font-bold font-display text-primary-foreground"
+              style={{ letterSpacing: "-0.02em" }}
+            >
               What Our Clients <span className="text-gradient-gold">Say</span>
             </h2>
           </div>
+          <p style={{ color: "rgba(255, 255, 255, 0.45)", fontSize: 18, marginTop: 16 }}>
+            Real results from real partnerships.
+          </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {testimonials.map((t, i) => (
-            <motion.div
-              key={t.name}
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: i * 0.1, duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
-              className="group relative cursor-default"
-              style={{
-                background: "rgba(255, 255, 255, 0.03)",
-                border: "1px solid rgba(255, 255, 255, 0.06)",
-                borderRadius: 16,
-                backdropFilter: "blur(10px)",
-                padding: 32,
-                transition: "all 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
-                willChange: "transform",
-              }}
-              onMouseEnter={(e) => {
-                const el = e.currentTarget;
-                el.style.transform = "translateY(-4px)";
-                el.style.borderColor = "rgba(229, 168, 33, 0.15)";
-                el.style.borderTopColor = "#E5A821";
-                el.style.borderTopWidth = "2px";
-                el.style.background = "linear-gradient(180deg, rgba(229, 168, 33, 0.08) 0%, rgba(255, 255, 255, 0.06) 40%, rgba(255, 255, 255, 0.06) 100%)";
-                el.style.boxShadow = "0 12px 40px rgba(0, 0, 0, 0.15)";
-              }}
-              onMouseLeave={(e) => {
-                const el = e.currentTarget;
-                el.style.transform = "translateY(0)";
-                el.style.borderColor = "rgba(255, 255, 255, 0.06)";
-                el.style.borderTopColor = "rgba(255, 255, 255, 0.06)";
-                el.style.borderTopWidth = "1px";
-                el.style.background = "rgba(255, 255, 255, 0.03)";
-                el.style.boxShadow = "none";
-              }}
-            >
-              <Quote size={24} className="text-accent mb-4" style={{ filter: "drop-shadow(0 0 12px rgba(229, 168, 33, 0.25))" }} />
-              <p className="mb-6 italic" style={{ fontSize: 15, lineHeight: 1.65, color: "rgba(255, 255, 255, 0.6)" }}>"{t.quote}"</p>
-              <div className="flex items-center gap-3">
-                <div
-                  className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold font-display"
-                  style={{ background: "rgba(229, 168, 33, 0.15)", color: "#E5A821", border: "1px solid rgba(229, 168, 33, 0.25)" }}
+        {/* Carousel */}
+        <div
+          className="flex items-center justify-center gap-6 max-w-[1100px] mx-auto"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+        >
+          {/* Left side card */}
+          <SideCard idx={leftIdx} side="left" />
+
+          {/* Center spotlight */}
+          <div className="flex-1 max-w-[620px] min-w-0">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={active}
+                initial={{ opacity: 0, y: 20, scale: 0.97 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -15, scale: 0.97 }}
+                transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+                className="relative"
+                style={{
+                  background: "rgba(255, 255, 255, 0.04)",
+                  border: "1px solid rgba(229, 168, 33, 0.15)",
+                  borderTop: "3px solid #E5A821",
+                  borderRadius: 24,
+                  padding: 48,
+                  minHeight: 320,
+                  boxShadow:
+                    "0 24px 64px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(229, 168, 33, 0.08)",
+                  zIndex: 2,
+                }}
+              >
+                {/* Large quote watermark */}
+                <span
+                  className="absolute pointer-events-none select-none"
+                  style={{
+                    fontFamily: "Georgia, serif",
+                    fontSize: 120,
+                    color: "rgba(229, 168, 33, 0.08)",
+                    top: -10,
+                    left: 20,
+                    lineHeight: 1,
+                  }}
                 >
-                  {t.initials}
+                  "
+                </span>
+
+                <Stars animate={true} />
+
+                <p
+                  className="relative z-10 italic"
+                  style={{
+                    fontSize: 18,
+                    lineHeight: 1.75,
+                    color: "rgba(255, 255, 255, 0.85)",
+                    maxWidth: 520,
+                  }}
+                >
+                  "{testimonials[active].quote}"
+                </p>
+
+                {/* Divider */}
+                <div
+                  className="my-6"
+                  style={{
+                    width: 48,
+                    height: 1,
+                    background: "rgba(229, 168, 33, 0.3)",
+                  }}
+                />
+
+                {/* Author */}
+                <div className="flex items-center gap-4">
+                  <div
+                    className="w-12 h-12 rounded-full flex items-center justify-center font-bold font-display"
+                    style={{
+                      background:
+                        "linear-gradient(135deg, rgba(229, 168, 33, 0.3) 0%, rgba(229, 168, 33, 0.1) 100%)",
+                      border: "2px solid rgba(229, 168, 33, 0.2)",
+                      color: "#E5A821",
+                      fontSize: 18,
+                    }}
+                  >
+                    {testimonials[active].initials}
+                  </div>
+                  <div>
+                    <p
+                      className="font-semibold font-display text-primary-foreground"
+                      style={{ fontSize: 16 }}
+                    >
+                      {testimonials[active].name}
+                    </p>
+                    <p style={{ fontSize: 14, color: "rgba(255, 255, 255, 0.45)" }}>
+                      {testimonials[active].role}
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-sm font-bold font-display text-primary-foreground">{t.name}</p>
-                  <p className="text-xs" style={{ color: "rgba(255, 255, 255, 0.4)" }}>{t.role}</p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Right side card */}
+          <SideCard idx={rightIdx} side="right" />
         </div>
+
+        {/* Navigation */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
+          transition={{ delay: 0.6, duration: 0.4 }}
+          className="flex items-center justify-center gap-4 mt-10"
+        >
+          {/* Left arrow */}
+          <button
+            onClick={prev}
+            className="hidden sm:flex items-center justify-center group"
+            style={{
+              width: 40,
+              height: 40,
+              borderRadius: "50%",
+              background: "rgba(255, 255, 255, 0.04)",
+              border: "1px solid rgba(255, 255, 255, 0.08)",
+              cursor: "pointer",
+              transition: "all 0.3s ease",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = "rgba(229, 168, 33, 0.1)";
+              e.currentTarget.style.borderColor = "rgba(229, 168, 33, 0.2)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = "rgba(255, 255, 255, 0.04)";
+              e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.08)";
+            }}
+          >
+            <ChevronLeft
+              size={18}
+              className="group-hover:text-[#E5A821] transition-colors"
+              style={{ color: "rgba(255, 255, 255, 0.4)" }}
+            />
+          </button>
+
+          {/* Dots */}
+          <div className="flex gap-3">
+            {testimonials.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setActive(i)}
+                style={{
+                  width: active === i ? 10 : 8,
+                  height: active === i ? 10 : 8,
+                  borderRadius: "50%",
+                  background: active === i ? "#E5A821" : "rgba(255, 255, 255, 0.2)",
+                  boxShadow:
+                    active === i
+                      ? "0 0 8px rgba(229, 168, 33, 0.4)"
+                      : "none",
+                  border: "none",
+                  cursor: "pointer",
+                  transition: "all 0.3s ease",
+                  padding: 0,
+                }}
+              />
+            ))}
+          </div>
+
+          {/* Right arrow */}
+          <button
+            onClick={next}
+            className="hidden sm:flex items-center justify-center group"
+            style={{
+              width: 40,
+              height: 40,
+              borderRadius: "50%",
+              background: "rgba(255, 255, 255, 0.04)",
+              border: "1px solid rgba(255, 255, 255, 0.08)",
+              cursor: "pointer",
+              transition: "all 0.3s ease",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = "rgba(229, 168, 33, 0.1)";
+              e.currentTarget.style.borderColor = "rgba(229, 168, 33, 0.2)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = "rgba(255, 255, 255, 0.04)";
+              e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.08)";
+            }}
+          >
+            <ChevronRight
+              size={18}
+              className="group-hover:text-[#E5A821] transition-colors"
+              style={{ color: "rgba(255, 255, 255, 0.4)" }}
+            />
+          </button>
+        </motion.div>
       </div>
     </section>
   );
