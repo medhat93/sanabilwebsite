@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import ParticleBackground from "./ParticleBackground";
+import GradientOrbs from "./GradientOrbs";
 
 const Hero = () => {
   const scrollTo = (id: string) => {
@@ -10,6 +11,7 @@ const Hero = () => {
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden gradient-navy">
       <ParticleBackground />
+      <GradientOrbs variant="hero" />
 
       <div className="relative z-10 container mx-auto px-6 text-center">
         <motion.div
@@ -30,7 +32,7 @@ const Hero = () => {
           style={{ lineHeight: 1.1, letterSpacing: "-0.03em" }}
         >
           We Engineer Software That{" "}
-          <span className="text-gradient-gold">Transforms Businesses</span>
+          <span className="text-shimmer">Transforms Businesses</span>
         </motion.h1>
 
         <motion.p
@@ -51,7 +53,7 @@ const Hero = () => {
         >
           <button
             onClick={() => scrollTo("#contact")}
-            className="gradient-gold px-8 py-4 rounded-full font-semibold font-display text-accent-foreground hover:scale-105 transition-transform duration-200 gold-glow text-base md:text-lg"
+            className="gradient-gold px-8 py-4 rounded-full font-semibold font-display text-accent-foreground hover:scale-105 transition-transform duration-200 btn-gold-glow text-base md:text-lg"
           >
             Start Your Project
           </button>

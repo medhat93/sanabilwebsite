@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import ClientLogos from "@/components/ClientLogos";
+import SectionDivider from "@/components/SectionDivider";
 import Services from "@/components/Services";
 import WhyUs from "@/components/WhyUs";
 import Stats from "@/components/Stats";
@@ -15,10 +16,14 @@ const Index = () => {
       <Navbar />
       <Hero />
       <ClientLogos />
+      <SectionDivider />
       <Services />
+      <SectionDivider />
       <WhyUs />
       <Stats />
+      <SectionDivider />
       <Process />
+      <SectionDivider />
       <Testimonials />
       <Contact />
       <Footer />

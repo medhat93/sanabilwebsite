@@ -34,17 +34,29 @@ const Process = () => {
         </motion.div>
 
         <div className="relative max-w-3xl mx-auto">
-          <div className="absolute left-6 md:left-8 top-0 bottom-0 w-0.5 bg-border" />
+          {/* Timeline line with gold gradient fill */}
+          <div className="absolute left-6 md:left-8 top-0 bottom-0 w-0.5 bg-border overflow-hidden">
+            <motion.div
+              initial={{ scaleY: 0 }}
+              animate={inView ? { scaleY: 1 } : {}}
+              transition={{ duration: 1.5, ease: [0.4, 0, 0.2, 1], delay: 0.3 }}
+              className="absolute inset-0 origin-top"
+              style={{ background: "linear-gradient(180deg, hsl(40 80% 52%), hsl(40 80% 62%))" }}
+            />
+          </div>
 
           {steps.map((step, i) => (
             <motion.div
               key={step.title}
               initial={{ opacity: 0, x: -30 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
-              transition={{ delay: i * 0.15, duration: 0.5 }}
+              transition={{ delay: 0.3 + i * 0.15, duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
               className="relative flex gap-6 mb-12 last:mb-0"
             >
-              <div className="relative z-10 flex-shrink-0 w-12 h-12 md:w-16 md:h-16 rounded-full gradient-gold flex items-center justify-center shadow-lg">
+              <div
+                className="relative z-10 flex-shrink-0 w-12 h-12 md:w-16 md:h-16 rounded-full gradient-gold flex items-center justify-center"
+                style={{ boxShadow: "0 0 20px rgba(229, 168, 33, 0.3)" }}
+              >
                 <step.icon size={24} className="text-accent-foreground" />
               </div>
               <div className="pt-2 md:pt-4">
