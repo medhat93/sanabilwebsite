@@ -30,14 +30,18 @@ const Navbar = () => {
   return (
     <>
       <nav
-        className="fixed top-0 left-0 right-0 z-50 flex items-center"
+        className="fixed z-50 flex items-center"
         style={{
-          height: 72,
-          padding: "0 40px",
+          top: 12,
+          left: 16,
+          right: 16,
+          height: 64,
+          padding: "0 24px",
+          borderRadius: scrolled ? 16 : 16,
           background: scrolled ? "rgba(10, 37, 64, 0.75)" : "transparent",
           backdropFilter: scrolled ? "blur(16px)" : "blur(0px)",
           WebkitBackdropFilter: scrolled ? "blur(16px)" : "blur(0px)",
-          borderBottom: scrolled
+          border: scrolled
             ? "1px solid rgba(229, 168, 33, 0.1)"
             : "1px solid transparent",
           boxShadow: scrolled
