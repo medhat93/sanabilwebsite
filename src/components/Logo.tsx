@@ -29,13 +29,13 @@ const Logo = ({ iconSize = 96, showText = true, textSize = "default", className 
         <div className="hidden md:flex flex-col leading-none">
           <span
             className="font-display font-bold text-primary-foreground"
-            style={{ fontSize: isSmall ? 40 : 48, letterSpacing: "0.02em" }}
+            style={{ fontSize: isSmall ? 20 : 24, letterSpacing: "0.02em" }}
           >
             Sanabil
           </span>
           <span
             className="font-display font-medium text-accent uppercase"
-            style={{ fontSize: isSmall ? 26 : 30, letterSpacing: "0.08em", marginTop: 4 }}
+            style={{ fontSize: isSmall ? 13 : 15, letterSpacing: "0.08em", marginTop: 3 }}
           >
             Technologies
           </span>
