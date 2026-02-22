@@ -18,7 +18,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.6 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent/30 bg-accent/10 mb-8"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent/30 bg-accent/10 mb-8 mt-6"
         >
           <span className="text-sm">🚀</span>
           <span className="text-sm font-medium text-accent animate-pulse-slow">AI-Powered Development Process</span>
