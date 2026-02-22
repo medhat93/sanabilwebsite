@@ -22,16 +22,18 @@ const Process = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-extrabold text-foreground mb-4">
-            Our <span className="text-gradient-gold">Process</span>
-          </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto text-lg">
+          <div className="flex items-center justify-center gap-4 mb-4">
+            <div className="w-1 h-10 rounded-full gradient-gold" />
+            <h2 className="text-3xl md:text-5xl font-bold font-display text-foreground" style={{ letterSpacing: "-0.02em" }}>
+              Our <span className="text-gradient-gold">Process</span>
+            </h2>
+          </div>
+          <p className="text-muted-foreground max-w-xl mx-auto text-lg md:text-xl mt-4" style={{ lineHeight: 1.65 }}>
             A proven methodology that delivers results — every time.
           </p>
         </motion.div>
 
         <div className="relative max-w-3xl mx-auto">
-          {/* Vertical line */}
           <div className="absolute left-6 md:left-8 top-0 bottom-0 w-0.5 bg-border" />
 
           {steps.map((step, i) => (
@@ -46,8 +48,8 @@ const Process = () => {
                 <step.icon size={24} className="text-accent-foreground" />
               </div>
               <div className="pt-2 md:pt-4">
-                <h3 className="text-lg font-bold text-foreground mb-1">{step.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{step.description}</p>
+                <h3 className="text-lg md:text-xl font-semibold font-display text-foreground mb-1" style={{ letterSpacing: "-0.02em" }}>{step.title}</h3>
+                <p className="text-base text-muted-foreground leading-relaxed" style={{ lineHeight: 1.65 }}>{step.description}</p>
               </div>
             </motion.div>
           ))}

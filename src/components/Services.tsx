@@ -35,6 +35,15 @@ const services = [
   },
 ];
 
+const SectionTitle = ({ children, gold }: { children: React.ReactNode; gold: React.ReactNode }) => (
+  <div className="flex items-center justify-center gap-4 mb-4">
+    <div className="w-1 h-10 rounded-full gradient-gold" />
+    <h2 className="text-3xl md:text-5xl font-bold font-display text-foreground" style={{ letterSpacing: "-0.02em" }}>
+      {children} <span className="text-gradient-gold">{gold}</span>
+    </h2>
+  </div>
+);
+
 const Services = () => {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
 
@@ -47,10 +56,8 @@ const Services = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-extrabold text-foreground mb-4">
-            What We <span className="text-gradient-gold">Build</span>
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+          <SectionTitle gold="Build">What We</SectionTitle>
+          <p className="text-muted-foreground max-w-2xl mx-auto text-lg md:text-xl mt-4" style={{ lineHeight: 1.65 }}>
             End-to-end software solutions tailored to your business needs, built with cutting-edge technology and AI integration.
           </p>
         </motion.div>
@@ -67,8 +74,8 @@ const Services = () => {
               <div className="w-12 h-12 rounded-xl gradient-gold flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
                 <service.icon size={24} className="text-accent-foreground" />
               </div>
-              <h3 className="text-xl font-bold text-foreground mb-3">{service.title}</h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">{service.description}</p>
+              <h3 className="text-xl md:text-2xl font-semibold font-display text-foreground mb-3" style={{ letterSpacing: "-0.02em" }}>{service.title}</h3>
+              <p className="text-muted-foreground text-base leading-relaxed" style={{ lineHeight: 1.65 }}>{service.description}</p>
             </motion.div>
           ))}
         </div>

@@ -23,10 +23,13 @@ const WhyUs = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-extrabold text-foreground mb-4">
-            Why <span className="text-gradient-gold">Sanabil Technologies</span>?
-          </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto text-lg">
+          <div className="flex items-center justify-center gap-4 mb-4">
+            <div className="w-1 h-10 rounded-full gradient-gold" />
+            <h2 className="text-3xl md:text-5xl font-bold font-display text-foreground" style={{ letterSpacing: "-0.02em" }}>
+              Why <span className="text-gradient-gold">Sanabil Technologies</span>?
+            </h2>
+          </div>
+          <p className="text-muted-foreground max-w-xl mx-auto text-lg md:text-xl mt-4" style={{ lineHeight: 1.65 }}>
             We don't just write code — we become your technology partner.
           </p>
         </motion.div>
@@ -44,8 +47,8 @@ const WhyUs = () => {
                 <f.icon size={22} className="text-accent" />
               </div>
               <div>
-                <h3 className="font-bold text-foreground mb-2">{f.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{f.description}</p>
+                <h3 className="font-semibold font-display text-lg md:text-xl text-foreground mb-2" style={{ letterSpacing: "-0.02em" }}>{f.title}</h3>
+                <p className="text-base text-muted-foreground leading-relaxed" style={{ lineHeight: 1.65 }}>{f.description}</p>
               </div>
             </motion.div>
           ))}

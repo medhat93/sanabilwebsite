@@ -42,7 +42,14 @@ const Navbar = () => {
       >
         <div className="container mx-auto flex items-center justify-between px-6 py-4">
           <button onClick={() => handleClick("#home")} className="flex items-center gap-3">
-            <img src={sanabilLogo} alt="Sanabil Technologies" className="h-10 w-auto" />
+            <div className="bg-white/8 border border-white/12 rounded-xl px-3 py-1.5">
+              <img
+                src={sanabilLogo}
+                alt="Sanabil Technologies"
+                className="h-12 md:h-12 w-auto"
+                style={{ filter: "drop-shadow(0 0 10px rgba(229, 168, 33, 0.4))" }}
+              />
+            </div>
           </button>
 
           <div className="hidden lg:flex items-center gap-8">
@@ -50,9 +57,11 @@ const Navbar = () => {
               <button
                 key={link.href}
                 onClick={() => handleClick(link.href)}
-                className="text-sm font-medium text-primary-foreground/80 hover:text-accent transition-colors duration-200"
+                className="relative text-base font-semibold font-display text-primary-foreground/80 hover:text-accent transition-colors duration-200 tracking-[0.01em] group"
+                style={{ letterSpacing: "0.01em" }}
               >
                 {link.label}
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full" />
               </button>
             ))}
           </div>
@@ -60,7 +69,7 @@ const Navbar = () => {
           <div className="hidden lg:block">
             <button
               onClick={() => handleClick("#contact")}
-              className="gradient-gold px-6 py-2.5 rounded-full text-sm font-bold text-accent-foreground hover:scale-105 transition-transform duration-200 gold-glow"
+              className="gradient-gold px-8 py-3.5 rounded-full text-base font-bold font-display text-accent-foreground hover:scale-105 transition-transform duration-200 gold-glow"
             >
               Book a Meeting
             </button>
@@ -70,7 +79,7 @@ const Navbar = () => {
             className="lg:hidden text-primary-foreground"
             onClick={() => setMobileOpen(!mobileOpen)}
           >
-            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+            {mobileOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>
       </motion.nav>
@@ -88,14 +97,14 @@ const Navbar = () => {
               <button
                 key={link.href}
                 onClick={() => handleClick(link.href)}
-                className="text-xl font-semibold text-primary-foreground/90 hover:text-accent transition-colors"
+                className="text-xl font-semibold font-display text-primary-foreground/90 hover:text-accent transition-colors"
               >
                 {link.label}
               </button>
             ))}
             <button
               onClick={() => handleClick("#contact")}
-              className="gradient-gold px-8 py-3 rounded-full font-bold text-accent-foreground mt-4"
+              className="gradient-gold px-8 py-3.5 rounded-full font-bold font-display text-accent-foreground mt-4 text-base"
             >
               Book a Meeting
             </button>

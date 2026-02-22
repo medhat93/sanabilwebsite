@@ -14,7 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+        sans: ['"Satoshi"', '"DM Sans"', '"General Sans"', 'system-ui', 'sans-serif'],
+        display: ['"Clash Display"', '"Sora"', '"Manrope"', 'system-ui', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",

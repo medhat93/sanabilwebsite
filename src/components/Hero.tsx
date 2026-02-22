@@ -26,7 +26,8 @@ const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.7 }}
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-primary-foreground leading-tight max-w-5xl mx-auto mb-6"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-display text-primary-foreground max-w-5xl mx-auto mb-6"
+          style={{ lineHeight: 1.1, letterSpacing: "-0.03em" }}
         >
           We Engineer Software That{" "}
           <span className="text-gradient-gold">Transforms Businesses</span>
@@ -36,7 +37,8 @@ const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7, duration: 0.7 }}
-          className="text-lg md:text-xl text-primary-foreground/60 max-w-2xl mx-auto mb-10"
+          className="text-lg md:text-xl text-primary-foreground/60 max-w-2xl mx-auto mb-10 leading-relaxed"
+          style={{ lineHeight: 1.65 }}
         >
           From concept to launch — Sanabil Technologies delivers enterprise-grade applications powered by AI-driven development processes and world-class engineering talent.
         </motion.p>
@@ -49,13 +51,13 @@ const Hero = () => {
         >
           <button
             onClick={() => scrollTo("#contact")}
-            className="gradient-gold px-8 py-4 rounded-full font-bold text-accent-foreground hover:scale-105 transition-transform duration-200 gold-glow text-base"
+            className="gradient-gold px-8 py-4 rounded-full font-semibold font-display text-accent-foreground hover:scale-105 transition-transform duration-200 gold-glow text-base md:text-lg"
           >
             Start Your Project
           </button>
           <button
             onClick={() => scrollTo("#services")}
-            className="px-8 py-4 rounded-full font-bold text-primary-foreground border-2 border-primary-foreground/30 hover:border-accent hover:text-accent transition-all duration-200 text-base"
+            className="px-8 py-4 rounded-full font-semibold font-display text-primary-foreground border-2 border-primary-foreground/30 hover:border-accent hover:text-accent transition-all duration-200 text-base md:text-lg"
           >
             Explore Our Services
           </button>

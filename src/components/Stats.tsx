@@ -26,7 +26,7 @@ const Counter = ({ target, suffix, started }: { target: number; suffix: string; 
   }, [started, target]);
 
   return (
-    <span className="text-4xl md:text-5xl font-extrabold text-accent">
+    <span className="text-4xl md:text-6xl font-bold font-display text-accent" style={{ letterSpacing: "-0.03em" }}>
       {count}{suffix}
     </span>
   );
@@ -47,7 +47,7 @@ const Stats = () => {
               transition={{ delay: i * 0.15, duration: 0.5 }}
             >
               <Counter target={stat.value} suffix={stat.suffix} started={inView} />
-              <p className="mt-2 text-sm font-medium text-primary-foreground/60">{stat.label}</p>
+              <p className="mt-2 text-sm md:text-base font-medium text-primary-foreground/60">{stat.label}</p>
             </motion.div>
           ))}
         </div>
