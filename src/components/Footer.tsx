@@ -72,8 +72,8 @@ const Footer = () => {
       className="relative overflow-hidden"
       style={{
         background: "linear-gradient(180deg, #0A2540 0%, #050E1A 40%, #030912 100%)",
-        paddingTop: 64,
-        paddingBottom: 32,
+        paddingTop: 48,
+        paddingBottom: "calc(24px + env(safe-area-inset-bottom))",
       }}
     >
       {/* Dot grid */}
@@ -95,20 +95,23 @@ const Footer = () => {
         }}
       />
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-5 sm:px-6 relative z-10">
         {/* 4-column grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 mb-10">
           {/* Brand */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={stagger(0)}
+            className="text-center sm:text-left"
           >
-            <Logo iconSize={80} showText textSize="small" />
-            <p className="mt-4" style={{ fontSize: 14, color: "rgba(255, 255, 255, 0.35)", lineHeight: 1.5, maxWidth: 240 }}>
+            <div className="flex justify-center sm:justify-start">
+              <Logo iconSize={80} showText textSize="small" />
+            </div>
+            <p className="mt-4 mx-auto sm:mx-0" style={{ fontSize: 14, color: "rgba(255, 255, 255, 0.35)", lineHeight: 1.5, maxWidth: 280 }}>
               سنابل — where ideas grow into extraordinary software.
             </p>
-            <div className="flex gap-2.5 mt-5">
+            <div className="flex gap-2.5 mt-5 justify-center sm:justify-start">
               {socials.map((s, i) => (
                 <a
                   key={i}
@@ -173,8 +176,9 @@ const Footer = () => {
             background: "rgba(255, 255, 255, 0.02)",
             border: "1px solid rgba(255, 255, 255, 0.05)",
             borderRadius: 16,
-            padding: "24px 32px",
+            padding: "20px 20px",
           }}
+          /* Desktop padding override via className */
         >
           <div>
             <p className="font-semibold text-primary-foreground" style={{ fontSize: 16 }}>Stay in the loop</p>
@@ -182,7 +186,7 @@ const Footer = () => {
               Get insights on AI-native development delivered to your inbox.
             </p>
           </div>
-          <div className="flex gap-2 w-full sm:w-auto">
+          <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
             <input
               type="email"
               placeholder="your@email.com"

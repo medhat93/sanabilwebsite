@@ -19,8 +19,9 @@ const ParticleBackground = () => {
 
     let animationId: number;
     const particles: Particle[] = [];
-    const particleCount = 60;
-    const connectionDistance = 150;
+    const isMobile = window.innerWidth < 768;
+    const particleCount = isMobile ? 30 : 60;
+    const connectionDistance = isMobile ? 100 : 150;
 
     const resize = () => {
       canvas.width = canvas.offsetWidth;
@@ -33,8 +34,8 @@ const ParticleBackground = () => {
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: (Math.random() - 0.5) * 0.5,
+        vx: (Math.random() - 0.5) * (isMobile ? 0.3 : 0.5),
+        vy: (Math.random() - 0.5) * (isMobile ? 0.3 : 0.5),
         radius: Math.random() * 2 + 1,
       });
     }

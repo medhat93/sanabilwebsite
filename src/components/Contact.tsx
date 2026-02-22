@@ -79,27 +79,27 @@ const Contact = () => {
   const errorBorder = "1px solid rgba(239, 68, 68, 0.5)";
 
   return (
-    <section id="contact" ref={ref} className="relative py-24 overflow-hidden"
+    <section id="contact" ref={ref} className="relative py-16 sm:py-24 overflow-hidden"
       style={{ background: "linear-gradient(180deg, hsl(220 80% 6%) 0%, hsl(215 75% 12%) 50%, hsl(207 65% 16%) 100%)" }}>
 
       {/* Animated orbs */}
-      <motion.div className="absolute pointer-events-none rounded-full"
+      <motion.div className="absolute pointer-events-none rounded-full hidden sm:block"
         style={{ width: 600, height: 600, top: "40%", left: "25%", background: "radial-gradient(circle, rgba(229, 168, 33, 0.06) 0%, transparent 50%)" }}
         animate={{ x: [0, 20, -10, 0], y: [0, -15, 10, 0] }} transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }} />
-      <motion.div className="absolute pointer-events-none rounded-full"
+      <motion.div className="absolute pointer-events-none rounded-full hidden sm:block"
         style={{ width: 500, height: 500, top: "60%", left: "75%", background: "radial-gradient(circle, rgba(59, 130, 246, 0.04) 0%, transparent 50%)", transform: "translate(-50%, -50%)" }}
         animate={{ x: [0, -15, 20, 0], y: [0, 10, -20, 0] }} transition={{ duration: 30, repeat: Infinity, ease: "easeInOut" }} />
 
       {/* Top separator */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 h-px" style={{ width: 200, background: "linear-gradient(90deg, transparent, rgba(229, 168, 33, 0.3), transparent)" }} />
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         {/* Header */}
         <motion.div initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }} className="text-center mb-12">
-          <div className="flex items-center justify-center gap-4 mb-4">
-            <div className="w-1 h-10 rounded-full gradient-gold" />
-            <h2 className="text-3xl md:text-5xl font-bold font-display" style={{
+          transition={{ duration: 0.6 }} className="text-center mb-8 sm:mb-12">
+          <div className="flex items-center justify-center gap-3 sm:gap-4 mb-4">
+            <div className="w-1 h-8 sm:h-10 rounded-full gradient-gold" />
+            <h2 className="text-[26px] sm:text-3xl md:text-5xl font-bold font-display" style={{
               letterSpacing: "-0.03em",
               background: "linear-gradient(135deg, #FFFFFF 0%, #E5A821 50%, #FFFFFF 100%)",
               backgroundSize: "200% auto",
@@ -110,7 +110,7 @@ const Contact = () => {
               Let's Build Something Exceptional
             </h2>
           </div>
-          <p className="max-w-xl mx-auto text-lg md:text-xl mt-4" style={{ color: "rgba(255, 255, 255, 0.5)", lineHeight: 1.6 }}>
+          <p className="max-w-xl mx-auto text-[15px] sm:text-lg md:text-xl mt-4 px-2" style={{ color: "rgba(255, 255, 255, 0.5)", lineHeight: 1.6 }}>
             Schedule a free consultation with our team. We'll analyze your project, recommend the right approach, and show you how AI-native development can accelerate your vision.
           </p>
         </motion.div>
@@ -122,9 +122,10 @@ const Contact = () => {
             transition={{ delay: 0.2, duration: 0.6 }}
             style={{
               background: "rgba(255, 255, 255, 0.03)", border: "1px solid rgba(255, 255, 255, 0.08)",
-              borderRadius: 24, padding: 40, backdropFilter: "blur(12px)",
+              borderRadius: 20, padding: "28px 20px", backdropFilter: "blur(12px)",
               boxShadow: "0 20px 60px rgba(0, 0, 0, 0.2)",
-            }}>
+            }}
+            className="sm:!p-10 sm:!rounded-3xl">
             <AnimatePresence mode="wait">
               {!submitted ? (
                 <motion.form key="form" onSubmit={handleSubmit} className="space-y-4"
@@ -223,13 +224,13 @@ const Contact = () => {
           {/* Info card */}
           <motion.div initial={{ opacity: 0, x: 30 }} animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ delay: 0.3, duration: 0.6 }}
-            className="relative overflow-hidden"
+            className="relative overflow-hidden sm:p-10 sm:rounded-3xl"
             style={{
               background: "rgba(255, 255, 255, 0.02)", border: "1px solid rgba(255, 255, 255, 0.06)",
-              borderRadius: 24, padding: 40,
+              borderRadius: 20, padding: "28px 20px",
             }}>
-            {/* Faint globe deco */}
-            <svg className="absolute right-0 bottom-0 pointer-events-none" width="220" height="220" viewBox="0 0 220 220" style={{ opacity: 0.03 }}>
+            {/* Faint globe deco - hidden on mobile */}
+            <svg className="absolute right-0 bottom-0 pointer-events-none hidden sm:block" width="220" height="220" viewBox="0 0 220 220" style={{ opacity: 0.03 }}>
               <circle cx="110" cy="110" r="90" fill="none" stroke="#E5A821" strokeWidth="1" />
               <ellipse cx="110" cy="110" rx="50" ry="90" fill="none" stroke="#E5A821" strokeWidth="0.6" />
               <line x1="20" y1="110" x2="200" y2="110" stroke="#E5A821" strokeWidth="0.5" />

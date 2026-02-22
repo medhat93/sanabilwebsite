@@ -36,9 +36,8 @@ const Counter = ({ target, suffix, started, delay }: { target: number; suffix: s
     <motion.span
       animate={done ? { scale: [1, 1.05, 1] } : {}}
       transition={{ duration: 0.3 }}
-      className="block font-mono font-extrabold"
+      className="block font-mono font-extrabold text-4xl sm:text-[40px] md:text-[46px] lg:text-[54px]"
       style={{
-        fontSize: 54,
         letterSpacing: "-0.03em",
         color: "#E5A821",
         textShadow: done ? "0 0 30px rgba(229, 168, 33, 0.3)" : "none",
@@ -82,15 +81,15 @@ const Stats = () => {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.3 });
 
   return (
-    <section ref={ref} className="relative py-20 overflow-hidden" style={{ background: "#0A2540" }}>
-      {/* Dot grid */}
-      <div className="absolute inset-0 pointer-events-none" style={{
+    <section ref={ref} className="relative py-16 sm:py-20 overflow-hidden" style={{ background: "#0A2540" }}>
+      {/* Dot grid - hidden on mobile for performance */}
+      <div className="absolute inset-0 pointer-events-none hidden sm:block" style={{
         backgroundImage: "radial-gradient(circle, rgba(229, 168, 33, 0.06) 1px, transparent 1px)",
         backgroundSize: "24px 24px",
       }} />
 
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-5 max-w-[1100px] mx-auto">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-5 max-w-[1100px] mx-auto">
           {stats.map((stat, i) => {
             const Icon = stat.icon;
             const Deco = decoMap[stat.decorative];
@@ -105,8 +104,8 @@ const Stats = () => {
                   background: "rgba(255, 255, 255, 0.02)",
                   border: "1px solid rgba(255, 255, 255, 0.06)",
                   borderTop: "2px solid rgba(229, 168, 33, 0.3)",
-                  borderRadius: 20,
-                  padding: "36px 24px",
+                  borderRadius: 16,
+                  padding: "24px 16px",
                   transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
                 }}
                 onMouseEnter={(e) => {
@@ -126,23 +125,25 @@ const Stats = () => {
                   el.style.boxShadow = "none";
                 }}
               >
-                {/* Decorative */}
-                <Deco />
+                {/* Decorative - hidden on mobile */}
+                <div className="hidden sm:block">
+                  <Deco />
+                </div>
 
                 {/* Pulse dot */}
-                <span className="absolute top-4 right-4 w-2 h-2 rounded-full" style={{
+                <span className="absolute top-3 right-3 w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full" style={{
                   background: "#E5A821", opacity: 0.6,
                   animation: "statPulse 2s ease-in-out infinite",
                 }} />
 
                 {/* Icon */}
-                <Icon size={24} strokeWidth={1.5} className="mx-auto mb-3" style={{ color: "rgba(229, 168, 33, 0.5)" }} />
+                <Icon size={20} strokeWidth={1.5} className="mx-auto mb-2 sm:mb-3" style={{ color: "rgba(229, 168, 33, 0.5)" }} />
 
                 {/* Number */}
                 <Counter target={stat.value} suffix={stat.suffix} started={inView} delay={i * 200} />
 
                 {/* Label */}
-                <p className="mt-2 font-medium" style={{ fontSize: 15, color: "rgba(255, 255, 255, 0.5)" }}>{stat.label}</p>
+                <p className="mt-1 sm:mt-2 font-medium text-[13px] sm:text-[15px]" style={{ color: "rgba(255, 255, 255, 0.5)" }}>{stat.label}</p>
               </motion.div>
             );
           })}
