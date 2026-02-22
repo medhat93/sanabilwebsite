@@ -1,5 +1,5 @@
 import { Linkedin, Twitter, Github, Instagram } from "lucide-react";
-import sanabilLogo from "@/assets/sanabil-logo.png";
+import Logo from "./Logo";
 
 const Footer = () => {
   return (
@@ -7,7 +7,7 @@ const Footer = () => {
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           <div>
-            <img src={sanabilLogo} alt="Sanabil Technologies" className="h-10 mb-4" />
+            <Logo iconSize={36} showText />
             <p className="text-sm text-primary-foreground/50 mb-4" style={{ lineHeight: 1.65 }}>
               Engineering the future, one line of code at a time.
             </p>

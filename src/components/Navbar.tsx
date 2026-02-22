@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import sanabilLogo from "@/assets/sanabil-logo.png";
+import Logo from "./Logo";
 
 const navLinks = [
   { label: "Home", href: "#home" },
@@ -41,15 +41,8 @@ const Navbar = () => {
         }`}
       >
         <div className="container mx-auto flex items-center justify-between px-6 py-4">
-          <button onClick={() => handleClick("#home")} className="flex items-center gap-3">
-            <div className="bg-white/8 border border-white/12 rounded-xl px-3 py-1.5">
-              <img
-                src={sanabilLogo}
-                alt="Sanabil Technologies"
-                className="h-12 md:h-12 w-auto"
-                style={{ filter: "drop-shadow(0 0 10px rgba(229, 168, 33, 0.4))" }}
-              />
-            </div>
+          <button onClick={() => handleClick("#home")}>
+            <Logo iconSize={44} showText />
           </button>
 
           <div className="hidden lg:flex items-center gap-8">
