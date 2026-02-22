@@ -35,9 +35,12 @@ const Testimonials = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-extrabold text-foreground mb-4">
-            What Our Clients <span className="text-gradient-gold">Say</span>
-          </h2>
+          <div className="flex items-center justify-center gap-4 mb-4">
+            <div className="w-1 h-10 rounded-full gradient-gold" />
+            <h2 className="text-3xl md:text-5xl font-bold font-display text-foreground" style={{ letterSpacing: "-0.02em" }}>
+              What Our Clients <span className="text-gradient-gold">Say</span>
+            </h2>
+          </div>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -50,13 +53,13 @@ const Testimonials = () => {
               className="glass-card-light p-8 hover-lift"
             >
               <Quote size={24} className="text-accent mb-4" />
-              <p className="text-sm text-muted-foreground leading-relaxed mb-6 italic">"{t.quote}"</p>
+              <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-6 italic" style={{ lineHeight: 1.65 }}>"{t.quote}"</p>
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full gradient-gold flex items-center justify-center text-sm font-bold text-accent-foreground">
                   {t.initials}
                 </div>
                 <div>
-                  <p className="text-sm font-bold text-foreground">{t.name}</p>
+                  <p className="text-sm font-bold font-display text-foreground">{t.name}</p>
                   <p className="text-xs text-muted-foreground">{t.role}</p>
                 </div>
               </div>

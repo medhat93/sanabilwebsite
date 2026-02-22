@@ -6,10 +6,9 @@ const Footer = () => {
     <footer className="bg-navy-deep pt-16 pb-8">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
-          {/* Brand */}
           <div>
             <img src={sanabilLogo} alt="Sanabil Technologies" className="h-10 mb-4" />
-            <p className="text-sm text-primary-foreground/50 mb-4">
+            <p className="text-sm text-primary-foreground/50 mb-4" style={{ lineHeight: 1.65 }}>
               Engineering the future, one line of code at a time.
             </p>
             <div className="flex gap-3">
@@ -21,25 +20,22 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Services */}
           <div>
-            <h4 className="text-sm font-bold text-primary-foreground mb-4">Services</h4>
+            <h4 className="text-sm font-bold font-display text-primary-foreground mb-4 uppercase tracking-wider">Services</h4>
             {["Web Applications", "Mobile Applications", "Enterprise Systems", "AI & Machine Learning", "UI/UX Design", "DevOps & Cloud"].map((s) => (
               <a key={s} href="#services" className="block text-sm text-primary-foreground/50 hover:text-accent transition-colors mb-2">{s}</a>
             ))}
           </div>
 
-          {/* Company */}
           <div>
-            <h4 className="text-sm font-bold text-primary-foreground mb-4">Company</h4>
+            <h4 className="text-sm font-bold font-display text-primary-foreground mb-4 uppercase tracking-wider">Company</h4>
             {[{ label: "About Us", href: "#" }, { label: "Careers", href: "#" }, { label: "Blog", href: "#" }, { label: "Contact", href: "#contact" }].map((l) => (
               <a key={l.label} href={l.href} className="block text-sm text-primary-foreground/50 hover:text-accent transition-colors mb-2">{l.label}</a>
             ))}
           </div>
 
-          {/* Legal */}
           <div>
-            <h4 className="text-sm font-bold text-primary-foreground mb-4">Legal</h4>
+            <h4 className="text-sm font-bold font-display text-primary-foreground mb-4 uppercase tracking-wider">Legal</h4>
             <a href="#" className="block text-sm text-primary-foreground/50 hover:text-accent transition-colors mb-2">Privacy Policy</a>
             <a href="#" className="block text-sm text-primary-foreground/50 hover:text-accent transition-colors mb-2">Terms of Service</a>
           </div>

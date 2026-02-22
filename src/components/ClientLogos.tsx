@@ -12,7 +12,7 @@ const ClientLogos = () => {
         <motion.p
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
-          className="text-sm font-semibold uppercase tracking-widest text-muted-foreground"
+          className="text-sm font-semibold font-display uppercase tracking-widest text-muted-foreground"
         >
           Trusted by Industry Leaders
         </motion.p>

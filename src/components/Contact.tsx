@@ -25,11 +25,10 @@ const Contact = () => {
     setForm({ name: "", email: "", phone: "", company: "", projectType: "", message: "" });
   };
 
-  const inputClass = "w-full px-4 py-3 rounded-xl bg-primary-foreground/10 border border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/40 focus:outline-none focus:border-accent transition-colors text-sm";
+  const inputClass = "w-full px-4 py-3.5 rounded-xl bg-primary-foreground/10 border border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/40 focus:outline-none focus:border-accent transition-colors text-base";
 
   return (
     <section id="contact" ref={ref} className="py-24 gradient-navy relative overflow-hidden">
-      {/* Decorative gold lines */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
 
       <div className="container mx-auto px-6">
@@ -39,16 +38,18 @@ const Contact = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-extrabold text-primary-foreground mb-4">
-            Ready to Build Something <span className="text-gradient-gold">Exceptional</span>?
-          </h2>
-          <p className="text-primary-foreground/60 max-w-xl mx-auto text-lg">
+          <div className="flex items-center justify-center gap-4 mb-4">
+            <div className="w-1 h-10 rounded-full gradient-gold" />
+            <h2 className="text-3xl md:text-5xl font-bold font-display text-primary-foreground" style={{ letterSpacing: "-0.02em" }}>
+              Ready to Build Something <span className="text-gradient-gold">Exceptional</span>?
+            </h2>
+          </div>
+          <p className="text-primary-foreground/60 max-w-xl mx-auto text-lg md:text-xl mt-4" style={{ lineHeight: 1.65 }}>
             Schedule a free consultation with one of our experts. Let's discuss your project and explore how Sanabil Technologies can bring your vision to life.
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
-          {/* Form */}
           <motion.form
             initial={{ opacity: 0, x: -30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
@@ -78,13 +79,12 @@ const Contact = () => {
               <option value="other">Other</option>
             </select>
             <textarea className={`${inputClass} min-h-[120px] resize-none`} placeholder="Message / Project Brief *" value={form.message} onChange={e => setForm({ ...form, message: e.target.value })} />
-            <button type="submit" className="w-full gradient-gold py-4 rounded-xl font-bold text-accent-foreground hover:scale-[1.02] transition-transform duration-200 gold-glow text-base">
+            <button type="submit" className="w-full gradient-gold py-4 rounded-xl font-semibold font-display text-accent-foreground hover:scale-[1.02] transition-transform duration-200 gold-glow text-base md:text-lg">
               Request a Meeting
             </button>
             <p className="text-center text-xs text-primary-foreground/40">We typically respond within 2 hours</p>
           </motion.form>
 
-          {/* Info */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
@@ -101,7 +101,7 @@ const Contact = () => {
                 <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
                   <item.icon size={18} className="text-accent" />
                 </div>
-                <span className="text-sm text-primary-foreground/70">{item.label}</span>
+                <span className="text-base text-primary-foreground/70">{item.label}</span>
               </div>
             ))}
 
@@ -113,7 +113,7 @@ const Contact = () => {
               ))}
             </div>
 
-            <a href="#" className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-accent/30 text-accent hover:bg-accent/10 transition-all duration-200 text-sm font-medium mt-4">
+            <a href="#" className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl border border-accent/30 text-accent hover:bg-accent/10 transition-all duration-200 text-base font-semibold font-display mt-4">
               <Calendar size={18} />
               Schedule on Calendly
             </a>
