@@ -1,127 +1,323 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { Mail, Phone, MapPin, Clock, Linkedin, Twitter, Github, Instagram, Calendar } from "lucide-react";
+import { Mail, Phone, MapPin, Clock, Linkedin, Twitter, Github, Instagram, Calendar, CheckCircle2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import GradientOrbs from "./GradientOrbs";
+
+const contactItems = [
+  { icon: Mail, label: "EMAIL", value: "contact@sanabiltechnologies.com", href: "mailto:contact@sanabiltechnologies.com" },
+  { icon: Phone, label: "PHONE", value: "+1 (555) 123-4567", href: "tel:+15551234567" },
+  { icon: MapPin, label: "LOCATION", value: "Dubai, UAE | Cairo, Egypt" },
+  { icon: Clock, label: "HOURS", value: "Sun–Thu, 9AM–6PM (GMT+3)" },
+];
+
+const socials = [
+  { icon: Linkedin, href: "#" },
+  { icon: Twitter, href: "#" },
+  { icon: Github, href: "#" },
+  { icon: Instagram, href: "#" },
+];
+
+const projectTypes = [
+  "Web Application", "Mobile Application", "Enterprise System",
+  "AI/ML Solution", "UI/UX Design", "DevOps & Cloud", "Other",
+];
+
+const inputStyle: React.CSSProperties = {
+  width: "100%",
+  padding: "14px 18px",
+  borderRadius: 12,
+  background: "rgba(255, 255, 255, 0.04)",
+  border: "1px solid rgba(255, 255, 255, 0.1)",
+  color: "#FFFFFF",
+  fontSize: 15,
+  outline: "none",
+  transition: "all 0.3s ease",
+};
+
+const labelStyle: React.CSSProperties = {
+  display: "block",
+  fontSize: 13,
+  fontWeight: 500,
+  color: "rgba(255, 255, 255, 0.6)",
+  marginBottom: 6,
+};
 
 const Contact = () => {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
   const { toast } = useToast();
-  const [form, setForm] = useState({
-    name: "", email: "", phone: "", company: "", projectType: "", message: "",
-  });
+  const [form, setForm] = useState({ name: "", email: "", phone: "", company: "", projectType: "", message: "" });
+  const [submitted, setSubmitted] = useState(false);
+  const [errors, setErrors] = useState<Record<string, boolean>>({});
+
+  const handleFocus = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    e.currentTarget.style.borderColor = "rgba(229, 168, 33, 0.5)";
+    e.currentTarget.style.boxShadow = "0 0 0 3px rgba(229, 168, 33, 0.1)";
+    e.currentTarget.style.background = "rgba(255, 255, 255, 0.06)";
+  };
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.1)";
+    e.currentTarget.style.boxShadow = "none";
+    e.currentTarget.style.background = "rgba(255, 255, 255, 0.04)";
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
+    const newErrors: Record<string, boolean> = {};
+    if (!form.name.trim()) newErrors.name = true;
+    if (!form.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) newErrors.email = true;
+    if (!form.message.trim()) newErrors.message = true;
+    if (Object.keys(newErrors).length) {
+      setErrors(newErrors);
       toast({ title: "Please fill in required fields", variant: "destructive" });
       return;
     }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
-      toast({ title: "Please enter a valid email", variant: "destructive" });
-      return;
-    }
-    toast({ title: "Thank you!", description: "Our team will reach out within 2 hours." });
-    setForm({ name: "", email: "", phone: "", company: "", projectType: "", message: "" });
+    setErrors({});
+    setSubmitted(true);
   };
 
-  const inputClass = "w-full px-4 py-3.5 rounded-xl bg-primary-foreground/10 border border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/40 focus:outline-none focus:border-accent transition-colors text-base";
+  const errorBorder = "1px solid rgba(239, 68, 68, 0.5)";
 
   return (
-    <section id="contact" ref={ref} className="py-24 gradient-navy relative overflow-hidden">
-      <GradientOrbs variant="cta" />
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
+    <section id="contact" ref={ref} className="relative py-24 overflow-hidden"
+      style={{ background: "linear-gradient(180deg, hsl(220 80% 6%) 0%, hsl(215 75% 12%) 50%, hsl(207 65% 16%) 100%)" }}>
+
+      {/* Animated orbs */}
+      <motion.div className="absolute pointer-events-none rounded-full"
+        style={{ width: 600, height: 600, top: "40%", left: "25%", background: "radial-gradient(circle, rgba(229, 168, 33, 0.06) 0%, transparent 50%)" }}
+        animate={{ x: [0, 20, -10, 0], y: [0, -15, 10, 0] }} transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }} />
+      <motion.div className="absolute pointer-events-none rounded-full"
+        style={{ width: 500, height: 500, top: "60%", left: "75%", background: "radial-gradient(circle, rgba(59, 130, 246, 0.04) 0%, transparent 50%)", transform: "translate(-50%, -50%)" }}
+        animate={{ x: [0, -15, 20, 0], y: [0, 10, -20, 0] }} transition={{ duration: 30, repeat: Infinity, ease: "easeInOut" }} />
+
+      {/* Top separator */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 h-px" style={{ width: 200, background: "linear-gradient(90deg, transparent, rgba(229, 168, 33, 0.3), transparent)" }} />
 
       <div className="container mx-auto px-6 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
+        {/* Header */}
+        <motion.div initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }} className="text-center mb-12">
           <div className="flex items-center justify-center gap-4 mb-4">
             <div className="w-1 h-10 rounded-full gradient-gold" />
-            <h2 className="text-3xl md:text-5xl font-bold font-display text-primary-foreground" style={{ letterSpacing: "-0.02em" }}>
-              Ready to Build Something <span className="text-gradient-gold">Exceptional</span>?
+            <h2 className="text-3xl md:text-5xl font-bold font-display" style={{
+              letterSpacing: "-0.03em",
+              background: "linear-gradient(135deg, #FFFFFF 0%, #E5A821 50%, #FFFFFF 100%)",
+              backgroundSize: "200% auto",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              animation: "textShimmer 4s ease-in-out infinite",
+            }}>
+              Let's Build Something Exceptional
             </h2>
           </div>
-          <p className="text-primary-foreground/60 max-w-xl mx-auto text-lg md:text-xl mt-4" style={{ lineHeight: 1.65 }}>
-            Schedule a free consultation with one of our experts. Let's discuss your project and explore how Sanabil Technologies can bring your vision to life.
+          <p className="max-w-xl mx-auto text-lg md:text-xl mt-4" style={{ color: "rgba(255, 255, 255, 0.5)", lineHeight: 1.6 }}>
+            Schedule a free consultation with our team. We'll analyze your project, recommend the right approach, and show you how AI-native development can accelerate your vision.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
-          <motion.form
-            initial={{ opacity: 0, x: -30 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
+        {/* Two columns */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-[1100px] mx-auto">
+          {/* Form card */}
+          <motion.div initial={{ opacity: 0, x: -30 }} animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ delay: 0.2, duration: 0.6 }}
-            onSubmit={handleSubmit}
-            className="space-y-4"
-          >
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <input className={inputClass} placeholder="Full Name *" value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} />
-              <input className={inputClass} placeholder="Email Address *" value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} />
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <input className={inputClass} placeholder="Phone Number" value={form.phone} onChange={e => setForm({ ...form, phone: e.target.value })} />
-              <input className={inputClass} placeholder="Company Name" value={form.company} onChange={e => setForm({ ...form, company: e.target.value })} />
-            </div>
-            <select
-              className={`${inputClass} appearance-none`}
-              value={form.projectType}
-              onChange={e => setForm({ ...form, projectType: e.target.value })}
-            >
-              <option value="">Select Project Type</option>
-              <option value="web">Web App</option>
-              <option value="mobile">Mobile App</option>
-              <option value="enterprise">Enterprise System</option>
-              <option value="ai">AI/ML Solution</option>
-              <option value="design">UI/UX Design</option>
-              <option value="other">Other</option>
-            </select>
-            <textarea className={`${inputClass} min-h-[120px] resize-none`} placeholder="Message / Project Brief *" value={form.message} onChange={e => setForm({ ...form, message: e.target.value })} />
-            <button type="submit" className="w-full gradient-gold py-4 rounded-xl font-semibold font-display text-accent-foreground hover:scale-[1.02] transition-transform duration-200 btn-gold-glow text-base md:text-lg">
-              Request a Meeting
-            </button>
-            <p className="text-center text-xs text-primary-foreground/40">We typically respond within 2 hours</p>
-          </motion.form>
+            style={{
+              background: "rgba(255, 255, 255, 0.03)", border: "1px solid rgba(255, 255, 255, 0.08)",
+              borderRadius: 24, padding: 40, backdropFilter: "blur(12px)",
+              boxShadow: "0 20px 60px rgba(0, 0, 0, 0.2)",
+            }}>
+            <AnimatePresence mode="wait">
+              {!submitted ? (
+                <motion.form key="form" onSubmit={handleSubmit} className="space-y-4"
+                  initial={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label style={labelStyle}>Full Name *</label>
+                      <input style={{ ...inputStyle, border: errors.name ? errorBorder : inputStyle.border }}
+                        placeholder="John Doe" value={form.name}
+                        onChange={e => { setForm({ ...form, name: e.target.value }); setErrors({ ...errors, name: false }); }}
+                        onFocus={handleFocus} onBlur={handleBlur} />
+                    </div>
+                    <div>
+                      <label style={labelStyle}>Email Address *</label>
+                      <input style={{ ...inputStyle, border: errors.email ? errorBorder : inputStyle.border }}
+                        placeholder="john@company.com" value={form.email}
+                        onChange={e => { setForm({ ...form, email: e.target.value }); setErrors({ ...errors, email: false }); }}
+                        onFocus={handleFocus} onBlur={handleBlur} />
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label style={labelStyle}>Phone <span style={{ color: "rgba(255,255,255,0.3)" }}>(optional)</span></label>
+                      <input style={inputStyle} placeholder="+1 (555) 000-0000" value={form.phone}
+                        onChange={e => setForm({ ...form, phone: e.target.value })}
+                        onFocus={handleFocus} onBlur={handleBlur} />
+                    </div>
+                    <div>
+                      <label style={labelStyle}>Company <span style={{ color: "rgba(255,255,255,0.3)" }}>(optional)</span></label>
+                      <input style={inputStyle} placeholder="Your Company" value={form.company}
+                        onChange={e => setForm({ ...form, company: e.target.value })}
+                        onFocus={handleFocus} onBlur={handleBlur} />
+                    </div>
+                  </div>
+                  <div>
+                    <label style={labelStyle}>Project Type</label>
+                    <select style={{ ...inputStyle, appearance: "none" as const, cursor: "pointer" }}
+                      value={form.projectType} onChange={e => setForm({ ...form, projectType: e.target.value })}
+                      onFocus={handleFocus as any} onBlur={handleBlur as any}>
+                      <option value="" style={{ background: "#0A2540" }}>Select Project Type</option>
+                      {projectTypes.map(t => <option key={t} value={t} style={{ background: "#0A2540" }}>{t}</option>)}
+                    </select>
+                  </div>
+                  <div>
+                    <label style={labelStyle}>Message *</label>
+                    <textarea style={{ ...inputStyle, minHeight: 120, resize: "vertical" as const, border: errors.message ? errorBorder : inputStyle.border }}
+                      placeholder="Tell us about your project..." value={form.message}
+                      onChange={e => { setForm({ ...form, message: e.target.value }); setErrors({ ...errors, message: false }); }}
+                      onFocus={handleFocus as any} onBlur={handleBlur as any} />
+                  </div>
+                  <button type="submit" className="w-full font-bold font-display"
+                    style={{
+                      background: "linear-gradient(135deg, #E5A821 0%, #F0C040 100%)",
+                      color: "#0A2540", fontSize: 16, padding: "16px 32px", borderRadius: 12, border: "none", cursor: "pointer",
+                      boxShadow: "0 4px 20px rgba(229, 168, 33, 0.3)",
+                      transition: "all 0.3s ease",
+                    }}
+                    onMouseEnter={e => {
+                      e.currentTarget.style.background = "linear-gradient(135deg, #F0C040 0%, #E5A821 100%)";
+                      e.currentTarget.style.boxShadow = "0 8px 40px rgba(229, 168, 33, 0.5), 0 0 60px rgba(229, 168, 33, 0.15)";
+                      e.currentTarget.style.transform = "translateY(-2px)";
+                    }}
+                    onMouseLeave={e => {
+                      e.currentTarget.style.background = "linear-gradient(135deg, #E5A821 0%, #F0C040 100%)";
+                      e.currentTarget.style.boxShadow = "0 4px 20px rgba(229, 168, 33, 0.3)";
+                      e.currentTarget.style.transform = "translateY(0)";
+                    }}
+                    onMouseDown={e => { e.currentTarget.style.transform = "translateY(0)"; }}
+                  >
+                    Request a Meeting
+                  </button>
+                  <p className="text-center" style={{ fontSize: 13, color: "rgba(255, 255, 255, 0.35)", marginTop: 12 }}>
+                    ⚡ We typically respond within 2 hours
+                  </p>
+                </motion.form>
+              ) : (
+                <motion.div key="success" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5 }} className="flex flex-col items-center justify-center py-16 text-center">
+                  <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: "spring", stiffness: 200, delay: 0.2 }}>
+                    <CheckCircle2 size={64} strokeWidth={1.5} style={{ color: "#E5A821", filter: "drop-shadow(0 0 20px rgba(229, 168, 33, 0.4))" }} />
+                  </motion.div>
+                  <h3 className="font-display font-semibold text-primary-foreground mt-6" style={{ fontSize: 22 }}>
+                    Thank you!
+                  </h3>
+                  <p className="mt-2" style={{ fontSize: 16, color: "rgba(255, 255, 255, 0.6)" }}>
+                    Our team will reach out within 2 hours.
+                  </p>
+                  <p className="mt-2" style={{ fontSize: 14, color: "rgba(255, 255, 255, 0.35)" }}>
+                    In the meantime, feel free to explore our work.
+                  </p>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
+          {/* Info card */}
+          <motion.div initial={{ opacity: 0, x: 30 }} animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ delay: 0.3, duration: 0.6 }}
-            className="space-y-6"
-          >
-            {[
-              { icon: Mail, label: "contact@sanabiltechnologies.com" },
-              { icon: Phone, label: "+1 (555) 123-4567" },
-              { icon: MapPin, label: "Dubai, UAE | Cairo, Egypt" },
-              { icon: Clock, label: "Sun–Thu, 9AM–6PM (GMT+3) | 24/7 Emergency" },
-            ].map((item) => (
-              <div key={item.label} className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
-                  <item.icon size={18} className="text-accent" />
+            className="relative overflow-hidden"
+            style={{
+              background: "rgba(255, 255, 255, 0.02)", border: "1px solid rgba(255, 255, 255, 0.06)",
+              borderRadius: 24, padding: 40,
+            }}>
+            {/* Faint globe deco */}
+            <svg className="absolute right-0 bottom-0 pointer-events-none" width="220" height="220" viewBox="0 0 220 220" style={{ opacity: 0.03 }}>
+              <circle cx="110" cy="110" r="90" fill="none" stroke="#E5A821" strokeWidth="1" />
+              <ellipse cx="110" cy="110" rx="50" ry="90" fill="none" stroke="#E5A821" strokeWidth="0.6" />
+              <line x1="20" y1="110" x2="200" y2="110" stroke="#E5A821" strokeWidth="0.5" />
+              <line x1="110" y1="20" x2="110" y2="200" stroke="#E5A821" strokeWidth="0.5" />
+              <ellipse cx="110" cy="75" rx="75" ry="20" fill="none" stroke="#E5A821" strokeWidth="0.4" />
+              <ellipse cx="110" cy="145" rx="75" ry="20" fill="none" stroke="#E5A821" strokeWidth="0.4" />
+            </svg>
+
+            <div className="relative z-10">
+              {contactItems.map((item, i) => (
+                <div key={item.label}>
+                  {item.href ? (
+                    <a href={item.href} className="flex items-center gap-4 group" style={{ padding: "16px 0", textDecoration: "none" }}>
+                      <item.icon size={20} style={{ color: "#E5A821", flexShrink: 0 }} />
+                      <div>
+                        <span className="block uppercase" style={{ fontSize: 12, fontWeight: 500, letterSpacing: "0.08em", color: "rgba(255, 255, 255, 0.35)" }}>{item.label}</span>
+                        <span className="block font-medium group-hover:text-[#E5A821] transition-colors duration-200" style={{ fontSize: 15, color: "#FFFFFF" }}>{item.value}</span>
+                      </div>
+                    </a>
+                  ) : (
+                    <div className="flex items-center gap-4" style={{ padding: "16px 0" }}>
+                      <item.icon size={20} style={{ color: "#E5A821", flexShrink: 0 }} />
+                      <div>
+                        <span className="block uppercase" style={{ fontSize: 12, fontWeight: 500, letterSpacing: "0.08em", color: "rgba(255, 255, 255, 0.35)" }}>{item.label}</span>
+                        <span className="block font-medium" style={{ fontSize: 15, color: "#FFFFFF" }}>{item.value}</span>
+                      </div>
+                    </div>
+                  )}
+                  {i < contactItems.length - 1 && <div style={{ height: 1, background: "rgba(255, 255, 255, 0.05)" }} />}
                 </div>
-                <span className="text-base text-primary-foreground/70">{item.label}</span>
-              </div>
-            ))}
-
-            <div className="flex gap-3 pt-4">
-              {[Linkedin, Twitter, Github, Instagram].map((Icon, i) => (
-                <a key={i} href="#" className="w-10 h-10 rounded-xl border border-primary-foreground/20 flex items-center justify-center text-primary-foreground/60 hover:text-accent hover:border-accent transition-all duration-200">
-                  <Icon size={18} />
-                </a>
               ))}
-            </div>
 
-            <a href="#" className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl border border-accent/30 text-accent hover:bg-accent/10 transition-all duration-200 text-base font-semibold font-display mt-4">
-              <Calendar size={18} />
-              Schedule on Calendly
-            </a>
+              {/* Socials */}
+              <div className="flex gap-3 mt-6">
+                {socials.map((s, i) => (
+                  <a key={i} href={s.href} className="group flex items-center justify-center"
+                    style={{
+                      width: 44, height: 44, borderRadius: "50%",
+                      background: "rgba(255, 255, 255, 0.04)",
+                      border: "1px solid rgba(255, 255, 255, 0.08)",
+                      transition: "all 0.3s ease",
+                    }}
+                    onMouseEnter={e => {
+                      e.currentTarget.style.background = "rgba(229, 168, 33, 0.12)";
+                      e.currentTarget.style.borderColor = "rgba(229, 168, 33, 0.25)";
+                      e.currentTarget.style.transform = "translateY(-2px)";
+                    }}
+                    onMouseLeave={e => {
+                      e.currentTarget.style.background = "rgba(255, 255, 255, 0.04)";
+                      e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.08)";
+                      e.currentTarget.style.transform = "translateY(0)";
+                    }}>
+                    <s.icon size={18} className="group-hover:text-[#E5A821] transition-colors" style={{ color: "rgba(255, 255, 255, 0.5)" }} />
+                  </a>
+                ))}
+              </div>
+
+              {/* Calendly */}
+              <a href="#" className="mt-6 w-full inline-flex items-center justify-center gap-2 font-semibold font-display"
+                style={{
+                  padding: "14px 24px", borderRadius: 12, fontSize: 15, color: "#E5A821",
+                  background: "transparent", border: "1px solid rgba(229, 168, 33, 0.3)",
+                  transition: "all 0.3s ease", textDecoration: "none",
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.background = "rgba(229, 168, 33, 0.08)";
+                  e.currentTarget.style.borderColor = "rgba(229, 168, 33, 0.5)";
+                  e.currentTarget.style.boxShadow = "0 0 20px rgba(229, 168, 33, 0.15)";
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.background = "transparent";
+                  e.currentTarget.style.borderColor = "rgba(229, 168, 33, 0.3)";
+                  e.currentTarget.style.boxShadow = "none";
+                }}>
+                <Calendar size={18} />
+                Schedule Directly on Calendly
+              </a>
+            </div>
           </motion.div>
         </div>
       </div>
+
+      <style>{`
+        @keyframes textShimmer {
+          0%, 100% { background-position: 0% center; }
+          50% { background-position: 200% center; }
+        }
+      `}</style>
     </section>
   );
 };
