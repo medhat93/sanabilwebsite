@@ -37,13 +37,13 @@ const Navbar = () => {
         className="fixed top-0 left-0 right-0 z-50"
       >
         <div
-          className="mx-3 md:mx-6 mt-3 rounded-2xl transition-all duration-[400ms] border"
+          className="mx-3 md:mx-6 mt-3 rounded-3xl transition-all duration-[400ms] border"
           style={{
             background: scrolled
-              ? "rgba(10, 37, 64, 0.85)"
-              : "rgba(10, 37, 64, 0.6)",
-            backdropFilter: `blur(${scrolled ? 24 : 20}px) saturate(1.8)`,
-            WebkitBackdropFilter: `blur(${scrolled ? 24 : 20}px) saturate(1.8)`,
+              ? "rgba(10, 37, 64, 0.75)"
+              : "rgba(10, 37, 64, 0.45)",
+            backdropFilter: `blur(${scrolled ? 28 : 24}px) saturate(1.8)`,
+            WebkitBackdropFilter: `blur(${scrolled ? 28 : 24}px) saturate(1.8)`,
             borderColor: scrolled
               ? "rgba(229, 168, 33, 0.2)"
               : "rgba(229, 168, 33, 0.12)",
@@ -52,7 +52,7 @@ const Navbar = () => {
               : "0 4px 24px rgba(0, 0, 0, 0.15)",
           }}
         >
-          <div className="container mx-auto flex items-center justify-between px-6 py-4">
+          <div className="container mx-auto flex items-center justify-between px-6 py-3">
             <button onClick={() => handleClick("#home")}>
               <Logo iconSize={96} showText />
             </button>
