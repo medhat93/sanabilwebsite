@@ -43,12 +43,12 @@ const ClientLogos = () => {
           {[...logos, ...logos].map((logo, i) => (
             <div
               key={i}
-              className="flex-shrink-0 mx-6 w-[160px] h-[60px] rounded-lg flex items-center justify-center grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+              className="flex-shrink-0 mx-8 w-[200px] h-[80px] rounded-lg flex items-center justify-center hover:scale-105 transition-all duration-300"
             >
               <img
                 src={logo.src}
                 alt={logo.name}
-                className="max-h-[50px] max-w-[140px] object-contain"
+                className="max-h-[70px] max-w-[180px] object-contain"
               />
             </div>
           ))}
