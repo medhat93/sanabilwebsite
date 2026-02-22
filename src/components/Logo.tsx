@@ -12,7 +12,8 @@ const Logo = ({ iconSize = 96, showText = true, textSize = "default", className 
 
   return (
     <div
-      className={`flex items-center gap-0.5 group cursor-pointer transition-all duration-300 ${className}`}
+      className={`flex items-center -gap-1 group cursor-pointer transition-all duration-300 ${className}`}
+      style={{ gap: 0 }}
     >
       <img
         src={sanabilIcon}

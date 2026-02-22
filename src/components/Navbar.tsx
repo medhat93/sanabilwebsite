@@ -52,7 +52,7 @@ const Navbar = () => {
               : "0 4px 24px rgba(0, 0, 0, 0.15)",
           }}
         >
-          <div className="container mx-auto flex items-center justify-between px-6 py-2">
+          <div className="container mx-auto flex items-center justify-between px-6 py-1.5">
             <button onClick={() => handleClick("#home")}>
               <Logo iconSize={96} showText />
             </button>
