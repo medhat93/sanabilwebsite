@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Mail, Phone, MapPin, Clock, Linkedin, Twitter, Github, Instagram, Calendar } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import GradientOrbs from "./GradientOrbs";
 
 const Contact = () => {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
@@ -29,9 +30,10 @@ const Contact = () => {
 
   return (
     <section id="contact" ref={ref} className="py-24 gradient-navy relative overflow-hidden">
+      <GradientOrbs variant="cta" />
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
 
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -79,7 +81,7 @@ const Contact = () => {
               <option value="other">Other</option>
             </select>
             <textarea className={`${inputClass} min-h-[120px] resize-none`} placeholder="Message / Project Brief *" value={form.message} onChange={e => setForm({ ...form, message: e.target.value })} />
-            <button type="submit" className="w-full gradient-gold py-4 rounded-xl font-semibold font-display text-accent-foreground hover:scale-[1.02] transition-transform duration-200 gold-glow text-base md:text-lg">
+            <button type="submit" className="w-full gradient-gold py-4 rounded-xl font-semibold font-display text-accent-foreground hover:scale-[1.02] transition-transform duration-200 btn-gold-glow text-base md:text-lg">
               Request a Meeting
             </button>
             <p className="text-center text-xs text-primary-foreground/40">We typically respond within 2 hours</p>

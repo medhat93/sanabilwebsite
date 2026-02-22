@@ -68,10 +68,11 @@ const Services = () => {
               key={service.title}
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: i * 0.1, duration: 0.5 }}
-              className="group glass-card-light p-8 hover-lift cursor-default"
+              transition={{ delay: i * 0.12, duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+              className="group glass-card-light p-8 cursor-default transition-all duration-300 hover:-translate-y-1.5 hover:border-accent/40 hover:shadow-[0_20px_40px_-12px_rgba(229,168,33,0.15)]"
+              style={{ willChange: "transform" }}
             >
-              <div className="w-12 h-12 rounded-xl gradient-gold flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+              <div className="w-12 h-12 rounded-xl gradient-gold flex items-center justify-center mb-5 group-hover:scale-[1.15] transition-transform duration-300">
                 <service.icon size={24} className="text-accent-foreground" />
               </div>
               <h3 className="text-xl md:text-2xl font-semibold font-display text-foreground mb-3" style={{ letterSpacing: "-0.02em" }}>{service.title}</h3>

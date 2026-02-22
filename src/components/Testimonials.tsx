@@ -49,8 +49,9 @@ const Testimonials = () => {
               key={t.name}
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: i * 0.15, duration: 0.5 }}
-              className="glass-card-light p-8 hover-lift"
+              transition={{ delay: i * 0.15, duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+              className="group glass-card-light p-8 transition-all duration-300 hover:-translate-y-1.5 hover:border-accent/40 hover:shadow-[0_20px_40px_-12px_rgba(229,168,33,0.15)]"
+              style={{ willChange: "transform" }}
             >
               <Quote size={24} className="text-accent mb-4" />
               <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-6 italic" style={{ lineHeight: 1.65 }}>"{t.quote}"</p>
