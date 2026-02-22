@@ -20,42 +20,61 @@ const Hero = () => {
           transition={{ delay: 0.3, duration: 0.6 }}
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent/30 bg-accent/10 mb-8 mt-6"
         >
-          <span className="text-sm">🚀</span>
-          <span className="text-sm font-medium text-accent animate-pulse-slow">AI-Powered Development Process</span>
+          <span className="text-sm">🌾</span>
+          <span className="text-sm font-medium text-accent animate-pulse-slow">Sanabil (سنابل) — Arabic for "Ears of Wheat"</span>
         </motion.div>
 
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.7 }}
+        <h1
           className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-display text-primary-foreground max-w-5xl mx-auto mb-6"
-          style={{ lineHeight: 1.1, letterSpacing: "-0.03em" }}
+          style={{ lineHeight: 1.15, letterSpacing: "-0.03em" }}
         >
-          We Engineer Software That{" "}
-          <span className="text-shimmer">Transforms Businesses</span>
-        </motion.h1>
+          <motion.span
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.7 }}
+            className="block"
+          >
+            We Plant Ideas.
+          </motion.span>
+          <motion.span
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.7, duration: 0.7 }}
+            className="block text-shimmer"
+          >
+            AI Cultivates Them.
+          </motion.span>
+          <motion.span
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.9, duration: 0.7 }}
+            className="block"
+          >
+            You Harvest Success.
+          </motion.span>
+        </h1>
 
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7, duration: 0.7 }}
-          className="text-lg md:text-xl text-primary-foreground/60 max-w-2xl mx-auto mb-10 leading-relaxed"
-          style={{ lineHeight: 1.65 }}
+          transition={{ delay: 1.1, duration: 0.7 }}
+          className="text-lg md:text-xl max-w-2xl mx-auto mb-10"
+          style={{ lineHeight: 1.6, color: "rgba(255, 255, 255, 0.6)" }}
         >
-          From concept to launch — Sanabil Technologies delivers enterprise-grade applications powered by AI-driven development processes and world-class engineering talent.
+          Like the finest wheat, great software requires the right seeds, expert cultivation, and patience to grow. At Sanabil, we combine world-class engineering with AI-native development to turn your vision into products that thrive — faster than you thought possible.
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.9, duration: 0.7 }}
+          transition={{ delay: 1.3, duration: 0.7 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <button
             onClick={() => scrollTo("#contact")}
             className="gradient-gold px-8 py-4 rounded-full font-semibold font-display text-accent-foreground hover:scale-105 transition-transform duration-200 btn-gold-glow text-base md:text-lg"
           >
-            Start Your Project
+            Plant Your Next Idea
           </button>
           <button
             onClick={() => scrollTo("#services")}
