@@ -24,31 +24,69 @@ const ClientLogos = () => {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
 
   return (
-    <section id="clients" ref={ref} className="py-20 bg-background overflow-hidden">
-      <div className="container mx-auto px-6 mb-12 text-center">
+    <section
+      ref={ref}
+      className="relative overflow-hidden"
+      style={{
+        background: "transparent",
+        paddingTop: 40,
+        paddingBottom: 40,
+        borderTop: "1px solid rgba(229, 168, 33, 0.06)",
+        borderBottom: "1px solid rgba(229, 168, 33, 0.06)",
+      }}
+    >
+      <div className="container mx-auto px-6 mb-6 text-center">
         <motion.p
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
-          className="text-sm font-semibold font-display uppercase tracking-widest text-muted-foreground"
+          className="uppercase text-center"
+          style={{
+            color: "rgba(255, 255, 255, 0.4)",
+            fontSize: 14,
+            fontWeight: 500,
+            letterSpacing: "0.15em",
+          }}
         >
           Trusted by Industry Leaders
         </motion.p>
       </div>
 
-      <div className="relative">
-        <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-background to-transparent z-10" />
-        <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-background to-transparent z-10" />
+      <div className="relative group">
+        {/* Edge fade masks */}
+        <div
+          className="absolute left-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
+          style={{ background: "linear-gradient(90deg, hsl(207 75% 15%) 0%, transparent 100%)" }}
+        />
+        <div
+          className="absolute right-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
+          style={{ background: "linear-gradient(270deg, hsl(207 75% 15%) 0%, transparent 100%)" }}
+        />
 
-        <div className="flex animate-marquee">
+        <div className="flex animate-marquee group-hover:[animation-play-state:paused]">
           {[...logos, ...logos].map((logo, i) => (
             <div
               key={i}
-              className="flex-shrink-0 mx-8 w-[200px] h-[80px] rounded-lg flex items-center justify-center hover:scale-105 transition-all duration-300"
+              className="flex-shrink-0 flex items-center justify-center"
+              style={{ width: 150, height: 48, marginLeft: 30, marginRight: 30 }}
             >
               <img
                 src={logo.src}
                 alt={logo.name}
-                className="max-h-[70px] max-w-[180px] object-contain"
+                className="max-h-[48px] max-w-[150px] object-contain transition-all duration-[400ms] ease-in-out"
+                style={{
+                  filter: "grayscale(1) brightness(0.7)",
+                  opacity: 0.4,
+                }}
+                onMouseEnter={(e) => {
+                  const el = e.currentTarget;
+                  el.style.filter = "grayscale(0) brightness(1)";
+                  el.style.opacity = "1";
+                }}
+                onMouseLeave={(e) => {
+                  const el = e.currentTarget;
+                  el.style.filter = "grayscale(1) brightness(0.7)";
+                  el.style.opacity = "0.4";
+                }}
               />
             </div>
           ))}
