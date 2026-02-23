@@ -7,23 +7,23 @@ const testimonials = [
   {
     quote:
       "Sanabil transformed our vision into a world-class platform in 8 weeks. Their AI-augmented team felt like part of our own company. Code quality exceeded agencies twice their size.",
-    name: "Ahmed Al-Rahman",
-    role: "CTO, TechVentures Inc.",
-    initials: "AA",
+    name: "Ahmed Hafez",
+    role: "CEO, Shadoo",
+    initials: "AH",
   },
   {
     quote:
       "Their AI monitoring resolved a critical database issue at 3 AM — before users noticed. That's the kind of reliability that lets me sleep at night.",
-    name: "Sarah Mitchell",
-    role: "Product Manager, CloudScale Solutions",
-    initials: "SM",
+    name: "Ahmed El-Assy",
+    role: "CPO, Gameball",
+    initials: "AE",
   },
   {
     quote:
       "Clean code, AI-generated test coverage from day one, and they delivered our platform 40% faster than expected. Sanabil's quality is on another level.",
-    name: "Omar Hassan",
-    role: "CEO, DataFlow Analytics",
-    initials: "OH",
+    name: "Mohamed Saleh",
+    role: "Operations Manager, Rawabi Holding",
+    initials: "MS",
   },
 ];
 
