@@ -186,7 +186,7 @@ const Testimonials = () => {
           <SideCard idx={leftIdx} side="left" />
 
           {/* Center spotlight */}
-          <div className="flex-1 max-w-[620px] min-w-0">
+          <div className="flex-1 max-w-[620px] min-w-0 relative" style={{ height: 340 }}>
             <AnimatePresence mode="wait">
               <motion.div
                 key={active}
@@ -194,14 +194,13 @@ const Testimonials = () => {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: -15, scale: 0.97 }}
                 transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
-                className="relative sm:p-12 sm:rounded-3xl sm:min-h-[320px]"
+                className="absolute inset-0 sm:rounded-3xl"
                 style={{
                   background: "rgba(255, 255, 255, 0.04)",
                   border: "1px solid rgba(229, 168, 33, 0.15)",
                   borderTop: "3px solid #E5A821",
                   borderRadius: 20,
                   padding: "28px 24px",
-                  minHeight: 280,
                   boxShadow:
                     "0 24px 64px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(229, 168, 33, 0.08)",
                   zIndex: 2,
