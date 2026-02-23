@@ -18,8 +18,8 @@ Single-page landing website for **Sanabil Technologies** (سنابل) — a prem
 - **Particles:** tsParticles (hero section background)
 - **Icons:** Lucide React (all icons across the site)
 - **Fonts:**
-  - Headings: Clash Display (FontShare) → fallback: Sora (Google Fonts) → Manrope
-  - Body: Satoshi (FontShare) → fallback: DM Sans (Google Fonts) → General Sans
+  - Headings: Space Grotesk (Google Fonts) → fallback: Exo 2 → Manrope
+  - Body: Outfit (Google Fonts) → fallback: DM Sans → Inter
 - **Build tool:** Vite
 - **Package manager:** npm
 

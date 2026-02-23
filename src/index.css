@@ -2,8 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap');
-@import url('https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
 
 @layer base {
   :root {
@@ -69,7 +69,7 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Satoshi', 'DM Sans', 'General Sans', system-ui, sans-serif;
+    font-family: 'Outfit', 'DM Sans', 'Inter', system-ui, sans-serif;
     font-size: 17px;
     line-height: 1.65;
     overflow-x: hidden;
@@ -91,7 +91,7 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Clash Display', 'Sora', 'Manrope', system-ui, sans-serif;
+    font-family: 'Space Grotesk', 'Exo 2', 'Manrope', system-ui, sans-serif;
     letter-spacing: -0.02em;
     line-height: 1.15;
   }
@@ -242,7 +242,7 @@
 
   /* Editorial large number styling */
   .stat-hero-number {
-    font-family: 'Clash Display', 'Sora', system-ui, sans-serif;
+    font-family: 'Space Grotesk', 'Exo 2', system-ui, sans-serif;
     font-weight: 800;
     letter-spacing: -0.04em;
     line-height: 0.85;

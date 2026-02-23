@@ -14,8 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['"Satoshi"', '"DM Sans"', '"General Sans"', 'system-ui', 'sans-serif'],
-        display: ['"Clash Display"', '"Sora"', '"Manrope"', 'system-ui', 'sans-serif'],
+        sans: ['"Outfit"', '"DM Sans"', '"Inter"', 'system-ui', 'sans-serif'],
+        display: ['"Space Grotesk"', '"Exo 2"', '"Manrope"', 'system-ui', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
