@@ -63,7 +63,7 @@ const Navbar = () => {
         <div className="w-full flex items-center justify-between">
           <button onClick={() => handleClick("#home")} className="min-h-[44px] flex items-center">
             <Logo iconSize={80} showText className="hidden sm:flex" />
-            <Logo iconSize={60} showText={false} className="sm:hidden" />
+            <Logo iconSize={60} showText textSize="small" className="sm:hidden" />
           </button>
 
           <div className="hidden lg:flex items-center gap-1">
