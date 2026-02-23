@@ -35,8 +35,8 @@ img.onload = () => {
   const cropH = maxY - minY + 1;
 
   // Now draw cropped icon into 32x32 favicon with padding
-  const size = 32;
-  const padding = 2;
+  const size = 96;
+  const padding = 4;
   const available = size - padding * 2;
   const scale = Math.min(available / cropW, available / cropH);
   const drawW = cropW * scale;
