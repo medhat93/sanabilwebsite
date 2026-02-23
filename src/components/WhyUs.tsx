@@ -458,20 +458,24 @@ const WhyUs = () => {
 
       <div className="relative z-10 container mx-auto px-4 sm:px-6">
         {/* Header */}
+        {/* Center-aligned but with different treatment */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0, filter: "blur(8px)" }}
+          animate={inView ? { opacity: 1, filter: "blur(0px)" } : {}}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="text-center mb-10 sm:mb-16"
         >
-          <div className="flex items-center justify-center gap-3 sm:gap-4 mb-4">
-            <div className="w-1 h-8 sm:h-10 rounded-full gradient-gold" />
-            <h2 className="text-[26px] sm:text-3xl md:text-5xl font-bold font-display text-primary-foreground" style={{ letterSpacing: "-0.02em" }}>
-              Why Teams Choose <span className="text-gradient-gold">Sanabil</span>
-            </h2>
-          </div>
-          <p className="text-primary-foreground/50 max-w-xl mx-auto text-[15px] sm:text-lg md:text-xl mt-4 px-2" style={{ lineHeight: 1.65 }}>
-            We combine the world's best engineering talent with AI-native workflows to deliver results no traditional agency can match.
+          <span className="inline-block font-mono text-xs uppercase mb-4 px-4 py-1.5 rounded-full" style={{
+            color: '#E5A821', letterSpacing: '0.12em',
+            background: 'rgba(229, 168, 33, 0.06)', border: '1px solid rgba(229, 168, 33, 0.12)',
+          }}>
+            Why Us
+          </span>
+          <h2 className="text-[26px] sm:text-3xl md:text-5xl font-bold font-display text-primary-foreground" style={{ letterSpacing: "-0.03em" }}>
+            Why Teams Choose <span className="text-gradient-gold">Sanabil</span>
+          </h2>
+          <p className="text-primary-foreground/50 max-w-xl mx-auto text-[15px] sm:text-lg md:text-xl mt-5 px-2" style={{ lineHeight: 1.65 }}>
+            World-class engineering talent amplified by AI-native workflows.
           </p>
         </motion.div>
 

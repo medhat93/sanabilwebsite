@@ -160,15 +160,17 @@ const Testimonials = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-10 sm:mb-16"
         >
-          <div className="flex items-center justify-center gap-3 sm:gap-4 mb-4">
-            <div className="w-1 h-8 sm:h-10 rounded-full gradient-gold" />
-            <h2
-              className="text-[26px] sm:text-3xl md:text-5xl font-bold font-display text-primary-foreground"
-              style={{ letterSpacing: "-0.02em" }}
-            >
-              What Our Clients <span className="text-gradient-gold">Say</span>
-            </h2>
+          <div className="flex items-center justify-center gap-3 mb-3">
+            {[...Array(3)].map((_, i) => (
+              <Star key={i} size={14} fill="#E5A821" strokeWidth={0} style={{ color: "#E5A821", opacity: 0.3 + i * 0.15 }} />
+            ))}
           </div>
+          <h2
+            className="text-[26px] sm:text-3xl md:text-5xl font-bold font-display text-primary-foreground"
+            style={{ letterSpacing: "-0.03em" }}
+          >
+            What Our Clients <span className="text-gradient-gold">Say</span>
+          </h2>
           <p className="text-[15px] sm:text-lg" style={{ color: "rgba(255, 255, 255, 0.45)", marginTop: 16 }}>
             Real results from real partnerships.
           </p>

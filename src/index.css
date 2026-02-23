@@ -205,6 +205,53 @@
     100% { transform: translateY(0%); }
   }
 
+  /* Global noise texture overlay */
+  .noise-overlay {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    background-size: 128px 128px;
+    mix-blend-mode: overlay;
+  }
+
+  /* Clip-path reveal animation */
+  @keyframes clipRevealUp {
+    from { clip-path: inset(100% 0 0 0); opacity: 0; }
+    to { clip-path: inset(0 0 0 0); opacity: 1; }
+  }
+
+  @keyframes clipRevealLeft {
+    from { clip-path: inset(0 100% 0 0); opacity: 0; }
+    to { clip-path: inset(0 0 0 0); opacity: 1; }
+  }
+
+  @keyframes blurIn {
+    from { filter: blur(12px); opacity: 0; transform: translateY(8px); }
+    to { filter: blur(0); opacity: 1; transform: translateY(0); }
+  }
+
+  /* Horizontal rule with fade */
+  .hr-gold-fade {
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(229, 168, 33, 0.4) 50%, transparent 100%);
+    border: none;
+  }
+
+  /* Editorial large number styling */
+  .stat-hero-number {
+    font-family: 'Clash Display', 'Sora', system-ui, sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 0.85;
+    background: linear-gradient(180deg, #E5A821 30%, rgba(229, 168, 33, 0.5) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
   .gold-glow {
     box-shadow: 0 0 30px hsl(40 80% 52% / 0.3), 0 0 60px hsl(40 80% 52% / 0.1);
   }

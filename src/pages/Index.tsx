@@ -12,6 +12,8 @@ import Footer from "@/components/Footer";
 const Index = () => {
   return (
     <div className="min-h-screen">
+      {/* Global noise texture for depth */}
+      <div className="noise-overlay" />
       <Navbar />
       <Hero />
       <ClientMarquee />
