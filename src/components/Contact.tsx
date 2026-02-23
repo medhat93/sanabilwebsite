@@ -90,6 +90,13 @@ const Contact = () => {
         style={{ width: 500, height: 500, top: "60%", left: "75%", background: "radial-gradient(circle, rgba(59, 130, 246, 0.04) 0%, transparent 50%)", transform: "translate(-50%, -50%)" }}
         animate={{ x: [0, -15, 20, 0], y: [0, 10, -20, 0] }} transition={{ duration: 30, repeat: Infinity, ease: "easeInOut" }} />
 
+      {/* Film grain texture */}
+      <div className="absolute inset-0 pointer-events-none z-0" style={{
+        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='0.015'/%3E%3C/svg%3E")`,
+        backgroundSize: "128px 128px",
+        opacity: 0.4,
+      }} />
+
       {/* Top separator */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 h-px" style={{ width: 200, background: "linear-gradient(90deg, transparent, rgba(229, 168, 33, 0.3), transparent)" }} />
 

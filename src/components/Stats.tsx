@@ -85,8 +85,18 @@ const Stats = () => {
       {/* Dot grid - hidden on mobile for performance */}
       <div className="absolute inset-0 pointer-events-none hidden sm:block" style={{
         backgroundImage: "radial-gradient(circle, rgba(229, 168, 33, 0.06) 1px, transparent 1px)",
-        backgroundSize: "24px 24px",
+        backgroundSize: "28px 28px",
       }} />
+      {/* Vertical light sweep - hidden on mobile */}
+      <div className="absolute inset-0 pointer-events-none hidden md:block" style={{ overflow: "hidden" }}>
+        <div style={{
+          width: "100%",
+          height: "200%",
+          background: "linear-gradient(180deg, transparent 0%, rgba(229,168,33,0.02) 45%, rgba(229,168,33,0.04) 50%, rgba(229,168,33,0.02) 55%, transparent 100%)",
+          animation: "verticalSweep 15s linear infinite",
+          willChange: "transform",
+        }} />
+      </div>
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-5 max-w-[1100px] mx-auto">

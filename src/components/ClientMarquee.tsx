@@ -64,6 +64,17 @@ const ClientMarquee = () => {
         className="absolute inset-0 pointer-events-none"
         style={{ background: "linear-gradient(180deg, rgba(10,37,64,0) 0%, rgba(229,168,33,0.02) 50%, rgba(10,37,64,0) 100%)" }}
       />
+      {/* Light sweep - hidden on mobile */}
+      <div
+        className="absolute inset-0 pointer-events-none hidden md:block"
+        style={{
+          width: "200%",
+          height: "100%",
+          background: "linear-gradient(90deg, transparent 0%, rgba(229,168,33,0.02) 45%, rgba(229,168,33,0.04) 50%, rgba(229,168,33,0.02) 55%, transparent 100%)",
+          animation: "lightSweep 20s linear infinite",
+          willChange: "transform",
+        }}
+      />
 
       <div className="relative z-10">
         {/* Gold line */}

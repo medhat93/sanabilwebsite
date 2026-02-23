@@ -425,6 +425,25 @@ const Services = () => {
       {/* Background orb */}
       <div className="absolute pointer-events-none" style={{ top: "40%", left: "70%", width: 600, height: 600,
         background: "radial-gradient(circle, rgba(229, 168, 33, 0.03) 0%, transparent 50%)", transform: "translate(-50%, -50%)" }} />
+      {/* Micro-dot constellation - hidden on mobile */}
+      <div className="absolute inset-0 pointer-events-none hidden md:block">
+        {Array.from({ length: 35 }).map((_, i) => (
+          <div
+            key={i}
+            className="absolute rounded-full"
+            style={{
+              width: 3,
+              height: 3,
+              background: "rgba(229, 168, 33, 0.04)",
+              top: `${8 + (i * 37) % 84}%`,
+              left: `${5 + (i * 53) % 90}%`,
+              animation: `twinkle ${8 + (i % 7) * 1}s ease-in-out infinite`,
+              animationDelay: `${(i * 0.7) % 8}s`,
+              willChange: "opacity",
+            }}
+          />
+        ))}
+      </div>
 
       <div className="relative z-10 container mx-auto px-4 sm:px-6">
         {/* Header */}

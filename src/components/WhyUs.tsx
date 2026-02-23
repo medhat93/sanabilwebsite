@@ -441,9 +441,20 @@ const WhyUs = () => {
       className="relative py-16 sm:py-24 overflow-hidden"
       style={{ background: "linear-gradient(180deg, hsl(215 75% 10%) 0%, hsl(215 75% 12%) 50%, hsl(207 75% 15%) 100%)" }}
     >
-      {/* Background orbs */}
-      <div className="absolute pointer-events-none" style={{ top: "30%", left: "20%", width: 600, height: 600, background: "radial-gradient(circle, rgba(229, 168, 33, 0.04) 0%, transparent 50%)" }} />
-      <div className="absolute pointer-events-none" style={{ top: "70%", left: "80%", width: 500, height: 500, background: "radial-gradient(circle, rgba(59, 130, 246, 0.03) 0%, transparent 50%)", transform: "translate(-50%, -50%)" }} />
+      {/* Drifting gradient mesh - animated on desktop, static on mobile */}
+      <div className="absolute pointer-events-none" style={{
+        top: "30%", left: "20%", width: 600, height: 600,
+        background: "radial-gradient(circle 400px, rgba(229, 168, 33, 0.025) 0%, transparent 70%)",
+        willChange: "transform",
+        animation: "orbDriftA 40s ease-in-out infinite",
+      }} />
+      <div className="absolute pointer-events-none" style={{
+        top: "70%", left: "80%", width: 500, height: 500,
+        background: "radial-gradient(circle 350px, rgba(59, 130, 246, 0.015) 0%, transparent 70%)",
+        transform: "translate(-50%, -50%)",
+        willChange: "transform",
+        animation: "orbDriftB 50s ease-in-out infinite",
+      }} />
 
       <div className="relative z-10 container mx-auto px-4 sm:px-6">
         {/* Header */}
