@@ -259,78 +259,42 @@ const FocusCard = ({ index, paused }: { index: number; paused: boolean }) => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
-      className="relative overflow-hidden"
+      className="absolute inset-0 overflow-hidden"
       style={{
         background: "linear-gradient(180deg, rgba(229, 168, 33, 0.05) 0%, rgba(255, 255, 255, 0.03) 30%, rgba(255, 255, 255, 0.03) 100%)",
         border: "1px solid rgba(229, 168, 33, 0.15)",
         borderTop: "3px solid #E5A821",
         borderRadius: 24,
         padding: 48,
-        minHeight: 320,
         boxShadow: "0 20px 60px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(229, 168, 33, 0.08)",
       }}
     >
       <div className="flex flex-col md:flex-row gap-8 md:gap-12 relative z-10">
         {/* Text */}
         <div className="flex-1 min-w-0" style={{ maxWidth: 520 }}>
-          <motion.div
-            initial={{ opacity: 0, x: -15 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.35, delay: 0.05 }}
-            className="mb-4"
-            style={{ filter: "drop-shadow(0 0 14px rgba(229, 168, 33, 0.4))" }}
-          >
+          <div className="mb-4" style={{ filter: "drop-shadow(0 0 14px rgba(229, 168, 33, 0.4))" }}>
             <Icon size={36} strokeWidth={1.5} style={{ color: "#E5A821" }} />
-          </motion.div>
-          <motion.h3
-            initial={{ opacity: 0, x: -15 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.35, delay: 0.1 }}
-            className="font-display font-bold text-primary-foreground mb-3"
-            style={{ fontSize: 27, letterSpacing: "-0.02em" }}
-          >
+          </div>
+          <h3 className="font-display font-bold text-primary-foreground mb-3" style={{ fontSize: 27, letterSpacing: "-0.02em" }}>
             {feature.title}
-          </motion.h3>
-          <motion.p
-            initial={{ opacity: 0, x: -15 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.35, delay: 0.15 }}
-            style={{ fontSize: 16, lineHeight: 1.7, color: "rgba(255, 255, 255, 0.6)" }}
-          >
+          </h3>
+          <p style={{ fontSize: 16, lineHeight: 1.7, color: "rgba(255, 255, 255, 0.6)" }}>
             {feature.description}
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.25 }}
-            className="mt-5"
-          >
-            <span
-              className="inline-flex items-center gap-1 font-medium"
-              style={{
-                background: "rgba(229, 168, 33, 0.08)",
-                border: "1px solid rgba(229, 168, 33, 0.2)",
-                borderRadius: 20,
-                padding: "6px 14px",
-                fontSize: 13,
-                color: "#E5A821",
-              }}
-            >
+          </p>
+          <div className="mt-5">
+            <span className="inline-flex items-center gap-1 font-medium" style={{
+              background: "rgba(229, 168, 33, 0.08)", border: "1px solid rgba(229, 168, 33, 0.2)",
+              borderRadius: 20, padding: "6px 14px", fontSize: 13, color: "#E5A821",
+            }}>
               {feature.badge}
             </span>
-          </motion.div>
+          </div>
         </div>
 
         {/* Decorative visual */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="hidden md:flex items-center justify-center pointer-events-none"
-          style={{ width: "40%", minHeight: 160, flexShrink: 0 }}
-        >
+        <div className="hidden md:flex items-center justify-center pointer-events-none" style={{ width: "40%", minHeight: 160, flexShrink: 0 }}>
           <Visual />
-        </motion.div>
+        </div>
       </div>
 
       {/* Progress bar */}
@@ -502,7 +466,8 @@ const WhyUs = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.2 }}
-            style={{ minHeight: 320 }}
+            className="relative"
+            style={{ height: 320 }}
           >
             <AnimatePresence mode="wait" initial={false}>
               <FocusCard key={active} index={active} paused={paused} />
