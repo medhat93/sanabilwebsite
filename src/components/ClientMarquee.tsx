@@ -1,14 +1,25 @@
 import { useState } from "react";
 
 const clients = [
-  "Rawabi Holding", "Gameball", "Shadoo", "Le Concierge", "Quran Academy", "Work and Co.", "White Spaces", "Career 180", "Squadio",
+  { name: "Rawabi Holding", url: "https://www.rawabi.com/" },
+  { name: "Gameball", url: "https://www.gameball.co/" },
+  { name: "Shadoo", url: "https://shadoo.app/" },
+  { name: "Le Concierge", url: "https://www.leconcierge.me/" },
+  { name: "Quran Academy", url: "https://en.quranacademy.org/" },
+  { name: "Work and Co.", url: "https://work.co/" },
+  { name: "White Spaces", url: "https://wspace.com.sa/" },
+  { name: "Career 180", url: "https://career-180.com/en/home" },
+  { name: "Squadio", url: "https://squadio.com/" },
 ];
 
-const NameItem = ({ name, size = 18, baseOpacity = 0.2 }: { name: string; size?: number; baseOpacity?: number }) => {
+const NameItem = ({ name, url, size = 18, baseOpacity = 0.2 }: { name: string; url: string; size?: number; baseOpacity?: number }) => {
   const [hovered, setHovered] = useState(false);
   return (
-    <span
-      className="flex-shrink-0 font-display whitespace-nowrap cursor-default"
+    <a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex-shrink-0 font-display whitespace-nowrap no-underline"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
@@ -17,10 +28,11 @@ const NameItem = ({ name, size = 18, baseOpacity = 0.2 }: { name: string; size?:
         fontWeight: 600,
         transition: "all 0.3s ease",
         textShadow: hovered ? "0 0 20px rgba(229,168,33,0.2)" : "none",
+        textDecoration: "none",
       }}
     >
       {name}
-    </span>
+    </a>
   );
 };
 
@@ -97,9 +109,9 @@ const ClientMarquee = () => {
             className="flex items-center"
             style={{ gap: 32, width: "max-content", animation: "marquee 30s linear infinite" }}
           >
-            {row1.map((name, i) => (
+            {row1.map((client, i) => (
               <span key={i} className="flex items-center gap-8 sm:gap-10">
-                <NameItem name={name} size={15} />
+                <NameItem name={client.name} url={client.url} size={15} />
                 <Dot />
               </span>
             ))}
@@ -112,9 +124,9 @@ const ClientMarquee = () => {
             className="flex items-center"
             style={{ gap: 40, width: "max-content", animation: "marquee 35s linear infinite reverse" }}
           >
-            {row2.map((name, i) => (
+            {row2.map((client, i) => (
               <span key={i} className="flex items-center gap-10">
-                <NameItem name={name} size={14} baseOpacity={0.12} />
+                <NameItem name={client.name} url={client.url} size={14} baseOpacity={0.12} />
                 <Dot />
               </span>
             ))}
