@@ -88,11 +88,9 @@ const Navbar = () => {
           </div>
 
           <div className="hidden lg:block">
-            <a
-              href="https://calendly.com/amedhat13/meeting-with-ahmad-medhat"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-6 xl:px-7 py-2.5 rounded-full text-[13px] xl:text-[14px] font-bold font-display transition-all duration-200 min-h-[44px] inline-flex items-center"
+            <button
+              onClick={() => handleClick("#contact")}
+              className="px-6 xl:px-7 py-2.5 rounded-full text-[14px] xl:text-[15px] font-bold font-display transition-all duration-200 min-h-[44px]"
               style={{
                 background: "#E5A821",
                 color: "hsl(207, 75%, 15%)",
@@ -108,8 +106,8 @@ const Navbar = () => {
                 e.currentTarget.style.boxShadow = "none";
               }}
             >
-              See us in Action — Book Free Consultation
-            </a>
+              Book a Meeting
+            </button>
           </div>
 
           <button
@@ -147,15 +145,13 @@ const Navbar = () => {
                 {link.label}
               </button>
             ))}
-            <a
-              href="https://calendly.com/amedhat13/meeting-with-ahmad-medhat"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mx-6 mt-4 w-[calc(100%-48px)] max-w-[320px] py-4 rounded-xl font-bold font-display text-base text-center"
+            <button
+              onClick={() => handleClick("#contact")}
+              className="mx-6 mt-4 w-[calc(100%-48px)] max-w-[320px] py-4 rounded-xl font-bold font-display text-base"
               style={{ background: "#E5A821", color: "hsl(207, 75%, 15%)" }}
             >
-              See us in Action — Book Free Consultation
-            </a>
+              Book a Meeting
+            </button>
           </motion.div>
         )}
       </AnimatePresence>

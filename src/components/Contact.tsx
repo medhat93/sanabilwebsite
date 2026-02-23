@@ -296,7 +296,7 @@ const Contact = () => {
               </div>
 
               {/* Calendly */}
-              <a href="#" className="mt-6 w-full inline-flex items-center justify-center gap-2 font-semibold font-display"
+              <a href="https://calendly.com/amedhat13/meeting-with-ahmad-medhat" target="_blank" rel="noopener noreferrer" className="mt-6 w-full inline-flex items-center justify-center gap-2 font-semibold font-display"
                 style={{
                   padding: "14px 24px", borderRadius: 12, fontSize: 15, color: "#E5A821",
                   background: "transparent", border: "1px solid rgba(229, 168, 33, 0.3)",
@@ -313,7 +313,7 @@ const Contact = () => {
                   e.currentTarget.style.boxShadow = "none";
                 }}>
                 <Calendar size={18} />
-                Schedule Directly on Calendly
+                See us in Action — Book Free Consultation
               </a>
             </div>
           </motion.div>
