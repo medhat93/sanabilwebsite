@@ -6,21 +6,21 @@ import { useState, useEffect, useCallback, useRef } from "react";
 const testimonials = [
   {
     quote:
-      "Sanabil Technologies transformed our vision into a world-class platform in just 8 weeks. Their AI-augmented team worked like they were part of our company — always available, always pushing for better. The quality of code and architecture exceeded what agencies twice their size delivered for us previously.",
+      "Sanabil transformed our vision into a world-class platform in 8 weeks. Their AI-augmented team felt like part of our own company. Code quality exceeded agencies twice their size.",
     name: "Ahmed Al-Rahman",
     role: "CTO, TechVentures Inc.",
     initials: "AA",
   },
   {
     quote:
-      "The 24/7 AI-powered monitoring changed everything for us. Last month, their system detected and resolved a critical database issue at 3 AM — before our users even noticed. That's the kind of reliability that lets me sleep at night. Sanabil isn't just a vendor; they're a genuine technology partner.",
+      "Their AI monitoring resolved a critical database issue at 3 AM — before users noticed. That's the kind of reliability that lets me sleep at night.",
     name: "Sarah Mitchell",
     role: "Product Manager, CloudScale Solutions",
     initials: "SM",
   },
   {
     quote:
-      "We've worked with many software vendors across three continents, but Sanabil's engineering quality is on another level. Clean code, comprehensive documentation, AI-generated test coverage from day one, and a team that genuinely understands our business. They delivered our entire platform 40% faster than the timeline we expected.",
+      "Clean code, AI-generated test coverage from day one, and they delivered our platform 40% faster than expected. Sanabil's quality is on another level.",
     name: "Omar Hassan",
     role: "CEO, DataFlow Analytics",
     initials: "OH",

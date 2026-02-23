@@ -8,7 +8,7 @@ const services = [
     icon: Globe,
     title: "Web Applications & Platforms",
     description:
-      "Scalable, high-performance web platforms built with modern frameworks and AI-augmented development. From SaaS dashboards to complex enterprise portals — architected for growth, optimized for speed, and designed to convert.",
+      "High-performance web platforms built with modern frameworks and AI-augmented development. Architected for growth, optimized for speed.",
     badge: "⚡ AI-assisted development delivers 3x faster than traditional builds",
     techs: ["React", "Next.js", "TypeScript", "Node.js", "PostgreSQL", "Tailwind CSS"],
   },
@@ -16,7 +16,7 @@ const services = [
     icon: Smartphone,
     title: "Mobile Applications",
     description:
-      "Native and cross-platform mobile apps for iOS and Android. Pixel-perfect interfaces, buttery smooth animations, and seamless backend integration — built with AI-assisted testing that catches bugs across thousands of device configurations.",
+      "Native and cross-platform apps for iOS and Android. Pixel-perfect UI, seamless backend integration, AI-tested across 2000+ device configurations.",
     badge: "⚡ AI-powered testing across 2000+ device configurations",
     techs: ["React Native", "Flutter", "Swift", "Kotlin", "Firebase", "GraphQL"],
   },
@@ -24,7 +24,7 @@ const services = [
     icon: Network,
     title: "Enterprise Systems & Integration",
     description:
-      "ERP, CRM, and custom business systems that streamline operations at scale. We build systems that talk to each other — integrating with your existing infrastructure through AI-optimized APIs and real-time data pipelines.",
+      "ERP, CRM, and custom business systems that streamline operations at scale. AI-optimized APIs and real-time data pipelines included.",
     badge: "⚡ AI-optimized integrations reduce data sync time by 70%",
     techs: ["Python", "Java", ".NET", "Microservices", "Kubernetes", "AWS"],
   },
@@ -32,7 +32,7 @@ const services = [
     icon: BrainCircuit,
     title: "AI & Machine Learning Solutions",
     description:
-      "Custom AI solutions that transform your business — from intelligent automation and predictive analytics to natural language processing and computer vision. We architect AI to solve your specific challenges and integrate it seamlessly into your products.",
+      "Custom AI solutions — from intelligent automation and predictive analytics to NLP and computer vision. From POC to production in weeks.",
     badge: "⚡ From POC to production AI in weeks, not months",
     techs: ["Python", "TensorFlow", "PyTorch", "OpenAI", "LangChain", "Vector DBs"],
   },
@@ -40,7 +40,7 @@ const services = [
     icon: PenTool,
     title: "UI/UX Design & Strategy",
     description:
-      "Human-centered design that converts. We craft beautiful, intuitive interfaces backed by user research, AI-generated prototyping, and rigorous usability testing. Every pixel serves a purpose — form follows function, and function drives revenue.",
+      "Human-centered design backed by research, AI-generated prototyping, and rigorous usability testing. Every pixel serves a purpose.",
     badge: "⚡ AI prototyping generates 10x more design variations to test",
     techs: ["Figma", "Framer", "User Research", "Design Systems", "Accessibility", "A/B Testing"],
   },
@@ -48,7 +48,7 @@ const services = [
     icon: Cloud,
     title: "DevOps, Cloud & Infrastructure",
     description:
-      "CI/CD pipelines, cloud architecture, containerization, and infrastructure as code — all powered by AI-assisted monitoring and automated scaling. We ensure your applications are reliable, scalable, and ready for whatever traffic you throw at them.",
+      "CI/CD pipelines, cloud architecture, and infrastructure as code — powered by AI-assisted monitoring and automated scaling.",
     badge: "⚡ AI monitoring predicts 80% of infrastructure issues before impact",
     techs: ["AWS", "GCP", "Docker", "Kubernetes", "Terraform", "GitHub Actions"],
   },
