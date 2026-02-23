@@ -255,10 +255,10 @@ const FocusCard = ({ index, paused }: { index: number; paused: boolean }) => {
   return (
     <motion.div
       key={index}
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -10 }}
-      transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3, ease: "easeInOut" }}
       className="relative overflow-hidden"
       style={{
         background: "linear-gradient(180deg, rgba(229, 168, 33, 0.05) 0%, rgba(255, 255, 255, 0.03) 30%, rgba(255, 255, 255, 0.03) 100%)",
@@ -498,8 +498,9 @@ const WhyUs = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.2 }}
+            style={{ minHeight: 320 }}
           >
-            <AnimatePresence mode="wait">
+            <AnimatePresence mode="wait" initial={false}>
               <FocusCard key={active} index={active} paused={paused} />
             </AnimatePresence>
           </motion.div>
