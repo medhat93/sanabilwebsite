@@ -11,11 +11,18 @@ const socials = [
   { icon: Instagram, href: "#" },
 ];
 
-const serviceLinks = ["Web Applications", "Mobile Applications", "Enterprise Systems", "AI & Machine Learning", "UI/UX Design", "DevOps & Cloud"];
+const serviceLinks = [
+  { label: "Web Applications", tabIndex: 0 },
+  { label: "Mobile Applications", tabIndex: 1 },
+  { label: "Enterprise Systems", tabIndex: 2 },
+  { label: "AI & Machine Learning", tabIndex: 3 },
+  { label: "UI/UX Design", tabIndex: 4 },
+  { label: "DevOps & Cloud", tabIndex: 5 },
+];
 const companyLinks = [
-  { label: "About Us", href: "#" },
-  { label: "Careers", href: "#" },
-  { label: "Blog", href: "#" },
+  { label: "About Us", href: "#why-us" },
+  { label: "Our Process", href: "#process" },
+  { label: "Testimonials", href: "#testimonials" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -151,7 +158,38 @@ const Footer = () => {
           <motion.div initial={{ opacity: 0, y: 15 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={stagger(1)}>
             <ColumnHeading>Services</ColumnHeading>
             {serviceLinks.map((s) => (
-              <FooterLink key={s} href="#services">{s}</FooterLink>
+              <a
+                key={s.label}
+                href="#services"
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.dispatchEvent(new CustomEvent("select-service-tab", { detail: s.tabIndex }));
+                  document.getElementById("services")?.scrollIntoView({ behavior: "smooth" });
+                }}
+                className="group flex items-center text-sm"
+                style={{
+                  color: "rgba(255, 255, 255, 0.35)",
+                  lineHeight: 2.2,
+                  textDecoration: "none",
+                  transition: "all 0.25s ease",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = "#E5A821";
+                  e.currentTarget.style.transform = "translateX(3px)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = "rgba(255, 255, 255, 0.35)";
+                  e.currentTarget.style.transform = "translateX(0)";
+                }}
+              >
+                <span
+                  className="inline-block mr-0 opacity-0 group-hover:opacity-100 group-hover:mr-1.5"
+                  style={{ transition: "all 0.25s ease", fontSize: 12, color: "#E5A821" }}
+                >
+                  →
+                </span>
+                {s.label}
+              </a>
             ))}
           </motion.div>
 

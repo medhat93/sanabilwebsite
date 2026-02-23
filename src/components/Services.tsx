@@ -409,6 +409,15 @@ const Services = () => {
     return clearTimers;
   }, [active, paused, startCycle, clearTimers]);
 
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const tabIndex = (e as CustomEvent).detail;
+      if (typeof tabIndex === "number") handleSelect(tabIndex);
+    };
+    window.addEventListener("select-service-tab", handler);
+    return () => window.removeEventListener("select-service-tab", handler);
+  }, []);
+
   const handleSelect = (i: number) => {
     setActive(i);
     setProgress(0);
