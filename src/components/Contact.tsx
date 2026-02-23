@@ -5,10 +5,10 @@ import { Mail, Phone, MapPin, Clock, Linkedin, Twitter, Github, Instagram, Calen
 import { useToast } from "@/hooks/use-toast";
 
 const contactItems = [
-  { icon: Mail, label: "EMAIL", value: "contact@sanabiltechnologies.com", href: "mailto:contact@sanabiltechnologies.com" },
-  { icon: Phone, label: "PHONE", value: "+1 (555) 123-4567", href: "tel:+15551234567" },
-  { icon: MapPin, label: "LOCATION", value: "Dubai, UAE | Cairo, Egypt" },
-  { icon: Clock, label: "HOURS", value: "Sun–Thu, 9AM–6PM (GMT+3)" },
+  { icon: Mail, label: "EMAIL", value: "Info@sanabiltechnologies.com", href: "mailto:Info@sanabiltechnologies.com" },
+  { icon: Phone, label: "PHONE", value: "+20 (100) 945 3399", href: "tel:+201009453399" },
+  { icon: MapPin, label: "LOCATION", value: "Cairo, Egypt | Delaware, USA" },
+  { icon: Clock, label: "HOURS", value: "Mon – Fri, 9 AM – 6 PM (GMT+3)" },
 ];
 
 const socials = [
