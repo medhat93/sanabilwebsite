@@ -160,6 +160,22 @@
     100% { background-position: -200% center; }
   }
 
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  @keyframes clockTick {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  @keyframes clockPulse {
+    0% { r: 52; opacity: 0.3; }
+    50% { r: 56; opacity: 0; }
+    100% { r: 52; opacity: 0.3; }
+  }
+
   .gold-glow {
     box-shadow: 0 0 30px hsl(40 80% 52% / 0.3), 0 0 60px hsl(40 80% 52% / 0.1);
   }
