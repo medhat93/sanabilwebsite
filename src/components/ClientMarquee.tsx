@@ -1,11 +1,7 @@
 import { useState } from "react";
 
 const clients = [
-  "Google", "Microsoft", "Amazon", "Stripe", "Slack", "Shopify", "Notion", "Figma",
-];
-
-const clients2 = [
-  "Meridian Corp", "Axiom Digital", "PrimeStack", "Elevate Labs", "SynapseIO", "Orbit Systems", "NovaEdge", "Helix Cloud",
+  "Rawabi Holding", "Gameball", "Shadoo", "Le Concierge", "Quran Academy", "Work and Co.", "White Spaces", "Career 180", "Squadio",
 ];
 
 const NameItem = ({ name, size = 18, baseOpacity = 0.2 }: { name: string; size?: number; baseOpacity?: number }) => {
@@ -46,7 +42,7 @@ const maskStyle = {
 
 const ClientMarquee = () => {
   const row1 = [...clients, ...clients];
-  const row2 = [...clients2, ...clients2];
+  const row2 = [...clients, ...clients];
 
   return (
     <section
