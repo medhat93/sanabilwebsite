@@ -424,7 +424,7 @@ const Services = () => {
       style={{ background: "linear-gradient(180deg, hsl(207 75% 15%) 0%, hsl(215 75% 12%) 100%)" }}>
       {/* Background orb */}
       <div className="absolute pointer-events-none" style={{ top: "40%", left: "70%", width: 600, height: 600,
-        background: "radial-gradient(circle, rgba(229, 168, 33, 0.03) 0%, transparent 50%)", transform: "translate(-50%, -50%)" }} />
+        background: "radial-gradient(circle, rgba(229, 168, 33, 0.08) 0%, transparent 50%)", transform: "translate(-50%, -50%)" }} />
       {/* Micro-dot constellation - hidden on mobile */}
       <div className="absolute inset-0 pointer-events-none hidden md:block">
         {Array.from({ length: 35 }).map((_, i) => (
@@ -434,7 +434,7 @@ const Services = () => {
             style={{
               width: 3,
               height: 3,
-              background: "rgba(229, 168, 33, 0.04)",
+              background: "rgba(229, 168, 33, 0.15)",
               top: `${8 + (i * 37) % 84}%`,
               left: `${5 + (i * 53) % 90}%`,
               animation: `twinkle ${8 + (i % 7) * 1}s ease-in-out infinite`,

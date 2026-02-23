@@ -70,7 +70,7 @@ const ClientMarquee = () => {
         style={{
           width: "200%",
           height: "100%",
-          background: "linear-gradient(90deg, transparent 0%, rgba(229,168,33,0.02) 45%, rgba(229,168,33,0.04) 50%, rgba(229,168,33,0.02) 55%, transparent 100%)",
+          background: "linear-gradient(90deg, transparent 0%, rgba(229,168,33,0.08) 45%, rgba(229,168,33,0.15) 50%, rgba(229,168,33,0.08) 55%, transparent 100%)",
           animation: "lightSweep 20s linear infinite",
           willChange: "transform",
         }}
