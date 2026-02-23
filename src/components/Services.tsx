@@ -297,10 +297,10 @@ const DetailPanel = ({ index }: { index: number }) => {
   return (
     <motion.div
       key={index}
-      initial={{ opacity: 0, x: 20 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: -20 }}
-      transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3, ease: "easeInOut" }}
       className="h-full"
     >
       <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 h-full">
