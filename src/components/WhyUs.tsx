@@ -341,7 +341,7 @@ const FocusCard = ({ index, paused }: { index: number; paused: boolean }) => {
           style={{ background: "#E5A821", borderRadius: "0 0 0 24px", opacity: paused ? 0.3 : 1 }}
           initial={{ width: "0%" }}
           animate={{ width: paused ? undefined : "100%" }}
-          transition={paused ? {} : { duration: 2, ease: "linear" }}
+          transition={paused ? {} : { duration: 4, ease: "linear" }}
         />
       </div>
     </motion.div>
@@ -417,7 +417,7 @@ const WhyUs = () => {
     if (timerRef.current) clearInterval(timerRef.current);
     timerRef.current = setInterval(() => {
       setActive((p) => (p + 1) % features.length);
-    }, 2000);
+    }, 4000);
   }, []);
 
   useEffect(() => {
