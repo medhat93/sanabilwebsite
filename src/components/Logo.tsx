@@ -27,7 +27,7 @@ const Logo = ({ iconSize = 96, showText = true, textSize = "default", className 
         className="transition-all duration-300 group-hover:drop-shadow-[0_0_12px_rgba(229,168,33,0.35)]"
       />
       {showText && (
-        <div className="hidden md:flex flex-col leading-none" style={{ marginLeft: -20 }}>
+        <div className="flex flex-col leading-none" style={{ marginLeft: -20 }}>
           <span
             className="font-display font-bold text-primary-foreground"
             style={{ fontSize: isSmall ? 20 : 24, letterSpacing: "0.02em" }}
