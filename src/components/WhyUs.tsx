@@ -83,14 +83,30 @@ const TeamVisual = () => (
 
 const ClockVisual = () => (
   <svg viewBox="0 0 200 160" className="w-full h-full" style={{ opacity: 0.6 }}>
+    {/* Outer ring */}
     <circle cx="100" cy="70" r="45" fill="none" stroke="#E5A821" strokeWidth="1.5" />
-    <motion.circle cx="100" cy="70" r="52" fill="none" stroke="#E5A821" strokeWidth="0.5" strokeOpacity="0.4"
-      animate={{ r: [52, 58, 52] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }} />
-    <line x1="100" y1="70" x2="100" y2="40" stroke="#E5A821" strokeWidth="1.5" strokeLinecap="round" />
-    <motion.line x1="100" y1="70" x2="120" y2="60" stroke="#E5A821" strokeWidth="1" strokeLinecap="round"
-      animate={{ rotate: 360 }} transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-      style={{ transformOrigin: "100px 70px" }} />
-    <text x="100" y="135" textAnchor="middle" fill="#E5A821" fontSize="22" fontWeight="800" opacity="0.15">24/7</text>
+    {/* Pulse ring */}
+    <circle cx="100" cy="70" r="52" fill="none" stroke="rgba(229,168,33,0.2)" strokeWidth="1"
+      style={{ animation: "clockPulse 3s ease-in-out infinite" }} />
+    {/* Hour markers */}
+    {[...Array(12)].map((_, i) => (
+      <circle
+        key={i}
+        cx={100 + 38 * Math.cos((i * 30 - 90) * Math.PI / 180)}
+        cy={70 + 38 * Math.sin((i * 30 - 90) * Math.PI / 180)}
+        r="1.5"
+        fill="rgba(229,168,33,0.3)"
+      />
+    ))}
+    {/* Hour hand (static) */}
+    <line x1="100" y1="70" x2="100" y2="42" stroke="#E5A821" strokeWidth="1.5" strokeLinecap="round" />
+    {/* Second hand (rotating) */}
+    <line x1="100" y1="70" x2="100" y2="30" stroke="#E5A821" strokeWidth="1" strokeLinecap="round"
+      style={{ transformOrigin: "100px 70px", animation: "clockTick 10s linear infinite" }} />
+    {/* Center dot */}
+    <circle cx="100" cy="70" r="3" fill="#E5A821" />
+    {/* 24/7 watermark */}
+    <text x="100" y="140" textAnchor="middle" fill="#E5A821" fontSize="28" fontWeight="800" opacity="0.04">24/7</text>
   </svg>
 );
 
@@ -325,7 +341,7 @@ const FocusCard = ({ index, paused }: { index: number; paused: boolean }) => {
           style={{ background: "#E5A821", borderRadius: "0 0 0 24px", opacity: paused ? 0.3 : 1 }}
           initial={{ width: "0%" }}
           animate={{ width: paused ? undefined : "100%" }}
-          transition={paused ? {} : { duration: 5, ease: "linear" }}
+          transition={paused ? {} : { duration: 2, ease: "linear" }}
         />
       </div>
     </motion.div>
@@ -401,7 +417,7 @@ const WhyUs = () => {
     if (timerRef.current) clearInterval(timerRef.current);
     timerRef.current = setInterval(() => {
       setActive((p) => (p + 1) % features.length);
-    }, 5000);
+    }, 2000);
   }, []);
 
   useEffect(() => {
