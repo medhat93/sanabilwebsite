@@ -212,14 +212,15 @@ const Process = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12 sm:mb-20"
         >
-          <div className="flex items-center justify-center gap-3 sm:gap-4 mb-4">
-            <div className="w-1 h-8 sm:h-10 rounded-full gradient-gold" />
-            <h2 className="text-[26px] sm:text-3xl md:text-5xl font-bold font-display text-primary-foreground" style={{ letterSpacing: "-0.02em" }}>
-              How We Build — <span className="text-gradient-gold">AI-Native</span>
-            </h2>
-          </div>
-          <p className="text-primary-foreground/50 max-w-2xl mx-auto text-[15px] sm:text-lg md:text-xl mt-4" style={{ lineHeight: 1.65 }}>
-            Traditional agencies take months. Our AI-augmented teams deliver production-ready software in weeks — without cutting corners.
+          <span className="block font-mono text-xs uppercase mb-3" style={{ color: '#E5A821', letterSpacing: '0.15em' }}>
+            Our Process
+          </span>
+          <h2 className="text-[26px] sm:text-3xl md:text-5xl font-bold font-display text-primary-foreground" style={{ letterSpacing: "-0.03em" }}>
+            How We Build — <span className="text-gradient-gold">AI-Native</span>
+          </h2>
+          <div className="hr-gold-fade max-w-[80px] mx-auto mt-4" />
+          <p className="text-primary-foreground/50 max-w-2xl mx-auto text-[15px] sm:text-lg md:text-xl mt-5" style={{ lineHeight: 1.65 }}>
+            Traditional agencies take months. We deliver production-ready software in weeks.
           </p>
         </motion.div>
 
