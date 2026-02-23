@@ -127,7 +127,7 @@ const Testimonials = () => {
       className="relative py-16 sm:py-24 overflow-hidden"
       style={{ background: "linear-gradient(180deg, hsl(215 75% 12%) 0%, hsl(207 65% 16%) 100%)" }}
     >
-      {/* Gold orb */}
+      {/* Gold orb - centered spotlight */}
       <div
         className="absolute pointer-events-none"
         style={{
@@ -136,7 +136,19 @@ const Testimonials = () => {
           width: 700,
           height: 500,
           transform: "translate(-50%, -50%)",
-          background: "radial-gradient(circle, rgba(229, 168, 33, 0.03) 0%, transparent 50%)",
+          background: "radial-gradient(ellipse 500px 400px at 50% 50%, rgba(229, 168, 33, 0.03) 0%, transparent 70%)",
+        }}
+      />
+      {/* Footlight glow from below */}
+      <div
+        className="absolute pointer-events-none"
+        style={{
+          bottom: 0,
+          left: "50%",
+          width: 800,
+          height: 300,
+          transform: "translateX(-50%)",
+          background: "radial-gradient(ellipse 600px 200px at 50% 100%, rgba(229, 168, 33, 0.015) 0%, transparent 70%)",
         }}
       />
 
