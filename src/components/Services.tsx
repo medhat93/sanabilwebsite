@@ -301,39 +301,35 @@ const DetailPanel = ({ index }: { index: number }) => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
-      className="h-full"
+      className="absolute inset-0"
+      style={{ padding: "inherit" }}
     >
       <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 h-full">
         {/* Text */}
         <div className="flex-1 min-w-0 flex flex-col" style={{ maxWidth: 520 }}>
-          <motion.div initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.05, duration: 0.3 }}
-            style={{ filter: "drop-shadow(0 0 16px rgba(229, 168, 33, 0.35))" }} className="mb-4">
+          <div style={{ filter: "drop-shadow(0 0 16px rgba(229, 168, 33, 0.35))" }} className="mb-4">
             <Icon size={44} strokeWidth={1.3} style={{ color: "#E5A821" }} />
-          </motion.div>
+          </div>
 
-          <motion.h3 initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.1, duration: 0.3 }}
-            className="font-display font-bold text-primary-foreground mb-3" style={{ fontSize: 27, letterSpacing: "-0.02em" }}>
+          <h3 className="font-display font-bold text-primary-foreground mb-3" style={{ fontSize: 27, letterSpacing: "-0.02em" }}>
             {s.title}
-          </motion.h3>
+          </h3>
 
-          <motion.p initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.15, duration: 0.3 }}
-            style={{ fontSize: 16, lineHeight: 1.7, color: "rgba(255, 255, 255, 0.6)" }}>
+          <p style={{ fontSize: 16, lineHeight: 1.7, color: "rgba(255, 255, 255, 0.6)" }}>
             {s.description}
-          </motion.p>
+          </p>
 
-          <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.3 }}
-            className="mt-5">
+          <div className="mt-5">
             <span className="inline-flex items-center gap-1 font-medium" style={{
               background: "rgba(229, 168, 33, 0.08)", border: "1px solid rgba(229, 168, 33, 0.2)",
               borderRadius: 20, padding: "6px 14px", fontSize: 13, color: "#E5A821",
             }}>
               {s.badge}
             </span>
-          </motion.div>
+          </div>
 
           {/* Tech pills */}
-          <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25, duration: 0.3 }}
-            className="flex flex-wrap gap-2 mt-5">
+          <div className="flex flex-wrap gap-2 mt-5">
             {s.techs.map((t) => (
               <span key={t} style={{
                 background: "rgba(255, 255, 255, 0.04)", border: "1px solid rgba(255, 255, 255, 0.08)",
@@ -342,15 +338,14 @@ const DetailPanel = ({ index }: { index: number }) => {
                 {t}
               </span>
             ))}
-          </motion.div>
+          </div>
         </div>
 
         {/* Visual */}
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3, duration: 0.5 }}
-          className="hidden lg:flex items-center justify-center pointer-events-none"
+        <div className="hidden lg:flex items-center justify-center pointer-events-none"
           style={{ width: "42%", flexShrink: 0 }}>
           <Visual />
-        </motion.div>
+        </div>
       </div>
     </motion.div>
   );
@@ -491,7 +486,7 @@ const Services = () => {
           {/* Detail panel */}
           <div className="flex-1 min-w-0 relative overflow-hidden" style={{
             background: "rgba(255, 255, 255, 0.02)", border: "1px solid rgba(255, 255, 255, 0.06)",
-            borderTop: "3px solid #E5A821", borderRadius: 24, padding: 48, minHeight: 480,
+            borderTop: "3px solid #E5A821", borderRadius: 24, padding: 48, height: 480,
             boxShadow: "0 20px 60px rgba(0, 0, 0, 0.15)",
           }}>
             <AnimatePresence mode="wait">
