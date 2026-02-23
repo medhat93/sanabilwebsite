@@ -444,13 +444,13 @@ const WhyUs = () => {
       {/* Drifting gradient mesh - animated on desktop, static on mobile */}
       <div className="absolute pointer-events-none" style={{
         top: "30%", left: "20%", width: 600, height: 600,
-        background: "radial-gradient(circle 400px, rgba(229, 168, 33, 0.025) 0%, transparent 70%)",
+        background: "radial-gradient(circle 400px, rgba(229, 168, 33, 0.08) 0%, transparent 70%)",
         willChange: "transform",
         animation: "orbDriftA 40s ease-in-out infinite",
       }} />
       <div className="absolute pointer-events-none" style={{
         top: "70%", left: "80%", width: 500, height: 500,
-        background: "radial-gradient(circle 350px, rgba(59, 130, 246, 0.015) 0%, transparent 70%)",
+        background: "radial-gradient(circle 350px, rgba(59, 130, 246, 0.06) 0%, transparent 70%)",
         transform: "translate(-50%, -50%)",
         willChange: "transform",
         animation: "orbDriftB 50s ease-in-out infinite",

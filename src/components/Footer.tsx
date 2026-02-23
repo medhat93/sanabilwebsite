@@ -78,13 +78,13 @@ const Footer = () => {
     >
       {/* Dot grid */}
       <div className="absolute inset-0 pointer-events-none" style={{
-        backgroundImage: "radial-gradient(circle, rgba(229, 168, 33, 0.02) 1px, transparent 1px)",
+        backgroundImage: "radial-gradient(circle, rgba(229, 168, 33, 0.06) 1px, transparent 1px)",
         backgroundSize: "32px 32px",
       }} />
       {/* Top-edge gold mist */}
       <div className="absolute inset-x-0 top-0 pointer-events-none" style={{
         height: 120,
-        background: "linear-gradient(180deg, rgba(229, 168, 33, 0.02) 0%, transparent 100%)",
+        background: "linear-gradient(180deg, rgba(229, 168, 33, 0.08) 0%, transparent 100%)",
       }} />
 
       {/* Gold top separator */}

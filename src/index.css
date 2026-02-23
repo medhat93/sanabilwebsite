@@ -182,8 +182,8 @@
   }
 
   @keyframes twinkle {
-    0%, 100% { opacity: 0.02; }
-    50% { opacity: 0.06; }
+    0%, 100% { opacity: 0.08; }
+    50% { opacity: 0.3; }
   }
 
   @keyframes orbDriftA {

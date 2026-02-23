@@ -84,17 +84,17 @@ const Contact = () => {
 
       {/* Animated orbs */}
       <motion.div className="absolute pointer-events-none rounded-full hidden sm:block"
-        style={{ width: 600, height: 600, top: "40%", left: "25%", background: "radial-gradient(circle, rgba(229, 168, 33, 0.06) 0%, transparent 50%)" }}
+        style={{ width: 600, height: 600, top: "40%", left: "25%", background: "radial-gradient(circle, rgba(229, 168, 33, 0.12) 0%, transparent 50%)" }}
         animate={{ x: [0, 20, -10, 0], y: [0, -15, 10, 0] }} transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }} />
       <motion.div className="absolute pointer-events-none rounded-full hidden sm:block"
-        style={{ width: 500, height: 500, top: "60%", left: "75%", background: "radial-gradient(circle, rgba(59, 130, 246, 0.04) 0%, transparent 50%)", transform: "translate(-50%, -50%)" }}
+        style={{ width: 500, height: 500, top: "60%", left: "75%", background: "radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 50%)", transform: "translate(-50%, -50%)" }}
         animate={{ x: [0, -15, 20, 0], y: [0, 10, -20, 0] }} transition={{ duration: 30, repeat: Infinity, ease: "easeInOut" }} />
 
       {/* Film grain texture */}
       <div className="absolute inset-0 pointer-events-none z-0" style={{
         backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='0.015'/%3E%3C/svg%3E")`,
         backgroundSize: "128px 128px",
-        opacity: 0.4,
+        opacity: 0.7,
       }} />
 
       {/* Top separator */}

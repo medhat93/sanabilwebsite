@@ -136,7 +136,7 @@ const Testimonials = () => {
           width: 700,
           height: 500,
           transform: "translate(-50%, -50%)",
-          background: "radial-gradient(ellipse 500px 400px at 50% 50%, rgba(229, 168, 33, 0.03) 0%, transparent 70%)",
+          background: "radial-gradient(ellipse 500px 400px at 50% 50%, rgba(229, 168, 33, 0.1) 0%, transparent 70%)",
         }}
       />
       {/* Footlight glow from below */}
@@ -148,7 +148,7 @@ const Testimonials = () => {
           width: 800,
           height: 300,
           transform: "translateX(-50%)",
-          background: "radial-gradient(ellipse 600px 200px at 50% 100%, rgba(229, 168, 33, 0.015) 0%, transparent 70%)",
+          background: "radial-gradient(ellipse 600px 200px at 50% 100%, rgba(229, 168, 33, 0.06) 0%, transparent 70%)",
         }}
       />
 
