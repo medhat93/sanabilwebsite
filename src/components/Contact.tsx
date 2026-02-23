@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { Mail, Phone, MapPin, Clock, Linkedin, Twitter, Github, Instagram, Calendar, CheckCircle2 } from "lucide-react";
+import { Mail, Phone, MapPin, Clock, Linkedin, Twitter, Github, Instagram, CheckCircle2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const contactItems = [
@@ -312,7 +312,7 @@ const Contact = () => {
                   e.currentTarget.style.borderColor = "rgba(229, 168, 33, 0.3)";
                   e.currentTarget.style.boxShadow = "none";
                 }}>
-                <Calendar size={18} />
+                <svg width="18" height="18" viewBox="0 0 512 512" fill="currentColor"><path d="M380.3 103.4h-27.9V71.1c0-11.4-9.3-20.7-20.7-20.7s-20.7 9.3-20.7 20.7v32.3H201V71.1c0-11.4-9.3-20.7-20.7-20.7s-20.7 9.3-20.7 20.7v32.3h-27.9c-39.3 0-71.2 31.9-71.2 71.2v195.7c0 39.3 31.9 71.2 71.2 71.2h248.6c39.3 0 71.2-31.9 71.2-71.2V174.6c0-39.3-31.9-71.2-71.2-71.2zm29.8 266.9c0 16.4-13.4 29.8-29.8 29.8H131.7c-16.4 0-29.8-13.4-29.8-29.8V227.1h308.2v143.2zm0-184.6H101.9v-11c0-16.4 13.4-29.8 29.8-29.8h27.9v15.5c0 11.4 9.3 20.7 20.7 20.7s20.7-9.3 20.7-20.7v-15.5h110v15.5c0 11.4 9.3 20.7 20.7 20.7s20.7-9.3 20.7-20.7v-15.5h27.9c16.4 0 29.8 13.4 29.8 29.8v11zM256 310.5c0-17.8-14.4-32.2-32.2-32.2s-32.2 14.4-32.2 32.2 14.4 32.2 32.2 32.2 32.2-14.5 32.2-32.2z"/></svg>
                 See us in Action — Book Free Consultation
               </a>
             </div>
