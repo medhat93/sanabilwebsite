@@ -111,7 +111,7 @@ const Contact = () => {
             </h2>
           </div>
           <p className="max-w-xl mx-auto text-[15px] sm:text-lg md:text-xl mt-4 px-2" style={{ color: "rgba(255, 255, 255, 0.5)", lineHeight: 1.6 }}>
-            Schedule a free consultation with our team. We'll analyze your project, recommend the right approach, and show you how AI-native development can accelerate your vision.
+            Schedule a free consultation. We'll analyze your project and show you how AI-native development can accelerate your vision.
           </p>
         </motion.div>
 

@@ -9,7 +9,7 @@ const features = [
     title: "A Dedicated AI-Augmented Team",
     tagline: "Your own engineering squad",
     description:
-      "Every project gets a fully dedicated squad of senior engineers, designers, and strategists — each empowered by AI assistants that multiply their output. Your team writes code 3-5x faster, catches bugs in real-time, and delivers more in a week than traditional teams do in a month.",
+      "A full squad of senior engineers, designers, and strategists — each amplified by AI. Your team delivers more in a week than traditional teams do in a month.",
     badge: "⚡ Human expertise × AI speed",
   },
   {
@@ -17,7 +17,7 @@ const features = [
     title: "AI-Powered 24/7 Support",
     tagline: "We never sleep, literally",
     description:
-      "Our AI monitoring systems watch your infrastructure around the clock — detecting anomalies, predicting failures, and auto-escalating to human engineers before issues impact users. When you need us, we respond in minutes.",
+      "AI monitoring detects anomalies and predicts failures around the clock. When you need humans, we respond in minutes — not hours.",
     badge: "⚡ AI detects issues 80% faster",
   },
   {
@@ -25,7 +25,7 @@ const features = [
     title: "AI-Native from Day One",
     tagline: "AI woven into every phase",
     description:
-      "We didn't bolt AI onto an old process — we rebuilt everything around it. From AI-driven discovery and rapid prototyping to intelligent QA and predictive deployment, every phase is faster, smarter, and more reliable.",
+      "We rebuilt our entire process around AI. Every phase — discovery, prototyping, development, QA, deployment — is faster and more reliable.",
     badge: "⚡ End-to-end AI integration",
   },
   {
@@ -33,7 +33,7 @@ const features = [
     title: "Partners in Innovation",
     tagline: "Total transparency, always",
     description:
-      "You see progress daily — AI-generated reports, automated demo builds, and real-time dashboards keep you in the loop at every sprint. We walk with you from first whiteboard sketch through launch and beyond.",
+      "Daily progress through AI-generated reports and real-time dashboards. From first sketch to launch, you're never in the dark.",
     badge: "⚡ Real-time AI progress reports",
   },
   {
@@ -41,7 +41,7 @@ const features = [
     title: "Top 5% Talent × AI Superpowers",
     tagline: "Hand-picked senior experts",
     description:
-      "Our engineers aren't just top-tier — they're trained to work alongside AI as a force multiplier. Hand-picked senior developers and certified architects who leverage AI coding assistants to deliver at a level traditional teams can't match.",
+      "Hand-picked senior developers and certified architects who leverage AI to deliver at a level traditional teams can't match.",
     badge: "⚡ Senior engineers amplified by AI",
   },
   {
@@ -49,7 +49,7 @@ const features = [
     title: "Built to Last, Shipped to Impress",
     tagline: "Zero shortcuts, ever",
     description:
-      "AI-generated test suites, automated security scanning, and intelligent code review ensure every line meets enterprise-grade standards. Clean architecture, zero shortcuts, production-hardened from day one.",
+      "AI-generated test suites, automated security scanning, and intelligent code review. Enterprise-grade standards, zero shortcuts.",
     badge: "⚡ 90% automated test coverage",
   },
 ];

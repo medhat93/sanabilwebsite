@@ -8,35 +8,35 @@ const steps = [
     icon: BrainCircuit,
     label: "STEP 01",
     title: "AI-Powered Discovery & Strategy",
-    description: "We combine deep human expertise with AI-driven research to map your market, analyze competitors, and define your product strategy. AI processes thousands of data points — user behavior patterns, market trends, technical feasibility — while our strategists focus on what matters: understanding your business goals and crafting the perfect roadmap.",
+    description: "AI analyzes market data, competitors, and user patterns while our strategists craft the perfect roadmap for your product.",
     badge: "⚡ What used to take 3-4 weeks now takes 5-7 days",
   },
   {
     icon: Sparkles,
     label: "STEP 02",
     title: "Rapid Prototyping with AI Design",
-    description: "Our designers use AI-assisted tools to generate wireframes, UI variations, and interactive prototypes at unprecedented speed. You see multiple design directions within days, not weeks. AI handles the repetitive layout work while our designers focus on the creative decisions that make your product unique and delightful.",
+    description: "AI-assisted tools generate wireframes and UI variations at speed. Multiple design directions within days, not weeks.",
     badge: "⚡ From concept to clickable prototype in under 1 week",
   },
   {
     icon: Terminal,
     label: "STEP 03",
     title: "AI-Augmented Development",
-    description: "Our senior engineers work alongside AI coding assistants to write, review, and optimize code at 3-5x the speed of traditional development. AI handles boilerplate, suggests optimizations, and catches bugs in real-time — while our engineers focus on architecture decisions, complex logic, and ensuring every line meets enterprise-grade standards. Every pull request is double-reviewed: by AI for patterns and by humans for intent.",
+    description: "Senior engineers work alongside AI coding assistants at 3-5x speed. Every pull request double-reviewed: AI for patterns, humans for intent.",
     badge: "⚡ 3-5x faster development with higher code quality",
   },
   {
     icon: ShieldCheck,
     label: "STEP 04",
     title: "Intelligent QA & Security",
-    description: "AI-powered testing generates comprehensive test suites, identifies edge cases humans miss, and runs thousands of scenarios in minutes. Our automated security scanning detects vulnerabilities before they reach production. Combined with manual expert review, this creates a quality gate that's both faster and more thorough than traditional QA.",
+    description: "AI generates comprehensive test suites, finds edge cases humans miss, and runs automated security scans before anything hits production.",
     badge: "⚡ 90% automated test coverage from day one",
   },
   {
     icon: Rocket,
     label: "STEP 05",
     title: "Launch, Learn & Evolve",
-    description: "Deployment is just the beginning. Our AI monitoring tracks performance, user behavior, and system health 24/7 — predicting issues before they happen and suggesting optimizations based on real usage data. We don't just launch and leave — we continuously evolve your product with data-driven insights and rapid AI-assisted iteration cycles.",
+    description: "AI monitoring tracks performance and user behavior 24/7 — predicting issues before they happen, suggesting data-driven optimizations.",
     badge: "⚡ Predictive monitoring catches 80% of issues before users notice",
   },
 ];
@@ -219,7 +219,7 @@ const Process = () => {
             </h2>
           </div>
           <p className="text-primary-foreground/50 max-w-2xl mx-auto text-[15px] sm:text-lg md:text-xl mt-4" style={{ lineHeight: 1.65 }}>
-            Traditional agencies take months. Our AI-augmented teams deliver production-ready software in weeks — without cutting corners on quality, security, or scalability.
+            Traditional agencies take months. Our AI-augmented teams deliver production-ready software in weeks — without cutting corners.
           </p>
         </motion.div>
 

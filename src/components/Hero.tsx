@@ -61,7 +61,7 @@ const Hero = () => {
           className="text-[15px] sm:text-lg md:text-xl max-w-2xl mx-auto mb-8 sm:mb-10 px-2"
           style={{ lineHeight: 1.6, color: "rgba(255, 255, 255, 0.6)" }}
         >
-          Like the finest wheat, great software requires the right seeds, expert cultivation, and patience to grow. At Sanabil, we combine world-class engineering with AI-native development to turn your vision into products that thrive — faster than you thought possible.
+          We combine world-class engineering with AI-native development to turn your vision into products that thrive — faster than you thought possible.
         </motion.p>
 
         <motion.div
