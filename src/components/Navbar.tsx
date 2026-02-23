@@ -5,10 +5,10 @@ import Logo from "./Logo";
 
 const navLinks = [
   { label: "Home", href: "#home" },
+  { label: "Clients", href: "#testimonials" },
   { label: "Services", href: "#services" },
   { label: "Why Us", href: "#why-us" },
   { label: "Our Process", href: "#process" },
-  { label: "Clients", href: "#testimonials" },
   { label: "Contact", href: "#contact" },
 ];
 
