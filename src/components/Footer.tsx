@@ -68,6 +68,24 @@ const ColumnHeading = ({ children }: { children: React.ReactNode }) => (
 const Footer = () => {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
   const [nlEmail, setNlEmail] = useState("");
+  const [nlSubmitted, setNlSubmitted] = useState(false);
+  const [nlError, setNlError] = useState("");
+
+  const handleNewsletterSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!nlEmail.trim()) { setNlError("Please enter your email"); return; }
+    if (!emailRegex.test(nlEmail)) { setNlError("Please enter a valid email"); return; }
+    const existing = JSON.parse(localStorage.getItem("sanabil_newsletter_emails") || "[]");
+    if (!existing.some((entry: { email: string }) => entry.email === nlEmail)) {
+      existing.push({ email: nlEmail, date: new Date().toISOString() });
+      localStorage.setItem("sanabil_newsletter_emails", JSON.stringify(existing));
+    }
+    setNlSubmitted(true);
+    setNlEmail("");
+    setNlError("");
+    setTimeout(() => setNlSubmitted(false), 3000);
+  };
 
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
@@ -229,37 +247,41 @@ const Footer = () => {
               Get insights on AI-native development delivered to your inbox.
             </p>
           </div>
-          <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
-            <input
-              type="email"
-              placeholder="your@email.com"
-              value={nlEmail}
-              onChange={(e) => setNlEmail(e.target.value)}
-              className="flex-1 sm:w-[240px]"
-              style={{
-                padding: "10px 16px",
-                borderRadius: 8,
-                background: "rgba(255, 255, 255, 0.04)",
-                border: "1px solid rgba(255, 255, 255, 0.1)",
-                color: "#fff",
-                fontSize: 14,
-                outline: "none",
-                transition: "all 0.3s ease",
-              }}
-              onFocus={(e) => {
-                e.currentTarget.style.borderColor = "rgba(229, 168, 33, 0.5)";
-                e.currentTarget.style.boxShadow = "0 0 0 3px rgba(229, 168, 33, 0.1)";
-              }}
-              onBlur={(e) => {
-                e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.1)";
-                e.currentTarget.style.boxShadow = "none";
-              }}
-            />
+          <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+            <div className="flex-1 flex flex-col">
+              <input
+                type="email"
+                placeholder="your@email.com"
+                value={nlEmail}
+                onChange={(e) => { setNlEmail(e.target.value); setNlError(""); }}
+                className="w-full sm:w-[240px]"
+                style={{
+                  padding: "10px 16px",
+                  borderRadius: 8,
+                  background: "rgba(255, 255, 255, 0.04)",
+                  border: `1px solid ${nlError ? "rgba(239, 68, 68, 0.5)" : "rgba(255, 255, 255, 0.1)"}`,
+                  color: "#fff",
+                  fontSize: 16,
+                  outline: "none",
+                  transition: "all 0.3s ease",
+                }}
+                onFocus={(e) => {
+                  e.currentTarget.style.borderColor = nlError ? "rgba(239, 68, 68, 0.5)" : "rgba(229, 168, 33, 0.5)";
+                  e.currentTarget.style.boxShadow = "0 0 0 3px rgba(229, 168, 33, 0.1)";
+                }}
+                onBlur={(e) => {
+                  e.currentTarget.style.borderColor = nlError ? "rgba(239, 68, 68, 0.5)" : "rgba(255, 255, 255, 0.1)";
+                  e.currentTarget.style.boxShadow = "none";
+                }}
+              />
+              {nlError && <p style={{ fontSize: 12, color: "rgba(239, 68, 68, 0.8)", marginTop: 4 }}>{nlError}</p>}
+            </div>
             <button
-              className="flex-shrink-0 font-semibold"
+              type="submit"
+              className="flex-shrink-0 font-semibold w-full sm:w-auto"
               style={{
-                background: "#E5A821",
-                color: "#0A2540",
+                background: nlSubmitted ? "#22c55e" : "#E5A821",
+                color: nlSubmitted ? "#fff" : "#0A2540",
                 fontSize: 13,
                 padding: "10px 20px",
                 borderRadius: 8,
@@ -268,15 +290,15 @@ const Footer = () => {
                 transition: "all 0.3s ease",
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.boxShadow = "0 0 20px rgba(229, 168, 33, 0.3)";
+                if (!nlSubmitted) e.currentTarget.style.boxShadow = "0 0 20px rgba(229, 168, 33, 0.3)";
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.boxShadow = "none";
               }}
             >
-              Subscribe
+              {nlSubmitted ? "✓ Subscribed!" : "Subscribe"}
             </button>
-          </div>
+          </form>
         </motion.div>
 
         {/* Bottom bar */}
@@ -291,7 +313,7 @@ const Footer = () => {
           }}
         >
           <p style={{ fontSize: 13, color: "rgba(255, 255, 255, 0.25)" }}>
-            © 2025 Sanabil Technologies. All rights reserved.
+            © {new Date().getFullYear()} Sanabil Technologies. All rights reserved.
           </p>
           <button
             onClick={scrollToTop}
