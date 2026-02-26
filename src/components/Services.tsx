@@ -289,7 +289,7 @@ const ServiceTab = ({
 };
 
 /* ───────── Detail Panel ───────── */
-const DetailPanel = ({ index }: { index: number }) => {
+const DetailPanel = ({ index, isMobile = false }: { index: number; isMobile?: boolean }) => {
   const s = services[index];
   const Icon = s.icon;
   const Visual = visuals[index];
@@ -301,39 +301,39 @@ const DetailPanel = ({ index }: { index: number }) => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
-      className="absolute inset-0"
-      style={{ padding: "inherit" }}
+      className={isMobile ? "relative" : "absolute inset-0"}
+      style={isMobile ? {} : { padding: "inherit" }}
     >
-      <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 h-full">
+      <div className={`flex ${isMobile ? "flex-col" : "flex-col lg:flex-row gap-8 lg:gap-12 h-full"}`}>
         {/* Text */}
-        <div className="flex-1 min-w-0 flex flex-col" style={{ maxWidth: 520 }}>
-          <div style={{ filter: "drop-shadow(0 0 16px rgba(229, 168, 33, 0.35))" }} className="mb-4">
-            <Icon size={44} strokeWidth={1.3} style={{ color: "#E5A821" }} />
+        <div className="flex-1 min-w-0 flex flex-col" style={isMobile ? {} : { maxWidth: 520 }}>
+          <div style={{ filter: "drop-shadow(0 0 16px rgba(229, 168, 33, 0.35))" }} className="mb-3 md:mb-4">
+            <Icon size={isMobile ? 36 : 44} strokeWidth={1.3} style={{ color: "#E5A821" }} />
           </div>
 
-          <h3 className="font-display font-bold text-primary-foreground mb-3" style={{ fontSize: 27, letterSpacing: "-0.02em" }}>
+          <h3 className="font-display font-bold text-primary-foreground mb-2 md:mb-3" style={{ fontSize: isMobile ? 22 : 27, letterSpacing: "-0.02em" }}>
             {s.title}
           </h3>
 
-          <p style={{ fontSize: 16, lineHeight: 1.7, color: "rgba(255, 255, 255, 0.6)" }}>
+          <p style={{ fontSize: isMobile ? 15 : 16, lineHeight: 1.7, color: "rgba(255, 255, 255, 0.6)" }}>
             {s.description}
           </p>
 
-          <div className="mt-5">
+          <div className="mt-4 md:mt-5">
             <span className="inline-flex items-center gap-1 font-medium" style={{
               background: "rgba(229, 168, 33, 0.08)", border: "1px solid rgba(229, 168, 33, 0.2)",
-              borderRadius: 20, padding: "6px 14px", fontSize: 13, color: "#E5A821",
+              borderRadius: 20, padding: "6px 14px", fontSize: isMobile ? 12 : 13, color: "#E5A821",
             }}>
               {s.badge}
             </span>
           </div>
 
           {/* Tech pills */}
-          <div className="flex flex-wrap gap-2 mt-5">
+          <div className="flex flex-wrap gap-1.5 md:gap-2 mt-4 md:mt-5">
             {s.techs.map((t) => (
               <span key={t} style={{
                 background: "rgba(255, 255, 255, 0.04)", border: "1px solid rgba(255, 255, 255, 0.08)",
-                borderRadius: 6, padding: "4px 10px", fontSize: 12, color: "rgba(255, 255, 255, 0.45)", fontWeight: 500,
+                borderRadius: 6, padding: "4px 10px", fontSize: isMobile ? 11 : 12, color: "rgba(255, 255, 255, 0.45)", fontWeight: 500,
               }}>
                 {t}
               </span>
@@ -341,11 +341,13 @@ const DetailPanel = ({ index }: { index: number }) => {
           </div>
         </div>
 
-        {/* Visual */}
-        <div className="hidden lg:flex items-center justify-center pointer-events-none"
-          style={{ width: "42%", flexShrink: 0 }}>
-          <Visual />
-        </div>
+        {/* Visual - hidden on mobile */}
+        {!isMobile && (
+          <div className="hidden lg:flex items-center justify-center pointer-events-none"
+            style={{ width: "42%", flexShrink: 0 }}>
+            <Visual />
+          </div>
+        )}
       </div>
     </motion.div>
   );
@@ -353,7 +355,16 @@ const DetailPanel = ({ index }: { index: number }) => {
 
 /* ───────── Mobile Pill Bar ───────── */
 const MobilePillBar = ({ active, onSelect }: { active: number; onSelect: (i: number) => void }) => (
-  <div className="flex gap-2 overflow-x-auto pb-3 -mx-2 px-2 scrollbar-none md:hidden" style={{ WebkitOverflowScrolling: "touch" }}>
+  <div
+    className="flex gap-2 overflow-x-auto pb-3 px-4"
+    style={{
+      WebkitOverflowScrolling: "touch",
+      scrollSnapType: "x mandatory",
+      scrollbarWidth: "none",
+      msOverflowStyle: "none",
+    }}
+  >
+    <style>{`.mobile-pills::-webkit-scrollbar { display: none; }`}</style>
     {services.map((s, i) => {
       const Icon = s.icon;
       const isActive = active === i;
@@ -361,9 +372,10 @@ const MobilePillBar = ({ active, onSelect }: { active: number; onSelect: (i: num
         <button key={i} onClick={() => onSelect(i)}
           className="flex items-center gap-2 flex-shrink-0 whitespace-nowrap"
           style={{
-            padding: "8px 16px", borderRadius: 20, fontSize: 13, fontWeight: 500,
+            scrollSnapAlign: "start",
+            padding: "10px 18px", borderRadius: 20, fontSize: 13, fontWeight: 500,
             background: isActive ? "rgba(229, 168, 33, 0.15)" : "rgba(255, 255, 255, 0.04)",
-            border: `1px solid ${isActive ? "rgba(229, 168, 33, 0.3)" : "rgba(255, 255, 255, 0.06)"}`,
+            border: `1px solid ${isActive ? "rgba(229, 168, 33, 0.3)" : "rgba(255, 255, 255, 0.08)"}`,
             color: isActive ? "#E5A821" : "rgba(255, 255, 255, 0.4)",
             transition: "all 0.3s ease",
           }}>
@@ -467,7 +479,9 @@ const Services = () => {
         </motion.div>
 
         {/* Mobile pill bar */}
-        <MobilePillBar active={active} onSelect={handleSelect} />
+        <div className="md:hidden mb-4">
+          <MobilePillBar active={active} onSelect={handleSelect} />
+        </div>
 
         {/* Desktop: Tabs + Detail */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -505,12 +519,12 @@ const Services = () => {
         </motion.div>
 
         {/* Mobile detail panel */}
-        <div className="md:hidden mt-4" style={{
+        <div className="md:hidden" style={{
           background: "rgba(255, 255, 255, 0.02)", border: "1px solid rgba(255, 255, 255, 0.06)",
-          borderTop: "3px solid #E5A821", borderRadius: 20, padding: "24px 20px", minHeight: 280,
+          borderTop: "3px solid #E5A821", borderRadius: 20, padding: "24px 20px",
         }}>
           <AnimatePresence mode="wait">
-            <DetailPanel key={active} index={active} />
+            <DetailPanel key={active} index={active} isMobile />
           </AnimatePresence>
         </div>
       </div>
